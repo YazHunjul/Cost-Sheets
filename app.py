@@ -1077,9 +1077,15 @@ def save_to_excel(data):
     try:
         # Define paths using os.path for cross-platform compatibility
         template_path = os.path.join("resources", "Halton Cost Sheet Jan 2025.xlsx")
+        output_path = "output.xlsx"
         
+        # Check if template exists in current directory
         if not os.path.exists(template_path):
-            st.error(f"Template file not found at: {template_path}")
+            st.error(f"Template file not found. Please ensure '{template_path}' exists in the resources folder.")
+            st.info("If you're running this on Streamlit Cloud, make sure to:")
+            st.info("1. Create a 'resources' folder in your repository")
+            st.info("2. Add the Excel template to the resources folder")
+            st.info("3. Commit and push the changes to GitHub")
             return
             
         # Load workbook with data_only=False to preserve formulas

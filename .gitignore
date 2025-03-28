@@ -39,8 +39,12 @@ output.zip
 temp_*.xlsx
 *.zip
 
-# Resources folder (if you don't want to include it)
-resources/
+# System files
+.DS_Store
+Thumbs.db
+
+# Do NOT ignore resources folder
+# resources/  <- Remove or comment this line
 
 # Streamlit
 .streamlit/
