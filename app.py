@@ -1522,10 +1522,14 @@ def create_new_revision(uploaded_file, project_name, project_number, next_rev):
     # Open workbook
     wb = openpyxl.load_workbook(temp_excel_path)
     
-    # Update revision for each sheet
+    # Update revision for each sheet and add dropdowns
     for sheet_name in [s for s in wb.sheetnames if 'CANOPY' in s or s == 'JOB TOTAL']:
         sheet = wb[sheet_name]
         sheet['O7'] = next_rev
+        
+        # Add dropdowns to CANOPY sheets
+        if 'CANOPY' in sheet_name:
+            add_dropdowns_to_sheet(wb, sheet, 12)
     
     # Create folder name with project details
     folder_name = f"{project_name} - {project_number} (Revision {next_rev})"
@@ -1564,6 +1568,9 @@ def add_new_floor_area(uploaded_file, new_floor, new_area, current_revision):
         new_sheet.title = new_sheet_name
         new_sheet['B1'] = f"{new_floor} - {new_area}"
         new_sheet['O7'] = current_revision
+        
+        # Add dropdowns to the new sheet
+        add_dropdowns_to_sheet(wb, new_sheet, 12)
         
         # Save workbook
         new_filename = uploaded_file.name.replace('.xlsx', '_updated.xlsx')
