@@ -1075,10 +1075,13 @@ def write_to_word_doc(data, project_data, output_path="output.docx"):
 # Modify save_to_excel function to remove Word document generation
 def save_to_excel(data):
     try:
-        # Define paths
-        template_path = "resources/Halton Cost Sheet Jan 2025.xlsx"
-        output_path = "output.xlsx"
+        # Define paths using os.path for cross-platform compatibility
+        template_path = os.path.join("resources", "Halton Cost Sheet Jan 2025.xlsx")
         
+        if not os.path.exists(template_path):
+            st.error(f"Template file not found at: {template_path}")
+            return
+            
         # Load workbook with data_only=False to preserve formulas
         workbook = openpyxl.load_workbook(template_path, read_only=False, data_only=False)
         
