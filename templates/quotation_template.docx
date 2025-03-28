@@ -1,0 +1,103 @@
+Tony Donaghy
+Vision
+
+                                                                                  Date: {{ date }}
+                                                                                  Halton Ref: {{ project_number }}
+                                                                                  Sales Contact:
+                                                                                  {{ sales_contact_name }} {{ contact_number }}
+
+Dear {{ customer_first_name }},
+
+{{ customer }}
+{{ company }}
+
+Scope of Works
+To supply, deliver, install & commission:
+{% for item in scope_items %}
+• {{ item }}
+{% endfor %}
+
+{% for area in areas %}
+{{ area.name }}
+All Halton kitchen ventilation canopies are manufactured in accordance with DW/172, "HVCA Specification for Kitchen Ventilation Systems". As standard, all canopies are constructed from 1.20mm thick Grade 304 satin finish stainless steel, with a full perimeter 50mm x 25mm condensation channel, as required.
+All joints and seams are liquid tight.
+
+An adequate number of hanging brackets shall be provided on the roof of the canopy for site installation purposes. Canopy lighting is designed and selected to provide a minimum average illumination level of 500 lux to the cooking surface.
+
+ITEM | CANOPY | DIMENSIONS (mm) | SEC | EXT.VOL | EXTRACT | MUA | SUPPLY | LIGHT
+NO.  | MODEL  |  L  |  W  |  H  | T   |  (m³/s) | STATIC | VOL. | STATIC | TYPE
+                                 QTY            |  (Pa)  |(m³/s)|  (Pa)  |
+{%- for canopy in area.canopies %}
+{{ "%-8s"|format(canopy.item_no) }} | {{ "%-8s"|format(canopy.model) }} {{ canopy.configuration }} | {{ "%4s"|format(canopy.length) }} | {{ "%4s"|format(canopy.width) }} | {{ "%3s"|format(canopy.height) }} | {{ "%2s"|format(canopy.sections) }} | {{ "%7s"|format(canopy.ext_vol) }} | {{ "%7s"|format(canopy.ext_static) }} | {{ "%7s"|format(canopy.mua_vol) }} | {{ "%6s"|format(canopy.supply_static) }} | {{ canopy.lighting }}
+{%- endfor %}
+
+Important Note: - The make-up air flows shown above are the maximum that we can introduce through the canopy. This should be equal to approximately 85% of the extract i.e. 3.987m3/s
+In this instance it only totals 3.116m3/s therefore the shortfall of 0.87m3/s must be introduced through ceiling grilles or diffusers, by others.
+If you require further guidance on this, please do not hesitate to contact us.
+
+{% if area.has_uv %}
+Specific Notes:
+Canopy UV-C to be controlled via the Halton GOT panel / Edge connectivity system.
+{% endif %}
+{% endfor %}
+
+{% if has_water_wash %}
+CWS / HWS Capacities for Water Mist / Wash Canopies
+
+ITEM | CANOPY | 50mm | CWS @ 2 Bar | HWS @ 2 Bar | HWS Storage | PRICE
+NO.  | MODEL* | Drain Conns | (L/s) | (L/s) | (Litres) | (£)
+                           | Continuous during | 3 minute wash | 3 minute wash |
+                           | operation | cycle | usage |
+{%- for canopy in ww_canopies %}
+{{ canopy.reference_number }} | {{ canopy.model }} | | {{ canopy.cws_2bar }} | {{ canopy.hws_2bar }} | {{ canopy.hws_storage }} | {{ "%.2f"|format(canopy.base_price) }}
+{%- endfor %}
+{% endif %}
+
+{% if has_cladding %}
+2.0 Halton Wall Cladding
+To supply and install 1.20mm thick satin finish stainless steel wall cladding areas listed below. Wall cladding to be supplied and installed with suitable end caps and jointing strips. Halton are to cut out and / or drill holes to cladding for cook line services if all recessed first fix back boxes have been installed prior to Halton's site attendance.
+
+Please note, all wall surfaces are to be fully prepared by others to provide for a flat, dry surface, free of loose debris in preparation for wall cladding installation by Halton.
+
+ITEM | DESCRIPTION | DIMENSIONS (mm)
+NO.  |            | WIDTH | HEIGHT
+{%- for item in cladding_items %}
+{{ "%-8s"|format(item.item_no) }} | {{ "%-40s"|format(item.description) }} | {{ "%6s"|format(item.width) }} | {{ "%6s"|format(item.height) }}
+{%- endfor %}
+{% endif %}
+
+Yours sincerely,
+
+{{ estimator_name }}
+({{ estimator_role }})
+
+{% for area in areas %}
+Pricing Schedule
+{{ area.name }}
+
+ITEM | CANOPY SCHEDULE | PRICE
+{%- for canopy in area.canopies %}
+{{ canopy.reference_number }} | Halton {{ canopy.model }} canopy, ex-works | £{{ "%.2f"|format(canopy.base_price) }}
+| Extra over for emergency lighting  {{ canopy.emergency_lighting }} |
+{%- endfor %}
+| Delivery & Installation | £{{ "%.2f"|format(area.delivery_install) }}
+| Commissioning | £{{ "%.2f"|format(area.subtotal * 0.05) }}
+SUB TOTAL | £{{ "%.2f"|format(area.total) }}
+
+{%- if area.has_uv %}
+ITEM | UV-c CONTROL SCHEDULE | PRICE
+UV-c | Optional Remote Monitoring Connectivity, supplied and installed | £{{ "%.2f"|format(1040.00) }}
+SUB TOTAL | £{{ "%.2f"|format(1040.00) }}
+{%- endif %}
+
+{%- if area.cladding_items %}
+ITEM | CLADDING SCHEDULE | PRICE
+{%- for item in area.cladding_items %}
+{{ item.item_no }} | Cladding below Item {{ item.item_no }}, supplied and installed | £{{ "%.2f"|format(item.price) }}
+{%- endfor %}
+SUB TOTAL | £{{ "%.2f"|format(area.cladding_subtotal) }}
+{%- endif %}
+
+Area Total (Canopies + Delivery): £{{ "%.2f"|format(area.area_total) }}
+
+{% endfor %} 
