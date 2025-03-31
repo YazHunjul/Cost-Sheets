@@ -230,6 +230,12 @@ def create_general_info_form():
                                         options=["Select...", "WALL", "ISLAND", "OTHER"],
                                         key=f"config_{level_idx}_{area_idx}_{canopy_idx}"
                                     )
+                                    # Add fire suppression radio button right after configuration
+                                    fire_suppression = st.radio(
+                                        "Include Fire Suppression",
+                                        options=["No", "Yes"],
+                                        key=f"fire_suppression_{level_idx}_{area_idx}_{canopy_idx}"
+                                    )
                                 
                                 with col2:
                                     model = st.selectbox(
@@ -274,6 +280,9 @@ def create_general_info_form():
                                         'reference_number': reference_number,
                                         'configuration': configuration,
                                         'model': model,
+                                        'fire_suppression': fire_suppression == "Yes",  # Store as boolean
+                                        'level_name': level_name,  # Store level name
+                                        'area_name': area_name,    # Store area name
                                         'wall_cladding': {
                                             'type': wall_cladding,
                                             'width': cladding_width if wall_cladding != "Select..." else 0,
@@ -356,92 +365,123 @@ def get_initials(name):
     initials = ''.join(word[0].upper() for word in words if word)
     return initials
 
-def write_to_sheet(sheet, data, level_name, area_name, canopies):
+def write_to_sheet(sheet, data, level_name, area_name, canopies, fs_sheet=None):
     """Write data to specific cells in the sheet"""
     # Write sheet title
-    sheet['B1'] = f"{level_name} - {area_name}"
+    sheet_title = f"{level_name} - {area_name}"
+    sheet['B1'] = sheet_title
     
-    # Write general info (only if cells don't contain formulas)
-    def safe_write(cell, value):
-        # Skip writing if value is "Select..." or None/empty
-        if value == "Select..." or not value:
-            return
-        # Skip writing if cell contains formula
-        if not cell.value or not str(cell.value).startswith('='):
-            cell.value = value
+    # Write general info to both sheets
+    def write_general_info(target_sheet):
+        target_sheet['C3'] = data['Project Number']
+        customer_company = f"{data['Customer']} ({data['Company']})" if data['Company'] else data['Customer']
+        target_sheet['C5'] = customer_company
+        target_sheet['C7'] = f"{get_initials(data['Sales Contact'])}/{get_initials(data['Estimator'])}"
+        target_sheet['G3'] = data['Project Name']
+        target_sheet['G5'] = data['Location']
+        target_sheet['G7'] = data['Date']
+        target_sheet['O7'] = 'A'  # Initial revision
     
-    safe_write(sheet['C3'], data['Project Number'])
-    # Combine customer and company in C5
-    customer_company = f"{data['Customer']} ({data['Company']})" if data['Company'] else data['Customer']
-    safe_write(sheet['C5'], customer_company)
+    write_general_info(sheet)
     
-    sales_initials = get_initials(data['Sales Contact'])
-    estimator_initials = get_initials(data['Estimator'])
-    if sales_initials and estimator_initials:  # Only write if both have valid values
-        safe_write(sheet['C7'], f"{sales_initials}/{estimator_initials}")
-    
-    safe_write(sheet['G3'], data['Project Name'])
-    safe_write(sheet['G5'], data['Location'])
-    safe_write(sheet['G7'], data['Date'])
-    
-    # Add initial revision 'A'
-    safe_write(sheet['O7'], 'A')
-    
-    # Store estimator info in Lists sheet
-    if 'Lists' not in sheet.parent.sheetnames:
-        list_sheet = sheet.parent.create_sheet('Lists')
-    else:
-        list_sheet = sheet.parent['Lists']
-    
-    # Store estimator name and role in Lists sheet
-    estimator_name = data['Estimator']
-    if estimator_name in estimators:
-        list_sheet['Z1'] = estimator_name  # Store full name
-        list_sheet['Z2'] = estimators[estimator_name]  # Store role
+    # Handle fire suppression sheet if needed
+    if fs_sheet:
+        # Write the same title as the canopy sheet
+        fs_sheet['B1'] = sheet_title
+        
+        # Get the sheet number from the canopy sheet name (e.g., "CANOPY - First Floor (1)" -> "1")
+        sheet_number = sheet.title.split('(')[-1].strip(')')
+        
+        # Rename fire suppression sheet to match canopy sheet format
+        fs_sheet.title = f"FIRE SUPP - {level_name} ({sheet_number})"
+        
+        # Write general info
+        write_general_info(fs_sheet)
     
     # Write canopy data
     for idx, canopy in enumerate(canopies):
         base_row = 12 + (idx * 17)
         
-        # Only write if values are not "Select..."
+        # Write to CANOPY sheet
         if canopy['reference_number'] != "Select...":
-            safe_write(sheet[f'B{base_row}'], canopy['reference_number'])
+            sheet[f'B{base_row}'] = canopy['reference_number']
         if canopy['configuration'] != "Select...":
-            safe_write(sheet[f'C{base_row + 2}'], canopy['configuration'])
+            sheet[f'C{base_row + 2}'] = canopy['configuration']
         if canopy['model'] != "Select...":
-            safe_write(sheet[f'D{base_row + 2}'], canopy['model'])
+            sheet[f'D{base_row + 2}'] = canopy['model']
         
-        # Standard entries
-        safe_write(sheet[f'C{base_row + 3}'], "LIGHT SELECTION")
-        safe_write(sheet[f'C{base_row + 4}'], "SELECT WORKS")
-        safe_write(sheet[f'C{base_row + 5}'], "SELECT WORKS")
-        safe_write(sheet[f'C{base_row + 6}'], "BIM/ REVIT per CANOPY")
-        safe_write(sheet[f'D{base_row + 6}'], "1")
+        # Write standard entries one by one
+        sheet[f'C{base_row + 3}'] = "LIGHT SELECTION"
+        sheet[f'C{base_row + 4}'] = "SELECT WORKS"
+        sheet[f'C{base_row + 5}'] = "SELECT WORKS"
+        sheet[f'C{base_row + 6}'] = "BIM/ REVIT per CANOPY"
+        sheet[f'D{base_row + 6}'] = "1"
         
         # Wall cladding - only write if not "Select..."
         if canopy['wall_cladding']['type'] and canopy['wall_cladding']['type'] != "Select...":
             cladding_row = base_row + 7
             # Write wall cladding type to C column
-            safe_write(sheet[f'C{cladding_row}'], canopy['wall_cladding']['type'])
+            sheet[f'C{cladding_row}'] = canopy['wall_cladding']['type']
             
             # Write dimensions and positions to hidden cells for storage
-            # Using columns Q, R, S, T for storage (these are typically hidden)
-            safe_write(sheet[f'Q{cladding_row}'], canopy['wall_cladding']['width'])  # Width in Q
-            safe_write(sheet[f'R{cladding_row}'], canopy['wall_cladding']['height'])  # Height in R
-            safe_write(sheet[f'S{cladding_row}'], ','.join(canopy['wall_cladding']['positions']))  # Positions in S
-            
-            # Create a formatted display string for the visible cell
-            positions_str = '/'.join(canopy['wall_cladding']['positions'])
-            cladding_info = (f"{canopy['wall_cladding']['type']} - "
-                            f"{canopy['wall_cladding']['width']}x{canopy['wall_cladding']['height']}mm "
-                            f"({positions_str})")
-            safe_write(sheet[f'T{cladding_row}'], cladding_info)  # Store full formatted string
+            sheet[f'Q{cladding_row}'] = canopy['wall_cladding']['width']
+            sheet[f'R{cladding_row}'] = canopy['wall_cladding']['height']
+            sheet[f'S{cladding_row}'] = ','.join(canopy['wall_cladding']['positions'])
+            sheet[f'T{cladding_row}'] = f"2M² (HFL) - {canopy['wall_cladding']['width']}x{canopy['wall_cladding']['height']}mm ({'/'.join(canopy['wall_cladding']['positions'])})"
         
         # Write MUA VOL to Q22 if it's an F-type canopy
         model = str(canopy.get('model', ''))  # Convert to string first
         if 'F' in model.upper():
             print(f"Writing MUA VOL for {model}: {canopy.get('mua_vol', '-')}")
             sheet[f'Q{22 + (idx * 17)}'] = f"MUA VOL: {canopy.get('mua_vol', '-')}"
+        
+        # Write to FIRE SUPPRESSION sheet if applicable
+        if fs_sheet and canopy.get('fire_suppression', False):
+            fs_sheet[f'B{base_row}'] = canopy['reference_number']
+    
+    # Handle fire suppression sheets
+    fire_suppression_canopies = [c for c in canopies if c.get('fire_suppression', False)]
+    
+    if fire_suppression_canopies:
+        # Find FIRE SUPPRESSION sheets
+        fire_suppression_sheets = [s for s in sheet.parent.sheetnames if 'FIRE SUPPRESSION' in s]
+        
+        # Look for template sheet
+        fs_sheet = None
+        for fs_sheet_name in fire_suppression_sheets:
+            temp_sheet = sheet.parent[fs_sheet_name]
+            if temp_sheet['B1'].value == "F24 - 19 CANOPY COST SHEET":
+                fs_sheet = temp_sheet
+                
+                # Rename and setup the fire suppression sheet
+                new_name = f"FIRE SUPP - {area_name} ({sheet.title.split('(')[-1].strip(')')})"
+                fs_sheet.title = new_name
+                
+                # Write general information
+                fs_sheet['C3'] = data['Project Number']
+                customer_company = f"{data['Customer']} ({data['Company']})" if data['Company'] else data['Customer']
+                fs_sheet['C5'] = customer_company
+                fs_sheet['C7'] = f"{get_initials(data['Sales Contact'])}/{get_initials(data['Estimator'])}"
+                fs_sheet['G3'] = data['Project Name']
+                fs_sheet['G5'] = data['Location']
+                fs_sheet['G7'] = data['Date']
+                fs_sheet['O7'] = 'A'  # Initial revision
+                
+                # Write fire suppression canopy reference numbers
+                for idx, canopy in enumerate(fire_suppression_canopies):
+                    row = 12 + (idx * 17)  # Same spacing as canopy sheets
+                    fs_sheet[f'B{row}'] = canopy['reference_number']
+                
+                # Add dropdown validation for fire suppression options
+                add_fire_suppression_dropdown(fs_sheet)
+                
+                # Make sheet visible
+                fs_sheet.sheet_state = 'visible'
+                break
+        
+        if not fs_sheet:
+            st.error("No available FIRE SUPPRESSION sheets found")
+            return
 
 def add_dropdowns_to_sheet(wb, sheet, start_row):
     """Add data validation (dropdowns) to specific cells"""
@@ -785,6 +825,36 @@ def add_dropdowns_to_sheet(wb, sheet, start_row):
                 dv.add(f"{config['target_col']}{current_row}")
                 current_row += 17
 
+def get_canopy_description(model, count):
+    """Generate appropriate description based on canopy model"""
+    model = model.upper()
+    count_str = f"{count}no"  # Format the count properly
+    
+    # CMWF/CMWI type canopies (Water Wash)
+    if model.startswith('CMW'):
+        if 'F' in model:
+            return f"{count_str} Extract/Supply Canopy c/w Capture Jet Tech and Water Wash Function"
+        else:
+            return f"{count_str} Extract Canopy c/w Capture Jet Tech and Water Wash Function"
+    
+    # UV type canopies
+    elif model.startswith('UV'):
+        if 'F' in model:
+            return f"{count_str} Extract/Supply Canopies c/w Capture Jet Tech and UV-c Filtration"
+        else:
+            return f"{count_str} Extract Canopies c/w Capture Jet Tech and UV-c Filtration"
+    
+    # CXW type canopies
+    elif model.startswith('CXW'):
+        return f"{count_str} Condense Canopies c/w Extract and Led Light"
+    
+    # Standard canopies (KV, etc)
+    else:
+        if 'F' in model:
+            return f"{count_str} Extract/Supply Canopies c/w Capture Jet Tech"
+        else:
+            return f"{count_str} Extract Canopies c/w Capture Jet Tech"
+
 def write_to_word_doc(data, project_data, output_path="output.docx"):
     """Write project information to a Word document using Jinja template"""
     f_canopy_mua_vols = []
@@ -852,8 +922,14 @@ def write_to_word_doc(data, project_data, output_path="output.docx"):
     # Get estimator initials from the sales_estimator field (format: "sales/estimator")
     estimator_initials = data.get('Estimator', '').split('/')[-1] if '/' in data.get('Estimator', '') else ''
     
-    # Create Halton reference with project number and both sets of initials
-    halton_ref = f"{data['Project Number']} / {get_initials(sales_contact_name)} / {estimator_initials}"
+    # Get current revision
+    current_revision = project_data['sheets'][0].get('revision', 'A')
+    
+    # Create Halton reference with project number, initials and revision
+    halton_ref = f"{data['Project Number']}/{get_initials(sales_contact_name)}/{estimator_initials}/{current_revision}"
+    
+    # Create quote title based on revision
+    quote_title = "QUOTATION - Revision A" if current_revision == 'A' else f"QUOTATION - Revision {current_revision}"
     
     # Initialize global flags and arrays
     has_water_wash_canopies = False
@@ -951,7 +1027,7 @@ def write_to_word_doc(data, project_data, output_path="output.docx"):
                     'ext_static': canopy['ext_static'] or 0,
                     'mua_vol': canopy['mua_vol'] or 0,
                     'supply_static': canopy['supply_static'] or 0,
-                    'lighting': canopy.get('lights', 'LED Strip'),
+                    'lighting': canopy.get('lighting', 'LED Strip'),  # Changed from 'lights' to 'lighting'
                     'cws_2bar': canopy['cws_2bar'] or '-',
                     'hws_2bar': canopy['hws_2bar'] or '-',
                     'hws_storage': canopy['hws_storage'] or '-',
@@ -965,7 +1041,7 @@ def write_to_word_doc(data, project_data, output_path="output.docx"):
             # Calculate area totals with rounding at each step
             canopy_total = sum(math.ceil(canopy['base_price']) for canopy in canopies)  # Round each canopy price
             delivery_total = math.ceil(float(sheet['delivery_install']))  # Round delivery
-            commissioning_total = float(sheet['commissioning_price'])  # Get raw value
+            commissioning_total = math.ceil(float(sheet['commissioning_price']))  # Get raw value
             area_total = math.ceil(canopy_total + delivery_total + commissioning_total)  # Include commissioning in total
             
             areas.append({
@@ -1006,7 +1082,8 @@ def write_to_word_doc(data, project_data, output_path="output.docx"):
     # Add to context
     context = {
         'date': data['Date'],
-        'project_number': halton_ref,
+        'project_number': halton_ref,  # Updated reference format
+        'quote_title': quote_title,    # New quote title
         'sales_contact_name': sales_contact_name,
         'contact_number': contact_number,
         'customer': data['Customer'],
@@ -1049,7 +1126,7 @@ def write_to_word_doc(data, project_data, output_path="output.docx"):
     # Format scope of works
     scope_items = []
     for canopy_type, count in canopy_counts.items():
-        scope_items.append(f"{count} x {canopy_type} Ventilation Canopies")
+        scope_items.append(get_canopy_description(canopy_type, count))
     
     # Add any wall cladding from valid canopies only
     wall_cladding_count = sum(1 for sheet in project_data['sheets'] 
@@ -1060,10 +1137,40 @@ def write_to_word_doc(data, project_data, output_path="output.docx"):
                                  canopy['reference_number'] != 'ITEM' and
                                  canopy['model'] != 'CANOPY TYPE'))
     if wall_cladding_count > 0:
-        scope_items.append(f"{wall_cladding_count} x Areas with Stainless Steel Cladding")
+        scope_items.append(f"{wall_cladding_count}no Areas with Stainless Steel Cladding")
     
     # Add scope items to context
     context['scope_items'] = scope_items
+    
+    # Add fire suppression data to context
+    has_fire_suppression = bool(project_data['fire_suppression_data'])
+    
+    if has_fire_suppression:
+        # Format fire suppression data for the template
+        fs_data = []
+        for floor_name, areas in project_data['fire_suppression_data'].items():
+            floor_data = {
+                'floor_name': floor_name,
+                'floor_code': f"({floor_name.split()[-1]})" if floor_name.split()[-1].isdigit() else "",
+                'areas': []
+            }
+            
+            for area_name, items in areas.items():
+                area_data = {
+                    'area_name': area_name,
+                    'items': items
+                }
+                floor_data['areas'].append(area_data)
+            
+            fs_data.append(floor_data)
+
+        context.update({
+            'has_fire_suppression': True,
+            'fire_suppression_data': fs_data,
+            'fire_suppression_description': """The restaurant fire suppression system is a pre-engineered, wet chemical, cartridge-operated, regulated pressure type with a fixed nozzle agent distribution network. The system is capable of automatic detection and actuation and / or remote manual actuation to provide fire protection to the cooking appliances, canopy exhaust duct and canopy filter plenum. Fire alarm / BMS connections to the release module to be carried out by others."""
+        })
+    else:
+        context['has_fire_suppression'] = False
     
     # Render the template with the context
     doc.render(context)
@@ -1091,39 +1198,80 @@ def save_to_excel(data):
         # Load workbook with data_only=False to preserve formulas
         workbook = openpyxl.load_workbook(template_path, read_only=False, data_only=False)
         
-        # Get all CANOPY sheets
+        # Get all CANOPY and FIRE SUPPRESSION sheets
         canopy_sheets = [sheet for sheet in workbook.sheetnames if 'CANOPY' in sheet]
+        fire_supp_sheets = [sheet for sheet in workbook.sheetnames if 'FIRE SUPPRESSION' in sheet]
+        
+        print("All sheets in workbook:", workbook.sheetnames)  # Debug
+        print("Found CANOPY sheets:", canopy_sheets)  # Debug
+        print("Found FIRE SUPPRESSION sheets:", fire_supp_sheets)  # Debug
+        
         sheet_count = 0
+        fs_sheet_count = 0
         
         # Process each level and area
         for level in data['Levels']:
             for area in level['areas']:
-                # Get the appropriate CANOPY sheet
+                # Check if any canopy in this area has fire suppression
+                has_fire_suppression = any(canopy.get('fire_suppression', False) for canopy in area['canopies'])
+                print(f"\nProcessing {level['level_name']} - {area['area_name']}")  # Debug
+                print(f"Has fire suppression: {has_fire_suppression}")  # Debug
+                
+                # Handle CANOPY sheet
                 if sheet_count >= len(canopy_sheets):
                     st.error(f"Not enough CANOPY sheets in template! Need {sheet_count + 1}, but only have {len(canopy_sheets)}")
                     break
                 
                 sheet_name = canopy_sheets[sheet_count]
                 current_sheet = workbook[sheet_name]
-                
-                # Make sure the sheet is visible
                 current_sheet.sheet_state = 'visible'
                 
-                # Rename the sheet with new format: CANOPY - FLOOR NAME (#)
+                # Rename the CANOPY sheet
                 new_sheet_name = f"CANOPY - {level['level_name']} ({sheet_count + 1})"
                 current_sheet.title = new_sheet_name
                 
-                # Write data to the existing sheet
-                write_to_sheet(current_sheet, data, level['level_name'], area['area_name'], area['canopies'])
+                # Handle FIRE SUPPRESSION sheet if needed
+                fs_sheet = None
+                if has_fire_suppression:
+                    print("\nLooking for FIRE SUPPRESSION template sheet...")  # Debug
+                    # Look for template sheet first
+                    for fs_name in fire_supp_sheets:
+                        temp_sheet = workbook[fs_name]
+                        b1_value = temp_sheet['B1'].value
+                        print(f"Checking sheet {fs_name}, B1 value: '{b1_value}'")  # Debug
+                        
+                        # Clean up the string comparison
+                        if b1_value and "F24 - 19" in b1_value and "CANOPY COST SHEET" in b1_value:
+                            fs_sheet = temp_sheet
+                            fire_supp_sheets.remove(fs_name)  # Remove from available sheets
+                            print(f"Found template sheet: {fs_name}")  # Debug
+                            
+                            # Rename and setup the fire suppression sheet
+                            new_fs_name = f"FIRE SUPP - {area['area_name']} ({sheet_count + 1})"
+                            print(f"Renaming to: {new_fs_name}")  # Debug
+                            fs_sheet.title = new_fs_name
+                            fs_sheet.sheet_state = 'visible'
+                            fs_sheet_count += 1
+                            break
+                    
+                    if not fs_sheet:
+                        print("No template sheet found!")  # Debug
+                        st.error(f"No available FIRE SUPPRESSION sheets found for {level['level_name']} - {area['area_name']}")
+                        break
                 
-                # Add dropdowns to the sheet
+                # Write data to the sheets
+                write_to_sheet(current_sheet, data, level['level_name'], area['area_name'], area['canopies'], fs_sheet)
+                
+                # Add dropdowns to both sheets
                 add_dropdowns_to_sheet(workbook, current_sheet, 12)
+                if fs_sheet:
+                    add_fire_suppression_dropdown(fs_sheet)
                 
                 sheet_count += 1
         
         # Save the workbook
         workbook.save(output_path)
-        st.success(f"Successfully updated {sheet_count} CANOPY sheets!")
+        st.success(f"Successfully updated {sheet_count} CANOPY sheets and {fs_sheet_count} FIRE SUPPRESSION sheets!")
         
         # Provide download button
         with open(output_path, "rb") as file:
@@ -1137,6 +1285,7 @@ def save_to_excel(data):
     except FileNotFoundError:
         st.error("Template file not found in resources folder!")
     except Exception as e:
+        print(f"Error details: {str(e)}")  # Debug
         st.error(f"An error occurred: {str(e)}")
         raise e
 
@@ -1187,7 +1336,8 @@ def extract_sheet_data(sheet):
             'estimator_name': estimator_name,
             'estimator_role': estimator_role
         },
-        'canopies': []
+        'canopies': [],
+        'fire_suppression_items': []  # Add new list for fire suppression items
     }
     
     # Extract canopy data - only process up to row 181 for canopies
@@ -1240,19 +1390,59 @@ def extract_sheet_data(sheet):
                     else:
                         mua_vol = '-'
             
+            # Inside the canopy processing loop, update the ext_static and lighting handling:
+            model = sheet[f'D{row + 2}'].value or '-'
+            lighting_value = sheet[f'C{row + 3}'].value or '-'
+            if lighting_value == 'LIGHT SELECTION':
+                lighting = '-'
+            else:
+                if 'LED STRIP' in str(lighting_value):
+                    lighting = 'LED Strip'
+                else:
+                    lighting = 'LED Spots'
+            
+            # Handle ext_static based on model
+            ext_static_value = sheet[f'F{pa_row}'].value or '-'
+            if model == 'CXW':
+                ext_static = 45  # Always 45 for CXW models
+            elif ext_static_value != '-':
+                # Remove 'Pa' and convert to string
+                ext_static_str = str(ext_static_value).replace('Pa', '').strip()
+                try:
+                    # Convert to float and round
+                    ext_static = round(float(ext_static_str))
+                except (ValueError, TypeError):
+                    ext_static = '-'
+            else:
+                ext_static = '-'
+            
+            # Handle supply_static based on model
+            supply_static_value = sheet[f'L{dim_row}'].value
+            if 'F' in str(model).upper():
+                # Only process supply static for F-type canopies
+                if supply_static_value and supply_static_value != '-':
+                    try:
+                        supply_static = round(float(str(supply_static_value).replace('Pa', '').strip()))
+                    except (ValueError, TypeError):
+                        supply_static = '-'
+                else:
+                    supply_static = '-'
+            else:
+                supply_static = '-'  # All non-F canopies get '-'
+            
             canopy = {
                 'reference_number': sheet[f'B{row}'].value or '-',
-                'model': sheet[f'D{row + 2}'].value or '-',
+                'model': model,
                 'configuration': sheet[f'C{row + 2}'].value or '-',
                 'length': sheet[f'E{dim_row}'].value or '-',
                 'width': sheet[f'F{dim_row}'].value or '-',
                 'height': sheet[f'G{dim_row}'].value or '-',
                 'sections': sheet[f'H{dim_row}'].value or '-',
                 'ext_vol': sheet[f'I{dim_row}'].value or '-',
-                'ext_static': sheet[f'F{pa_row}'].value or '-',
-                'mua_vol': mua_vol,  # Set MUA VOL from Excel for F-type canopies
-                'supply_static': sheet[f'L{dim_row}'].value or '-',
-                'lighting': sheet[f'C{row + 3}'].value or '-',
+                'ext_static': ext_static,  # Updated ext_static handling
+                'mua_vol': mua_vol,
+                'supply_static': supply_static,  # Updated supply_static handling
+                'lighting': lighting,  # Updated lighting handling
                 'special_works_1': sheet[f'C{row + 4}'].value or '-',
                 'special_works_2': sheet[f'C{row + 5}'].value or '-',
                 'bim_revit': sheet[f'C{row + 6}'].value or '-',
@@ -1288,30 +1478,59 @@ def extract_sheet_data(sheet):
         data['delivery_install'] = 0
         data['commissioning_price'] = 0
     
+    # Extract fire suppression data if this is a FIRE SUPP sheet
+    if 'FIRE SUPP' in sheet.title:
+        st.write(f"Processing FIRE SUPP sheet: {sheet.title}")
+        row = 12  # Starting row for first item
+        while row <= 181:
+            item_number = sheet[f'B{row}'].value
+            if item_number and item_number != 'ITEM':
+                fs_item = {
+                    'item_number': item_number,
+                    'system_description': 'Ansul R 102 System',
+                    'manual_release': '1no station',
+                    'tank_quantity': sheet[f'P{row}'].value or '2'  # Try to get tank quantity from sheet
+                }
+                data['fire_suppression_items'].append(fs_item)
+                st.write(f"Found fire suppression item: {fs_item}")
+            row += 17
+    
     return data
 
 def read_excel_file(uploaded_file):
     """Read and process uploaded Excel file"""
     workbook = openpyxl.load_workbook(uploaded_file, data_only=True)
     
-    # Get all CANOPY sheets
+    # Get all CANOPY and FIRE SUPP sheets
     canopy_sheets = [sheet for sheet in workbook.sheetnames if 'CANOPY' in sheet]
+    fire_supp_sheets = [sheet for sheet in workbook.sheetnames if 'FIRE SUPP' in sheet]
+    
+    st.write("Found sheets:")
+    st.write(f"CANOPY sheets: {canopy_sheets}")
+    st.write(f"FIRE SUPP sheets: {fire_supp_sheets}")
     
     project_data = {
         'sheets': [],
-        'has_water_wash': False  # Initialize global flag
+        'has_water_wash': False,
+        'fire_suppression_data': {}  # Add container for fire suppression data
     }
     
-    # Process each CANOPY sheet
-    for sheet_name in canopy_sheets:
+    # Process each sheet
+    for sheet_name in canopy_sheets + fire_supp_sheets:
         sheet = workbook[sheet_name]
         sheet_data = extract_sheet_data(sheet)
         
-        # Check for water wash canopies
-        for canopy in sheet_data['canopies']:
-            if any(model in canopy['model'].upper() for model in ['CMWI', 'CMWF']):
-                project_data['has_water_wash'] = True  # Set global flag
-                break
+        # If this is a FIRE SUPP sheet, organize data by floor/area
+        if 'FIRE SUPP' in sheet_name:
+            floor_area = sheet_data['sheet_name'].split('-')
+            if len(floor_area) >= 2:
+                floor_name = floor_area[0].strip()
+                area_name = floor_area[1].strip()
+                
+                if floor_name not in project_data['fire_suppression_data']:
+                    project_data['fire_suppression_data'][floor_name] = {}
+                
+                project_data['fire_suppression_data'][floor_name][area_name] = sheet_data['fire_suppression_items']
         
         project_data['sheets'].append(sheet_data)
     
@@ -1818,6 +2037,91 @@ def generate_word_document(project_data):
     
     # Generate Word document
     return write_to_word_doc(word_data, project_data)
+
+def add_fire_suppression_dropdown(sheet):
+    """Add dropdown validation for fire suppression options"""
+    if 'Lists' not in sheet.parent.sheetnames:
+        list_sheet = sheet.parent.create_sheet('Lists')
+    else:
+        list_sheet = sheet.parent['Lists']
+    
+    # Add fire suppression options to Lists sheet (column H)
+    fire_suppression_options = [
+        "SELECT TANK SYSTEM",
+        "1 TANK SYSTEM",
+        "1 TANK TRAVEL HUB",
+        "1 TANK DISTANCE",
+        "NOBEL",
+        "AMAREX",
+        "OTHER",
+        "2 TANK SYSTEM",
+        "2 TANK TRAVEL HUB",
+        "2 TANK DISTANCE",
+        "3 TANK SYSTEM",
+        "3 TANK TRAVEL HUB",
+        "3 TANK DISTANCE",
+        "4 TANK SYSTEM",
+        "4 TANK TRAVEL HUB",
+        "4 TANK DISTANCE",
+        "5 TANK SYSTEM",
+        "5 TANK TRAVEL HUB",
+        "5 TANK DISTANCE",
+        "6 TANK SYSTEM",
+        "6 TANK TRAVEL HUB",
+        "6 TANK DISTANCE"
+    ]
+    
+    # Add tank installation options to Lists sheet (column I)
+    tank_install_options = [
+        "1 TANK",
+        "1 TANK DISTANCE",
+        "2 TANK",
+        "2 TANK DISTANCE",
+        "3 TANK",
+        "3 TANK DISTANCE",
+        "4 TANK",
+        "4 TANK DISTANCE",
+        "5 TANK",
+        "5 TANK DISTANCE",
+        "6 TANK",
+        "6 TANK DISTANCE"
+    ]
+    
+    # Write fire suppression options to Lists sheet
+    for i, option in enumerate(fire_suppression_options, 1):
+        list_sheet[f'H{i}'] = option
+        
+    # Write tank installation options to Lists sheet
+    for i, option in enumerate(tank_install_options, 1):
+        list_sheet[f'I{i}'] = option
+    
+    # Create validation for fire suppression
+    dv_fs = DataValidation(
+        type="list",
+        formula1=f"Lists!$H$1:$H${len(fire_suppression_options)}",
+        allow_blank=True
+    )
+    sheet.add_data_validation(dv_fs)
+    
+    # Create validation for tank installation
+    dv_tank = DataValidation(
+        type="list",
+        formula1=f"Lists!$I$1:$I${len(tank_install_options)}",
+        allow_blank=True
+    )
+    sheet.add_data_validation(dv_tank)
+    
+    # Add fire suppression validation to C16 and every 17 rows after
+    row = 16
+    while row <= sheet.max_row:
+        dv_fs.add(f"C{row}")
+        row += 17
+    
+    # Add tank installation validation to C17 and every 17 rows after
+    row = 17
+    while row <= sheet.max_row:
+        dv_tank.add(f"C{row}")
+        row += 17
 
 def main():
     st.set_page_config(page_title="Project Information Form", layout="wide")
