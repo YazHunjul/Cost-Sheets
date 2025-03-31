@@ -1581,11 +1581,15 @@ def create_upload_section(col2, key_suffix=""):
                     # Create zip with Word doc and modified Excel
                     zip_path = create_download_zip(word_doc_path, temp_excel_path, uploaded_file.name)
                     
+                    # Show success message with balloons
+                    st.balloons()
+                    st.success("🎉 Documents generated successfully! 🎉")
+                    
                     # Create download button for zip
                     with open(zip_path, "rb") as fp:
                         zip_contents = fp.read()
                         st.download_button(
-                            label="Download Documents",
+                            label="⬇️ Download Documents",
                             data=zip_contents,
                             file_name="project_documents.zip",
                             mime="application/zip"
