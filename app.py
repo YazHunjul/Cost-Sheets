@@ -1696,13 +1696,55 @@ def extract_sheet_data(sheet):
             if lighting_value == 'LIGHT SELECTION':
                 lighting = '-'
             else:
-                lighting = lighting_value
+                # Convert lighting value to simplified format
+                if 'LED STRIP' in str(lighting_value).upper():
+                    lighting = 'LED Strip'
+                elif 'SPOTS' in str(lighting_value).upper():
+                    lighting = 'LED Spots'
+                else:
+                    lighting = str(lighting_value)
                 
+            # Handle ext_static based on model
+            ext_static_value = sheet[f'F{pa_row}'].value or '-'
+            if model == 'CXW':
+                ext_static = 45  # Always 45 for CXW models
+            elif ext_static_value != '-':
+                # Remove 'Pa' and convert to string
+                ext_static_str = str(ext_static_value).replace('Pa', '').strip()
+                try:
+                    # Convert to float and round
+                    ext_static = round(float(ext_static_str))
+                except (ValueError, TypeError):
+                    ext_static = '-'
+            else:
+                ext_static = '-'
+            
+            # Handle supply_static based on model
+            supply_static_value = sheet[f'L{dim_row}'].value
+            if 'F' in str(model).upper():
+                # Only process supply static for F-type canopies
+                if supply_static_value and supply_static_value != '-':
+                    try:
+                        supply_static = round(float(str(supply_static_value).replace('Pa', '').strip()))
+                    except (ValueError, TypeError):
+                        supply_static = '-'
+                else:
+                    supply_static = '-'
+            else:
+                supply_static = '-'  # All non-F canopies get '-'
+            
             # Create canopy data dictionary and append to list
             canopy_data = {
                 'reference_number': reference_number,
                 'model': model,
                 'configuration': configuration,
+                'length': sheet[f'E{dim_row}'].value or '-',
+                'width': sheet[f'F{dim_row}'].value or '-',
+                'height': sheet[f'G{dim_row}'].value or '-',
+                'sections': sheet[f'H{dim_row}'].value or '-',
+                'ext_vol': sheet[f'I{dim_row}'].value or '-',
+                'ext_static': ext_static if ext_static != 0 else '-',
+                'supply_static': supply_static if supply_static != 0 else '-',
                 'base_price': canopy_price,
                 'k9_price': canopy_k9,
                 'wall_cladding': wall_cladding,
@@ -1710,7 +1752,19 @@ def extract_sheet_data(sheet):
                 'fire_suppression_data': fire_suppression_data,
                 'mua_vol': mua_vol,
                 'lighting': lighting,
-                'ext_vol': safe_convert_to_float(sheet[f'I{dim_row}'].value) or 0  # Add extract volume
+                'special_works_1': sheet[f'C{row + 4}'].value or '-',
+                'special_works_2': sheet[f'C{row + 5}'].value or '-',
+                'bim_revit': sheet[f'C{row + 6}'].value or '-',
+                'emergency_lighting': emergency_lighting or '-',
+                'cws_2bar': cws_2bar or '-',
+                'hws_2bar': hws_2bar or '-',
+                'hws_storage': hws_storage or '-',
+                'ww_price': ww_price,
+                'ww_control_price': ww_control_price,
+                'ww_install_price': ww_install_price,
+                'control_panel': sheet[f'C{row + 13}'].value or '-',  # C25
+                'ww_pods': sheet[f'C{row + 14}'].value or '-',        # C26
+                'ww_control': sheet[f'C{row + 15}'].value or '-'      # C27
             }
             
             data['canopies'].append(canopy_data)
