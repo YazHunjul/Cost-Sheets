@@ -1676,19 +1676,34 @@ def extract_sheet_data(sheet):
                     ext_vol = sheet[f'I{dim_row}'].value or 0
                     # Get MAX SUPPLY value from H22 + offset
                     max_supply_cell = sheet[f'H{22 + ((row - 12) // 17) * 17}'].value or ''
-                    
+                    st.write(max_supply_cell)
                     # Calculate 85% of extract volume and round to 2 decimal places
                     calculated_mua = round(float(ext_vol) * 0.85, 2) if ext_vol != '-' else 0
                     
-                    # Parse MAX SUPPLY value (remove 'MAX' if present)
-                    if isinstance(max_supply_cell, str) and '(MAX)' in max_supply_cell:
-                        max_supply = float(max_supply_cell.replace('(MAX)', '').strip())
-                        # If calculated MUA is less than MAX, use calculated MUA value
-                        mua_vol = str(calculated_mua) if calculated_mua < max_supply else str(round(max_supply, 2))
+                    # Parse MAX SUPPLY value (could be a string with (MAX) or just a number)
+                    # Check if the cell has a value at all
+                    if max_supply_cell:
+                        # Convert to string first to handle both string and numeric cell values
+                        max_supply_str = str(max_supply_cell)
+                        # Remove (MAX) if present
+                        max_supply_str = max_supply_str.replace('(MAX)', '').strip()
+                        try:
+                            max_supply = float(max_supply_str)
+                            st.write(f"MAX: {max_supply}")
+                            st.write(f"85%: {calculated_mua}")
+                            # IMPORTANT: If MAX is less than calculated MUA (85% of extract), we MUST use the MAX value
+                            # The MAX value represents the system limit that cannot be exceeded
+                            if max_supply < calculated_mua:
+                                mua_vol = str(round(max_supply, 2)) + '(MAX)'
+                            else:
+                                mua_vol = str(calculated_mua)
+                        except (ValueError, TypeError):
+                            # If we can't convert to float, use calculated MUA
+                            mua_vol = str(calculated_mua)
                     else:
                         # If no MAX value, use calculated MUA
                         mua_vol = str(calculated_mua)
-            
+                    st.write(mua_vol)
             # Inside the canopy processing loop, update the ext_static and lighting handling:
             model = sheet[f'D{row + 2}'].value or '-'
             lighting_value = sheet[f'C{row + 3}'].value or '-'
@@ -1806,8 +1821,10 @@ def extract_sheet_data(sheet):
         mua_vol = canopy.get('mua_vol', '-')  # Use get() with default value
         if mua_vol and mua_vol != '-':
             try:
+                # Remove (MAX) from the mua_vol string if present
+                mua_vol_clean = str(mua_vol).replace('(MAX)', '').strip()
                 # Convert to float and add to total
-                mua_vol_float = float(str(mua_vol).replace(',', ''))
+                mua_vol_float = float(mua_vol_clean.replace(',', ''))
                 total_mua_volume += mua_vol_float
             except (ValueError, TypeError):
                 pass
