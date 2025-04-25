@@ -28,6 +28,91 @@ estimators = {
     'Chris Davis': 'Estimator'
 }
 
+# Company addresses dictionary
+company_addresses = {
+    "Airedale Group (Bradford)": "Victoria Road\nPedeshill\nBradford BD23 2BN",
+    "Airedale Group (Lutterworth)": "1 St Johns Business Park\nRugby Road\nLutterworth LE17 4HB",
+    "Court Catering Equipment Ltd": "Unit 1, Acton Vale Ind. Park,\nCowley Road\nLondon W3 7XA",
+    "Humble Arnold Associates": "Farriers House\nFarriers Close\nCodicote\nHertfordshire\nSG4 8DU",
+    "Berkeley Projects UK Ltd": "17 Ewell Road\nCheam\nSurrey\nSM3 8DD",
+    "Chapman Ventilation Ltd": "15-20 Woodfield Rd\nWelwyn Garden City\nHerts AL7 1JQ",
+    "SG Group": "Aspen Way\nPaignton\nDevon TQ4 7QR",
+    "ABM Catering for Leisure Ltd": "Algate House\nClydesmuir Rd Ind Est\nCardiff CF24 2QS",
+    "C&C Catering Equipment Ltd": "1 Smithy Farm\nChapel Lane\nSaighton\nChester CH3 6EW",
+    "Hallmark Kitchens Ltd": "South Barn\nCrockham Farm\nEdenbridge\nKent\nTN8 6SR",
+    "Cabiola Foodservice Equipment": "The Bake House\nNarborough Wood Park\nDesford Road\nEnderby\nLeicester LE19 4XT",
+    "Ceba Catering Services": "Unit 27, Eastville Close\nEastern Avenue Trading Estate\nGloucester\nGL4 3SJ",
+    "Design Installation Service Ltd": "4 Gainsborough House\n42 / 44 Bath Road\nCheltenham\nGL53 7HJ",
+    "Nelson Bespoke Commercial Kitchens": "Unit 1\nRowley Industrial Park\nRoslin Road\nActon\nLondon W3 8BH",
+    "Airflow Cooling Ltd": "132 Rutland Road\nSheffield S3 9PP",
+    "Spectrum Contracts Ltd.": "Unit 11 Dorcan Business Village\nMurdoch Road\nDorcan\nSwindon\nSN3 5HY",
+    "CCE Group Ltd": "Unit 1 Bentley Farm\nOld Church Hill\nChingon Hills\nBasildon SS16 6HZ",
+    "Shine Food Machinery Ltd": "New Quay Road\nStephenson Street Ind. Est.\nNewport NP19 4FL",
+    "HCE Foodservice Equipment Ltd": "School Lane\nChandlers Ford\nEastleigh\nHants SO53 4DG",
+    "Vision Commercial Kitchens Limited": "Unit A1, Axis Point,\nHill Top Road,\nHeywood\nLancs OL10 2RQ",
+    "Fast Food Systems Ltd.": "Unit 1\nHeadley Park 9\nHeadley Road East\nWoodley\nReading\nBerkshire RG5 4SQ",
+    "C. Caswell (Eng) Services Ltd": "Knowsley Road Ind. Est.\nHaslingden\nRossendale\nLancs BB4 4RX",
+    "VSS Ltd": "Building 2 ThermoAir Site\nAthy Road\nCarlow\nIreland R93 K635",
+    "Reco-Air": "Newmarket 24, Centrix,\nKeys Business Village\nCannock\nStaffordshire\nWS12 2HA",
+    "Gratte Brothers Ltd.": "3 Crompton Road\nStevenage\nHertfordshire\nSG1 2XP",
+    "HCE Foodservice Equipment Ltd": "School Lane\nChandlers Ford Id Est.\nEastleigh\nHants SO53 4DG",
+    "Salix Stainless Steel Production House": "Chester Hall Lane\nBasildon\nEssex SS14 3BG",
+    "Stangard Design Solutions Ltd.": "The Dairy\nWolvey Lodge Business Centre\nWolvey\nWarwickshire\nLE10 3HB",
+    "AFR Air Conditioning Ltd": "14 Kingsdown Road\nSwindon\nWiltshire\nSN25 6PB",
+    "Sigma Catering Equipment": "Unit 4\nPotter Street\nWallsend\nNE28 6LS",
+    "CHR Equipment Ltd.": "Astar House\nFourries Bridge\nPreston\nPR5 6GS",
+    "MITIE Engineering Services (Retail) Ltd.": "The Millennium Centre\nM4 Crosby Way\nFarnham\nSurrey GU9 7XX",
+    "Catering Design Services": "4 Waterside Commerce Park\nTraffod Park\nManchester\nM17 1WD",
+    "Salix Stainless Steel Applications": "Production House\nChester Hall Lane\nBasildon\nEssex SS14 3BG",
+    "Galgorm Group": "Galgorm Industrial Estate\n7 Corbally Road\nBallymena BT42 1JQ",
+    "Michael J Lonsdale": "Unit 1Langley Quay\nWaterside Drive\nLangley\nSlough\nBerkshire\nSL3 6EY",
+    "Advance Catering Equipment": "Dantem House\nBlackburn Road\nHoughton Regis\nDunstable\nLU5 5BQ",
+    "MITIE Engineering Services (South West) Ltd": "5 Hanover Court\nMatford Close\nMatford Business Park\nExeter\nEX2 8QJ",
+    "A C V R Services Ltd": "Unit 4\nNewtown Grange Farm Bu siness Park Orchard\nLeicester\nLE8 8FL",
+    "Lockhart Catering Equipment": "6 The Astra Centre\nEdinburgh Way\nHarlow\nEssex\nCM20 2BN",
+    "Insitu Fabrications": "Unit19\nButterfield Ind. Est.\nNewtongrange\nBonnyrigg EH19 3JQ",
+    "Stephens Catering Equipment": "205 Carnabanaugh Road\nDoughandshane\nBallymena\nCo. Antrim BT42 4NY",
+    "Into Design Ltd": "16 Richards Rise\nOxted\nSurrey\nRH8 0TS",
+    "Merrick Contracts Ltd": "Bird Point Mill\nKing Henry's Drive\nNew Addington\nSurrey\nCR0 0AE",
+    "CKE Service Ltd": "13 High Street\nThames Ditton\nSurrey\nKT7 0SN",
+    "Dentons Catering Equipment": "2/4 Clapham High Street\nLondon\nSW4 7UT",
+    "Ferro Design Ltd": "Blay's House\nChurchfield Road\nChalfont St Peter\nBucks\nSL9 9EW",
+    "Four Seasons Air Conditioning Suppliers Ltd": "Stadium Works\nSedgley Street\nWolverhampton\nWest Midlands\nWV2 3AJ",
+    "Stephens Catering Equipment": "Block F, Unit 9\nMaynooth Business Campus\nMaynooth, Co. Kildare.",
+    "Reco-Air": "14 Heritage Park\nHayes Way\nCannock\nStaffordshire\nWS11 7LT",
+    "Pan-Euro Environmental": "Unit 2, Group House\nAlbon Way\nReigate\nRH2 7JY",
+    "Caswell Engineering": "Knowsley Road Ind. Est.\nHaslingden\nRossendale\nLancs BB4 4RR",
+    "C A Sothers Ltd": "156 Hockey Hill\nBirmingham\nB18 5AN",
+    "RDA": "5 Apollo Court\nMonkton Business Park South\nTyne & Wear NE31 2ES",
+    "KCCJ Ltd.": "The Old Granary\nCourt Lodge Farm\nLambden Hill\nDA2 7QY",
+    "Contract Catering Equipment": "Unit1, Bentley Farm,\nOld Church Hill, Chingon Hills,\nEssex SS16 6HZ",
+    "Fellerman Partnership Ltd": "74 Kimberley Road\nPortsmouth PO4 9NS",
+    "Tricon Foodservice Consultants": "St James House\n27-43 Eastern Road\nRomford",
+    "Technical Services Ref & A/C Ltd": "Arlingston House\n32 Boundary Road\nNewbury",
+    "Sefton Horn Winch": "The Stables\nHome Farm Business Units\nRiverside\nEynsford",
+    "Carford Group": "1-4 Mitchell Road\nFernside Park\nFerndown Industrial Estate\nFerndown\nDorset BH21 7SG",
+    "Gratte Bros. Catering Equipment Ltd": "3 Crompton Road\nStevenage\nHerts SG1 2XP",
+    "Scobie & McIntosh": "15 Brewster Square\nBrucefield Industry Park\nLivingston\nWest Lothian\nEH54 9BJ",
+    "SVS Ltd": "Unit 3\nGreencroft Ind. Est.\nAnnfield Plain\nStanley\nCo Durham\nDH9 7YB",
+    "Kitchequip": "Canal View\nWaterside Business Park\nNew Lane\nBurscough L40 8JX",
+    "Space Catering": "Barnwood Point\nCorinium Avenue\nGlos GL4 3HX",
+    "GS Catering Equipment Ltd": "Aspen Way\nPaignton\nDevon TQ4 7QR",
+    "GastroNorth Ltd": "Merlin House\nTeam Valley Trading Est\nPrinces Park\nGateshead\nNE11 0NF",
+    "Promart Manufacturing Ltd": "2B Caddick Road\nKnowsley Business Park\nPrescot\nMerseyside L34 9HP",
+    "Bob Sackett Commercial Catering Projects Ltd": "9 Chesterford Court\nLondon Road\nGreat Chesterford\nEssex CB10 1PF",
+    "Vision Commercial Kitchens Limited": "Unit A1, Axis Point,\nHill Top Road,\nHeywood\nLancs OL10 2RQ",
+    "Court Catering Equipment Ltd": "8 Cowley Road\nLondon W3 7XA",
+    "Main Contract Services Ltd": "Alexandra House\nStation Road\nGrangemouth FK3 8DG",
+    "CDS-Wilman": "4 Waterside Commerce Park\nTrafford Park\nManchester M17 1W",
+    "AFR Air Conditioning": "14 Kingsdown Road\nSwindon\nWilts SN25 6PB",
+    "Western Blueprint Ltd": "Unit B2, 1st Floor\nTrym House Business Centre\nForest Road\nKingswood\nBristol BS15 8DH",
+    "Edge Design": "Unit 3 Wiston House\nWiston Avenue\nWorthing\nWest Sussex BN14 7QL",
+    "Chapman Ventilation": "15 - 20 Woodfield Road\nWelwyn Garden City\nHertfordshire\nAL7 1JQ",
+    "Michael J Lonsdale": "Unit 1 Langley Quay\nWaterside Drive\nBerkshire SL3 6EY",
+    "RecoAir": "14 Heritage Park\nHayes Way\nCannock\nStaffordshire WS11 7LT",
+    "Humble Arnold": "Farriers House,\nFarriers Close,\nCodicote\nHerts SG4 8DU",
+}
+
 # Add this at the top of the file with other constants
 VALID_CANOPY_MODELS = [
     'KVF', 'UVF', 'CMWF', 'CMWI', 'KVI', 'UVI', 'CXW', 'KVS', 'UVS', 'KSW'
@@ -163,7 +248,21 @@ def create_general_info_form():
     col7, col8, col9 = st.columns(3)
     
     with col7:
-        address = st.text_input("Address")
+        # Address dropdown with all company addresses and custom option
+        address_options = ["Select..."] + list(company_addresses.keys()) + ["Custom Address"]
+        selected_address = st.selectbox("Company Address", address_options)
+        
+        # Handle the address selection
+        if selected_address == "Custom Address":
+            custom_address = st.text_area("Enter Custom Address", height=100)
+            address = custom_address
+        elif selected_address != "Select...":
+            # Display the selected company address
+            address = company_addresses[selected_address]
+            st.text_area("Address", address, height=100, disabled=True)
+        else:
+            address = ""
+        
         st.session_state.project_data['Address'] = address
     with col8:
         sales_contact = st.selectbox("Sales Contact", ["Select..."] + list(contacts.keys()))
@@ -201,42 +300,48 @@ def create_general_info_form():
                     areas_data = []
                     
                     for area_idx in range(num_areas):
-                        area_name = st.text_input(
-                            f"Enter area {area_idx + 1} Name",
-                            key=f"area_name_{level_idx}_{area_idx}"
-                        )
-                        
-                        if area_name:
+                            area_name = st.text_input(
+                                f"Enter area {area_idx + 1} Name",
+                                key=f"area_name_{level_idx}_{area_idx}"
+                            )
+                            
+                            if area_name:
                             # Add UV-C Control Schedule radio button for the area
-                            include_uvc = st.radio(
-                                "Include UV-C Control Schedule",
-                                options=["No", "Yes"],
-                                key=f"uvc_{level_idx}_{area_idx}"
-                            )
+                                include_uvc = st.radio(
+                                    "Include UV-C Control Schedule",
+                                    options=["No", "Yes"],
+                                    key=f"uvc_{level_idx}_{area_idx}"
+                                )
+                                
+                                # Add RECOAIR system radio button for the area
+                                include_recoair = st.radio(
+                                    "Include RECOAIR System",
+                                    options=["No", "Yes"],
+                                    key=f"recoair_{level_idx}_{area_idx}"
+                                )
                             
-                            num_canopies = st.number_input(
-                                f"Enter Number of Canopies in {area_name}",
-                                min_value=1,
-                                value=1,
-                                step=1,
-                                key=f"num_canopies_{level_idx}_{area_idx}"
-                            )
-                            
-                            canopies_data = []
-                            
-                            for canopy_idx in range(num_canopies):
-                                st.write(f"Processing canopy {canopy_idx + 1} for {area_name}")
-                                col1, col2 = st.columns(2)
-                                with col1:
-                                    reference_number = st.text_input(
-                                        "Reference Number",
-                                        key=f"ref_{level_idx}_{area_idx}_{canopy_idx}"
-                                    )
-                                    configuration = st.selectbox(
-                                        "Configuration",
-                                        options=["Select...", "WALL", "ISLAND", "OTHER"],
-                                        key=f"config_{level_idx}_{area_idx}_{canopy_idx}"
-                                    )
+                                num_canopies = st.number_input(
+                                    f"Enter Number of Canopies in {area_name}",
+                                    min_value=1,
+                                    value=1,
+                                    step=1,
+                                    key=f"num_canopies_{level_idx}_{area_idx}"
+                                )
+                                
+                                canopies_data = []  # Initialize canopies list outside the loop
+                                for canopy_idx in range(num_canopies):
+                                    st.write(f"Processing canopy {canopy_idx + 1} for {area_name}")
+                                    col1, col2 = st.columns(2)
+                                    with col1:
+                                        reference_number = st.text_input(
+                                            "Reference Number",
+                                            key=f"ref_{level_idx}_{area_idx}_{canopy_idx}"
+                                        )
+                                        configuration = st.selectbox(
+                                            "Configuration",
+                                            options=["WALL", "ISLAND", "OTHER"],
+                                            key=f"config_{level_idx}_{area_idx}_{canopy_idx}"
+                                        )
                                     # Add fire suppression radio button right after configuration
                                     fire_suppression = st.radio(
                                         "Include Fire Suppression",
@@ -244,76 +349,78 @@ def create_general_info_form():
                                         key=f"fire_suppression_{level_idx}_{area_idx}_{canopy_idx}"
                                     )
                                 
-                                with col2:
-                                    model = st.selectbox(
-                                        "Model",
-                                        options=["Select..."] + VALID_CANOPY_MODELS,
-                                        key=f"model_{level_idx}_{area_idx}_{canopy_idx}"
-                                    )
-                                    
-                                    wall_cladding = st.selectbox(
-                                        "Wall Cladding",
-                                        options=["Select...", "2M² (HFL)"],
-                                        key=f"cladding_{level_idx}_{area_idx}_{canopy_idx}"
-                                    )
-                                    
-                                    if wall_cladding != "Select...":
-                                        col1, col2 = st.columns(2)
-                                        with col1:
-                                            cladding_width = st.number_input(
-                                                "Cladding Width (mm)",
-                                                min_value=0,
-                                                value=0,
-                                                step=100,
-                                                key=f"cladding_width_{level_idx}_{area_idx}_{canopy_idx}"
-                                            )
-                                        with col2:
-                                            cladding_height = st.number_input(
-                                                "Cladding Height (mm)",
-                                                min_value=0,
-                                                value=0,
-                                                step=100,
-                                                key=f"cladding_height_{level_idx}_{area_idx}_{canopy_idx}"
-                                            )
-                                        
-                                        wall_positions = st.multiselect(
-                                            "Wall Positions",
-                                            options=["Rear", "Left", "Right"],
-                                            key=f"wall_positions_{level_idx}_{area_idx}_{canopy_idx}"
+                                    with col2:
+                                        model = st.selectbox(
+                                            "Model",
+                                            options=["Select..."] + VALID_CANOPY_MODELS,
+                                            key=f"model_{level_idx}_{area_idx}_{canopy_idx}"
                                         )
-                                
-                                if reference_number:
-                                    canopy_data = {
-                                        'reference_number': reference_number,
-                                        'configuration': configuration,
-                                        'model': model,
-                                        'fire_suppression': fire_suppression == "Yes",  # Store as boolean
-                                        'level_name': level_name,  # Store level name
-                                        'area_name': area_name,    # Store area name
-                                        'wall_cladding': {
-                                            'type': wall_cladding,
-                                            'width': cladding_width if wall_cladding != "Select..." else 0,
-                                            'height': cladding_height if wall_cladding != "Select..." else 0,
-                                            'positions': wall_positions if wall_cladding != "Select..." else []
+                                        
+                                        wall_cladding = st.selectbox(
+                                            "Wall Cladding",
+                                            options=["Select...", "2M² (HFL)"],
+                                            key=f"cladding_{level_idx}_{area_idx}_{canopy_idx}"
+                                        )
+                                        
+                                        if wall_cladding != "Select...":
+                                            col1, col2 = st.columns(2)
+                                            with col1:
+                                                cladding_width = st.number_input(
+                                                    "Cladding Width (mm)",
+                                                    min_value=0,
+                                                    value=0,
+                                                    step=100,
+                                                    key=f"cladding_width_{level_idx}_{area_idx}_{canopy_idx}"
+                                                )
+                                            with col2:
+                                                cladding_height = st.number_input(
+                                                    "Cladding Height (mm)",
+                                                    min_value=0,
+                                                    value=0,
+                                                    step=100,
+                                                    key=f"cladding_height_{level_idx}_{area_idx}_{canopy_idx}"
+                                                )
+                                            
+                                            wall_positions = st.multiselect(
+                                                "Wall Positions",
+                                                options=["Rear", "Left", "Right"],
+                                                key=f"wall_positions_{level_idx}_{area_idx}_{canopy_idx}"
+                                            )
+                                    
+                                    if reference_number:
+                                        canopy_data = {
+                                            'reference_number': reference_number,
+                                            'configuration': configuration,
+                                            'model': model,
+                                            'fire_suppression': fire_suppression == 'Yes',  # Store as boolean
+                                            'level_name': level_name,  # Store level name
+                                            'area_name': area_name,    # Store area name
+                                            'wall_cladding': {
+                                                'type': wall_cladding,
+                                                'width': cladding_width if wall_cladding != "Select..." else 0,
+                                                'height': cladding_height if wall_cladding != "Select..." else 0,
+                                                'positions': wall_positions if wall_cladding != "Select..." else []
+                                            }
                                         }
-                                    }
-                                    canopies_data.append(canopy_data)
+                                        canopies_data.append(canopy_data)
+                                        
+                                    # Add MUA VOL input for F-type canopies
+                                    # if 'F' in str(model).upper():
+                                    #     mua_vol = st.text_input(
+                                    #         "MUA Volume (m³/h)",
+                                    #         key=f"mua_vol_{level_idx}_{area_idx}_{canopy_idx}"
+                                    #     )
+                                    #     if canopy_data:
+                                    #         canopy_data['mua_vol'] = mua_vol
                                 
-                                # Add MUA VOL input for F-type canopies
-                                if 'F' in str(model).upper():
-                                    mua_vol = st.text_input(
-                                        "MUA Volume (m³/h)",
-                                        key=f"mua_vol_{level_idx}_{area_idx}_{canopy_idx}"
-                                    )
-                                    if canopy_data:
-                                        canopy_data['mua_vol'] = mua_vol
-                            
-                            if canopies_data:
-                                areas_data.append({
-                                    'area_name': area_name,
-                                    'canopies': canopies_data,
-                                    'include_uvc': include_uvc == "Yes"  # Store UV-C Control Schedule preference
-                                })
+                                # Move this outside the canopy loop so we only add the area once with all its canopies
+                                if canopies_data:
+                                    areas_data.append({
+                                        'area_name': area_name,
+                                        'canopies': canopies_data,
+                                        'include_uvc': include_uvc == "Yes",  # Store UV-C Control Schedule preference
+                                        'include_recoair': include_recoair == "Yes"  # Store RECOAIR preference
+                                    })
                     
                     if areas_data:
                         levels_data.append({
@@ -326,6 +433,216 @@ def create_general_info_form():
         
         # Update sidebar with current data
         create_project_sidebar(st.session_state.project_data)
+        
+        # Add Installation Location dropdown
+        st.markdown("### Delivery Location")
+        st.markdown("Select where the equipment will be delivered (this will be written to cell D183 in each sheet):")
+        
+        # Define delivery locations directly here instead of using dropdowns dictionary
+        delivery_locations = [
+            "Select...",
+            "ABERDEEN 590",
+            "ABINGDON 110",
+            "ALDEBURGH 112",
+            "ALDERSHOT 110",
+            "ALNWICK 342",
+            "ANDOVER 110",
+            "ASHFORD 25",
+            "AYLESBURY 86",
+            "BANBURY 102",
+            "BANGOR 324",
+            "BARKING 32",
+            "BARNET 55",
+            "BARNSLEY 209",
+            "BARNSTABLE 227",
+            "BARROW-IN-FURNESS 348",
+            "BASILDON 38",
+            "BASINGSTOKE 82",
+            "BATH 154",
+            "BEDFORD 103",
+            "BERWICK-UPON-TWEED 371",
+            "BILLERICAY 37",
+            "BIRKENHEAD 277",
+            "BIRMINGHAM 168",
+            "BLACKBURN 283",
+            "BLACKPOOL 289",
+            "BLANDFORD FORUM 144",
+            "BODMIN 273",
+            "BOGNOR REGIS 88",
+            "BOLTON 259",
+            "BOOTLE 272",
+            "BOURNEMOUTH 140",
+            "BRADFORD 234",
+            "BRAINTREE 60",
+            "BRIDGEND 205",
+            "BRIDLINGTON 244",
+            "BRIGHTON 68",
+            "BRISTOL 157",
+            "BUCKINGHAMSHIRE 109",
+            "BURNLEY 296",
+            "BURTON UPON TRENT 175",
+            "BURY ST EDMUNDS 98",
+            "CAMBRIDGE 85",
+            "CANNOCK 175",
+            "CANTERBURY 30",
+            "CARDIFF 192",
+            "CARLISLE 356",
+            "CARMARTHEN 252",
+            "CHELTENHAM 148",
+            "CHESTER 268",
+            "COVENTRY 146",
+            "CHIPPENHAM 136",
+            "COLCHESTER 78",
+            "CORBY 128",
+            "DARTMOUTH 245",
+            "DERBY 178",
+            "DONCASTER 203",
+            "DORCHESTER 160",
+            "DORKING 46",
+            "DOVER 45",
+            "DURHAM 299",
+            "EASTBOURNE 57",
+            "EASTLEIGH 109",
+            "EDINBURGH 428",
+            "ENFIELD 49",
+            "EXETER 205",
+            "EXMOUTH 207",
+            "FELIXSTOWE 103",
+            "GATWICK 44",
+            "GLASGOW 456",
+            "GLASTONBURY 164",
+            "GLOUCESTER 151",
+            "GRANTHAM 143",
+            "GREAT YARMOUTH 147",
+            "GRIMSBY 215",
+            "GUILDFORD 59",
+            "HARLOW 47",
+            "HARROGATE 236",
+            "HARTLEPOOL 286",
+            "HASTINGS 40",
+            "HEXHAM 325",
+            "HEREFORD 184",
+            "HIGH WYCOMBE 80",
+            "HIGHBRIDGE 187",
+            "HONITON 190",
+            "HORSHAM 55",
+            "HOUNSLOW 55",
+            "HUDDERSFIELD 239",
+            "HULL 247",
+            "HUNTINGDON 94",
+            "INVERNESS 619",
+            "IPSWICH 94",
+            "IRELAND",
+            "KENDAL 321",
+            "KETTERING 127",
+            "KIDDERMINSTER 179",
+            "KILMARNOCK 449",
+            "KINGSTON UPON HULL 220",
+            "KINGSTON UPON THAMES 52",
+            "LANCASTER 290",
+            "LAUNCESTON 251",
+            "LEAMINGTON SPA 146",
+            "LEEDS 231",
+            "LEICESTER 151",
+            "LEIGH ON SEA 45",
+            "LEWISHAM 29",
+            "LINCOLN 179",
+            "LIVERPOOL 258",
+            "LLANDUDNO 309",
+            "LONDON in FORS GOLD(varies)",
+            "LUTON 80",
+            "MABLETHORPE 182",
+            "MACCLESFIELD 244",
+            "MANCHESTER 251",
+            "MARGATE 46",
+            "MIDDLESBROUGH 286",
+            "MILFORD HAVEN 289",
+            "MILTON KEYNES 101",
+            "MORPETH 327",
+            "NANTWICH 232",
+            "NEWBURY 101",
+            "NEWCASTLE 308",
+            "NEWPORT 178",
+            "NEWQUAY 178",
+            "NORTHAMPTON 116",
+            "NORTHUMBERLAND 341",
+            "NORWICH 136",
+            "NOTTINGHAM 177",
+            "OKEHAMPTON 232",
+            "OXFORD 106",
+            "PENRITH 316",
+            "PENZANCE 318",
+            "PERTH 477",
+            "PETERBOROUGH 124",
+            "PETERSFIELD 87",
+            "PETWORTH 71",
+            "PLYMOUTH 247",
+            "PONTEFRACT 221",
+            "POOLE 144",
+            "PORTSMOUTH 102",
+            "READING 88",
+            "REIGATE 39",
+            "RINGWOOD 130",
+            "ROSS-ON-WYE 171",
+            "ROTHERHAM 203",
+            "SALISBURY 120",
+            "SCARBOROUGH 277",
+            "SCUNTHORPE 204",
+            "SHEFFIELD 205",
+            "SHREWSBURY 207",
+            "SHROPSHIRE 218",
+            "SLOUGH 72",
+            "SOUTH SHIELDS 310",
+            "SOUTHAMPTON 112",
+            "SOUTHEND 52",
+            "SOUTHPORT 279",
+            "SPALDING 143",
+            "ST ALBANS 62",
+            "ST IVES 317",
+            "STAFFORD 187",
+            "STAINES 61",
+            "STEVENAGE 72",
+            "STIRLING 445",
+            "STOCKPORT 257",
+            "STOCKTON 278",
+            "STOKE-ON-TRENT 205",
+            "STRATFORD UPON AVON 151",
+            "SUNDERLAND 309",
+            "SWINDON 121",
+            "TAMWORTH 180",
+            "TAUNTON 185",
+            "TELFORD 193",
+            "TILBURY 34",
+            "TORQUAY 227",
+            "TUNBRIDGE WELLS 26",
+            "UXBRIDGE 74",
+            "WAKEFIELD 214",
+            "WARMISTER 137",
+            "WARWICK 148",
+            "WATFORD 67",
+            "WELSHPOOL 238",
+            "WEMBLEY 55",
+            "WEYMOUTH 173",
+            "WHITBY 282",
+            "WIGAN 252",
+            "WINCANTON 149",
+            "WINCHESTER 100",
+            "WOKING 60",
+            "WOLVERHAMPTON 175",
+            "WORCESTER 160",
+            "WREXHAM 250",
+            "YEOVIL 163",
+            "YORK 243"
+        ]
+        
+        delivery_location = st.selectbox(
+            "Delivery Location",
+            options=delivery_locations,
+            key="delivery_location"
+        )
+        
+        if delivery_location != "Select...":
+            st.session_state.project_data['Delivery_Location'] = delivery_location
         
         # Add save button and check if all required fields are filled
         required_fields = {
@@ -388,6 +705,17 @@ def write_to_sheet(sheet, data, level_name, area_name, canopies, fs_sheet=None, 
         sheet['H3'] = data['Project Name']
         sheet['H5'] = data['Location']
         sheet['H7'] = data['Date']
+        
+        # Write the delivery location to E183 for EBOX and RECOAIR sheets
+        if 'Delivery_Location' in data and data['Delivery_Location']:
+            # Check if this is an EBOX or RECOAIR sheet
+            if 'RECOAIR' in sheet.title:
+                sheet['E37'] = data['Delivery_Location']
+            elif 'EBOX' in sheet.title or 'EDGE BOX' in sheet.title:
+                sheet['E38'] = data['Delivery_Location']
+            else:
+                sheet['D183'] = data['Delivery_Location']
+            
         return  # Don't write any other data to EDGE BOX sheets
     else:
         sheet['B1'] = sheet_title  # Write to B1 for other sheets
@@ -407,6 +735,16 @@ def write_to_sheet(sheet, data, level_name, area_name, canopies, fs_sheet=None, 
         target_sheet['G5'] = data['Location']
         target_sheet['G7'] = data['Date']
         target_sheet['O7'] = 'A'  # Initial revision
+        
+        # Write the delivery location to E183 for EBOX and RECOAIR sheets
+        if 'Delivery_Location' in data and data['Delivery_Location']:
+            # Check if this is an EBOX or RECOAIR sheet
+            if 'RECOAIR' in target_sheet.title:
+                target_sheet['E37'] = data['Delivery_Location']
+            elif 'EBOX' in target_sheet.title or 'EDGE BOX' in target_sheet.title:
+                target_sheet['E38'] = data['Delivery_Location']
+            else:
+                target_sheet['D183'] = data['Delivery_Location']
     
     write_general_info(sheet, is_edge_box)
     
@@ -424,13 +762,22 @@ def write_to_sheet(sheet, data, level_name, area_name, canopies, fs_sheet=None, 
         # Write general info
         write_general_info(fs_sheet)
         
+        # Write the delivery location to E183 for EBOX and RECOAIR sheets
+        if 'Delivery_Location' in data and data['Delivery_Location']:
+            # Check if this is an EBOX or RECOAIR sheet
+            if 'RECOAIR' in fs_sheet.title:
+                fs_sheet['E37'] = data['Delivery_Location']
+            elif 'EBOX' in fs_sheet.title or 'EDGE BOX' in fs_sheet.title:
+                fs_sheet['E38'] = data['Delivery_Location']
+            else:
+                fs_sheet['D183'] = data['Delivery_Location']
+        
         # Write fire suppression canopies starting from first row
         fs_row = 12  # Start at first row
         for canopy in canopies:
             if canopy.get('fire_suppression', False):
                 fs_sheet[f'B{fs_row}'] = canopy['reference_number']
                 fs_row += 17  # Move to next row
-    
     # Write canopy data
     for idx, canopy in enumerate(canopies):
         base_row = 12 + (idx * 17)
@@ -484,8 +831,6 @@ def write_to_sheet(sheet, data, level_name, area_name, canopies, fs_sheet=None, 
             print(f"Writing MUA VOL for {model}: {canopy.get('mua_vol', '-')}")
             sheet[f'Q{22 + (idx * 17)}'] = f"MUA VOL: {canopy.get('mua_vol', '-')}"
     
-    # Get fire suppression canopies for data structure
-    fire_suppression_canopies = [c for c in canopies if c.get('fire_suppression', False)]
 
 def add_dropdowns_to_sheet(wb, sheet, start_row):
     """Add data validation (dropdowns) to specific cells"""
@@ -512,7 +857,7 @@ def add_dropdowns_to_sheet(wb, sheet, start_row):
             'options': [
                 'ROUND CORNERS',
                 'CUT OUT',
-                'CASTELLE LOCKING',
+                'CASTELLE LOCKING ',
                 'HEADER DUCT S/S',
                 'HEADER DUCT',
                 'PAINT FINSH',
@@ -859,496 +1204,692 @@ def get_canopy_description(model, count):
         else:
             return f"{count_str} Extract Canopies c/w Capture Jet Tech"
 
-def format_price(value):
-    """Format price with commas and 2 decimal places"""
+def format_price(value, return_numeric=False):
+    """Format price with commas and 2 decimal places
+    
+    Args:
+        value: Value to format
+        return_numeric: If True, returns tuple of (formatted_string, numeric_value)
+                       If False, returns only the formatted string
+    """
     try:
         # Convert to float and round up
         num = math.ceil(float(str(value).replace(',', '')))
         # Format with commas and 2 decimal places
-        return f"{num:,.2f}"
+        formatted = f"{num:,.2f}"
+        return (formatted, num) if return_numeric else formatted
     except (ValueError, TypeError):
-        return "0.00"
+        return ("0.00", 0) if return_numeric else "0.00"
+
+def write_address_to_lists(workbook, address):
+    """Write address to LISTS sheet"""
+    try:
+        if 'Lists' in workbook.sheetnames:
+            lists_sheet = workbook['Lists']
+            lists_sheet['L1'] = address
+            print(f"Successfully wrote address to Lists sheet L1: {address}")
+        elif 'LISTS' in workbook.sheetnames:
+            lists_sheet = workbook['LISTS']
+            lists_sheet['L1'] = address
+            print(f"Successfully wrote address to LISTS sheet L1: {address}")
+        else:
+            print("Warning: Lists sheet not found. Creating new sheet.")
+            lists_sheet = workbook.create_sheet('Lists')
+            lists_sheet['L1'] = address
+    except Exception as e:
+        print(f"Warning: Could not write address to Lists sheet: {str(e)}")
+
+def read_address_from_lists(workbook):
+    """Read address from LISTS sheet"""
+    try:
+        if 'Lists' in workbook.sheetnames:
+            lists_sheet = workbook['Lists']
+            return lists_sheet['L1'].value or ''
+        elif 'LISTS' in workbook.sheetnames:
+            lists_sheet = workbook['LISTS']
+            return lists_sheet['L1'].value or ''
+        else:
+            return ''
+    except Exception as e:
+        print(f"Warning: Could not read address from Lists sheet: {str(e)}")
+        return ''
 
 def write_to_word_doc(data, project_data, output_path="output.docx"):
     """Write project information to a Word document using Jinja template"""
-    f_canopy_mua_vols = []
-    ww_canopies = []
-    has_water_wash_canopies = False
-    has_any_uv_canopy = False  # Rename to clarify this is global flag
-    
-    # Debug UV Control Data
-    #st.write("Debug: UV Control Data in project_data:", project_data.get('uv_control_data', {}))
-    
-    for sheet in project_data['sheets']:
-        for canopy in sheet['canopies']:
-            # Skip non-canopy rows
-            if (canopy['reference_number'] == 'ITEM' or 
-                canopy['model'] == 'CANOPY TYPE' or
-                canopy['reference_number'] == 'DELIVERY & INSTALLATION' or
-                not any(valid_model in str(canopy['model']).upper() 
-                       for valid_model in VALID_CANOPY_MODELS)):  # Check against valid models
-                continue
-            
-            # Convert model and configuration to strings and handle None values
-            model = str(canopy.get('model', '')) if canopy.get('model') is not None else ''
-            config = str(canopy.get('configuration', '')) if canopy.get('configuration') is not None else ''
-            
-            # Check for UV canopies
-            if ('UV' in model.upper() or 'UV' in config.upper()):
-                has_any_uv_canopy = True
-            
-            # Check for water wash canopies
-            if 'CMWI' in model.upper() or 'CMWF' in model.upper():
-                has_water_wash_canopies = True
-                ww_canopies.append(canopy)
-            
-            # Check for F-type canopies
-            if 'F' in model.upper() and canopy.get('mua_vol'):
-                f_canopy_mua_vols.append({
-                    'item_no': canopy['reference_number'],
-                    'model': model,
-                    'mua_vol': canopy['mua_vol']
-                })
-
-    # Load the template
-    doc = DocxTemplate("resources/Halton Quote Feb 2024 (1).docx")
-    
-    # Get the full sales contact name from initials
-    sales_initials = data['Sales Contact']
-    sales_contact_name = next((name for name in contacts.keys() if name.startswith(sales_initials)), None)
-    
-    # If we couldn't find the full name, try to get it from the contacts dictionary
-    if not sales_contact_name:
-        # Try to find a matching contact by initials
-        for full_name in contacts.keys():
-            if get_initials(full_name) == sales_initials:
-                sales_contact_name = full_name
+    try:
+        f_canopy_mua_vols = []
+        ww_canopies = []
+        has_water_wash_canopies = False
+        has_any_uv_canopy = False  # Rename to clarify this is global flag
+        
+        # Get water wash canopies from project_data if available
+        if project_data and 'water_wash_canopies' in project_data and project_data['water_wash_canopies']:
+            ww_canopies = project_data['water_wash_canopies']
+            has_water_wash_canopies = True
+            # st.write(f"DEBUG: Found {len(ww_canopies)} water wash canopies from project_data['water_wash_canopies']")
+            # st.write(f"DEBUG: Water wash canopy refs from project_data: {[c.get('reference_number') for c in ww_canopies]}")
+        
+        # Also check for water_wash_items if available
+        if not ww_canopies and project_data and 'water_wash_items' in project_data and project_data['water_wash_items']:
+            ww_canopies = project_data['water_wash_items'] 
+            has_water_wash_canopies = True
+            # st.write(f"DEBUG: Found {len(ww_canopies)} water wash canopies from project_data['water_wash_items']")
+            # st.write(f"DEBUG: Water wash canopy refs from water_wash_items: {[c.get('reference_number') for c in ww_canopies]}")
+        
+        # Process sheets and canopies
+        if project_data and 'sheets' in project_data and project_data['sheets']:
+            for sheet in project_data['sheets']:
+                if 'canopies' in sheet:
+                    for canopy in sheet['canopies']:
+                        # Skip non-canopy rows
+                        if (canopy.get('reference_number') == 'ITEM' or 
+                            canopy.get('model') == 'CANOPY TYPE' or
+                            canopy.get('reference_number') == 'DELIVERY & INSTALLATION' or
+                            not any(valid_model in str(canopy.get('model', '')).upper() 
+                                for valid_model in VALID_CANOPY_MODELS)):  # Check against valid models
+                            continue
+                        
+                        # Convert model and configuration to strings and handle None values
+                        model = str(canopy.get('model', '')) if canopy.get('model') is not None else ''
+                        config = str(canopy.get('configuration', '')) if canopy.get('configuration') is not None else ''
+                        
+                        # Check for UV canopies
+                        if ('UV' in model.upper() or 'UV' in config.upper()):
+                            has_any_uv_canopy = True
+                        
+                        # Check for water wash canopies if we don't have them from water_wash_items
+                        if ('CMWI' in model.upper() or 'CMWF' in model.upper()) and not ww_canopies:
+                            has_water_wash_canopies = True
+                            
+                            # Only append if not already loaded from water_wash_items
+                            # Create a comprehensive canopy object with water wash data
+                            water_wash_canopy = {
+                                'reference_number': canopy.get('reference_number', ''),
+                                'model': model,
+                                'cws_2bar': canopy.get('cws_2bar', '-'),
+                                'hws_2bar': canopy.get('hws_2bar', '-'),
+                                'hws_storage': canopy.get('hws_storage', '-'),
+                                'ww_price': canopy.get('ww_price', 0),
+                                'ww_control_price': canopy.get('ww_control_price', 0),
+                                'ww_install_price': canopy.get('ww_install_price', 0),
+                                'control_panel': canopy.get('control_panel', '-'),
+                                'ww_pods': canopy.get('ww_pods', '-'),
+                                'ww_control': canopy.get('ww_control', '-')
+                            }
+                            ww_canopies.append(water_wash_canopy)
+                            # st.write(f"DEBUG: Added water wash canopy from sheets: {canopy.get('reference_number')}")
+                        
+                        # Check for F-type canopies
+                        if 'F' in model.upper() and canopy.get('mua_vol'):
+                            f_canopy_mua_vols.append({
+                                'item_no': canopy['reference_number'],
+                                'model': model,
+                                'mua_vol': canopy['mua_vol']
+                            })
+        
+        # Get address safely from project_data - various fallback methods
+        address = ''
+        # Method 1: Try to get from project_data.sheets[0].project_info.address
+        if project_data and 'sheets' in project_data and project_data['sheets']:
+            first_sheet = project_data['sheets'][0]
+            if 'project_info' in first_sheet:
+                address = first_sheet['project_info'].get('address', '')
+                
+        # Method 2: Try to get from data directly (if passed from form)
+        if not address and data and 'Address' in data:
+            address = data.get('Address', '')
+        
+        # Method 3: If form data has Company, look up in company_addresses dictionary
+        if not address and data and 'Company' in data and data['Company'] in company_addresses:
+            address = company_addresses[data['Company']]  # company_addresses directly contains address strings
+        
+        # Load the template
+        doc = DocxTemplate("resources/Halton Quote Feb 2024 (1).docx")
+        
+        # Get the full sales contact name from initials
+        sales_initials = data['Sales Contact']
+        sales_contact_name = next((name for name in contacts.keys() if name.startswith(sales_initials)), None)
+        
+        # If we couldn't find the full name, try to get it from the contacts dictionary
+        if not sales_contact_name:
+            # Try to find a matching contact by initials
+            for full_name in contacts.keys():
+                if get_initials(full_name) == sales_initials:
+                    sales_contact_name = full_name
+                    break
+        
+        # If we still don't have a name, use the initials
+        if not sales_contact_name:
+            st.error(f"Could not find contact information for {sales_initials}")
+            sales_contact_name = sales_initials
+            contact_number = ""
+        else:
+            contact_number = contacts[sales_contact_name]
+        
+        # Extract customer's first name
+        customer_full = data['Customer']
+        customer_first_name = customer_full.split()[0] if customer_full else ""
+        
+        # Get estimator initials from the sales_estimator field (format: "sales/estimator")
+        estimator_initials = data.get('Estimator', '').split('/')[-1] if '/' in data.get('Estimator', '') else ''
+        
+        # Find estimator name and role from initials
+        estimator_name = ''
+        estimator_role = ''
+        for full_name, role in estimators.items():
+            if get_initials(full_name) == estimator_initials:
+                estimator_name = full_name
+                estimator_role = role
                 break
-    
-    # If we still don't have a name, use the initials
-    if not sales_contact_name:
-        st.error(f"Could not find contact information for {sales_initials}")
-        sales_contact_name = sales_initials
-        contact_number = ""
-    else:
-        contact_number = contacts[sales_contact_name]
-    
-    # Extract customer's first name
-    customer_full = data['Customer']
-    customer_first_name = customer_full.split()[0] if customer_full else ""
-    
-    # Get estimator initials from the sales_estimator field (format: "sales/estimator")
-    estimator_initials = data.get('Estimator', '').split('/')[-1] if '/' in data.get('Estimator', '') else ''
-    
-    # Find estimator name and role from initials
-    estimator_name = ''
-    estimator_role = ''
-    for full_name, role in estimators.items():
-        if get_initials(full_name) == estimator_initials:
-            estimator_name = full_name
-            estimator_role = role
-            break
-    
-    # Get current revision
-    current_revision = project_data['sheets'][0].get('revision', 'A')
-    
-    # Create Halton reference with project number, initials and revision
-    halton_ref = f"{data['Project Number']}/{get_initials(sales_contact_name)}/{estimator_initials}/{current_revision}"
-    
-    # Create quote title based on revision
-    quote_title = "QUOTATION - Revision A" if current_revision == 'A' else f"QUOTATION - Revision {current_revision}"
-    
-    # Initialize global flags and arrays
-    has_water_wash_canopies = False
-    ww_canopies = []
-    
-    # Collect all cladding items first
-    cladding_items = []
-    
-    for sheet in project_data['sheets']:
-        for canopy in sheet['canopies']:
-            # Skip non-canopy rows
-            if (canopy['reference_number'] == 'ITEM' or 
-                canopy['model'] == 'CANOPY TYPE' or
-                canopy['reference_number'] == 'DELIVERY & INSTALLATION' or
-                not any(valid_model in str(canopy['model']).upper() 
-                       for valid_model in VALID_CANOPY_MODELS)):  # Check against valid models
+        
+        # Get current revision
+        current_revision = project_data['sheets'][0].get('revision', 'A')
+        
+        # Create Halton reference with project number, initials and revision
+        halton_ref = f"{data['Project Number']}/{get_initials(sales_contact_name)}/{estimator_initials}/{current_revision}" if current_revision != 'A' else f"{data['Project Number']}/{get_initials(sales_contact_name)}/{estimator_initials}"
+        
+        # Create quote title based on revision
+        quote_title = "QUOTATION" if current_revision == 'A' else f"QUOTATION - Revision {current_revision}"
+        
+        # Initialize global flags and arrays
+        has_water_wash_canopies = False
+        
+        # Collect all cladding items from the project_data structure
+        cladding_items = []
+        
+        # Check if wall_cladding is in project_data (for backward compatibility)
+        if 'wall_cladding' in project_data:
+            # Collect all cladding items from all areas
+            for area_name, area_cladding in project_data['wall_cladding'].items():
+                cladding_items.extend(area_cladding)
+        else:
+            # Fallback to old method of collecting cladding from canopies
+            for sheet in project_data['sheets']:
+                for canopy in sheet['canopies']:
+                    # Skip non-canopy rows
+                    if (canopy['reference_number'] == 'ITEM' or 
+                        canopy['model'] == 'CANOPY TYPE' or
+                        canopy['reference_number'] == 'DELIVERY & INSTALLATION' or
+                        not any(valid_model in str(canopy['model']).upper() 
+                               for valid_model in VALID_CANOPY_MODELS)):  # Check against valid models
+                        continue
+                        
+                    # Convert model and configuration to strings
+                    model = str(canopy.get('model', '')) if canopy.get('model') is not None else ''
+                    config = str(canopy.get('configuration', '')).upper() if canopy.get('configuration') is not None else ''
+                    
+                    # Check for UV canopies
+                    if ('UV' in model.upper() or 'UV' in config):
+                        has_any_uv_canopy = True
+                    
+                    # Check for water wash canopies
+                    if 'CMWI' in model.upper() or 'CMWF' in model.upper():
+                        has_water_wash_canopies = True
+                        ww_canopies.append(canopy)
+                    
+                    # Check for F-type canopies
+                    if 'F' in model.upper() and canopy.get('mua_vol'):
+                        f_canopy_mua_vols.append({
+                            'item_no': canopy['reference_number'],
+                            'model': model,
+                            'mua_vol': canopy['mua_vol']
+                        })
+                    
+                    # Create description based on selected positions
+                    positions = canopy['wall_cladding']['positions']
+                    position_str = '/'.join(positions).lower() if positions else ''
+                    
+                    if position_str:  # Only add if there are positions selected
+                        cladding_items.append({
+                            'item_no': canopy['reference_number'],
+                            'description': f"Cladding below Item {canopy['reference_number']}, supplied and installed",
+                            'width': canopy['wall_cladding']['width'],
+                            'height': canopy['wall_cladding']['height'],
+                            'positions': canopy['wall_cladding']['positions'],
+                            'price': format_price(math.ceil(float(canopy['wall_cladding'].get('price', 0))))  # Keep as numeric value for calculations
+                            
+                        })
+
+        # Prepare areas data with technical specifications
+        areas = []
+        processed_area_names = set()  # Keep track of processed areas to prevent duplication
+        
+        for sheet in project_data['sheets']:
+            display_name = sheet['sheet_name']
+            
+            # Skip if we've already processed this area
+            if display_name in processed_area_names:
                 continue
-                
-            # Convert model and configuration to strings
-            model = str(canopy.get('model', '')) if canopy.get('model') is not None else ''
-            config = str(canopy.get('configuration', '')) if canopy.get('configuration') is not None else ''
+            processed_area_names.add(display_name)
             
-            # Check for UV canopies
-            if ('UV' in model.upper() or 'UV' in config.upper()):
-                has_any_uv_canopy = True
+            # Get UV price if available
+            uv_price = 0
+            uv_cost = 0
+            total_price = 0
             
-            # Check for water wash canopies
-            if 'CMWI' in model.upper() or 'CMWF' in model.upper():
-                has_water_wash_canopies = True
-                ww_canopies.append(canopy)
+            # Check if this specific area has UV canopy by checking uv_control_data
+            has_uv_canopy = display_name in project_data['uv_control_data']
             
-            # Check for F-type canopies
-            if 'F' in model.upper() and canopy.get('mua_vol'):
-                f_canopy_mua_vols.append({
-                    'item_no': canopy['reference_number'],
-                    'model': model,
-                    'mua_vol': canopy['mua_vol']
-                })
+            if has_uv_canopy:
+                uv_data = project_data['uv_control_data'].get(display_name, {})
+                uv_price = uv_data.get('n9_price', 0)
+                uv_cost = uv_data.get('k9_price', 0)
+                total_price = uv_data.get('total_price', 0)  # Get total price from UV control data
+                #st.write(f"Debug: Found UV price for {display_name}: {project_data['uv_control_data']}")
+               # st.write(f"Debug: Found UV price: {uv_price}")
             
-            # Create description based on selected positions
-            positions = canopy['wall_cladding']['positions']
-            position_str = '/'.join(positions).lower() if positions else ''
+            # Check if this specific area has RECOAIR
+            has_recoair = display_name in project_data['recoair_control_data']
             
-            if position_str:  # Only add if there are positions selected
-                cladding_items.append({
-                    'item_no': canopy['reference_number'],
-                    'description': f"Cladding below Item {canopy['reference_number']}, supplied and installed",
-                    'width': canopy['wall_cladding']['width'],
-                    'height': canopy['wall_cladding']['height'],
-                    'price': math.ceil(canopy['wall_cladding']['price'])  # Round up the price
-                })
-    
-    # Prepare areas data with technical specifications
-    areas = []
-    processed_area_names = set()  # Keep track of processed areas to prevent duplication
-    
-    for sheet in project_data['sheets']:
-        display_name = sheet['sheet_name']
-        
-        # Skip if we've already processed this area
-        if display_name in processed_area_names:
-            continue
-        processed_area_names.add(display_name)
-        
-        # Get UV price if available
-        uv_price = 0
-        uv_cost = 0
-        total_price = 0
-        
-        # Check if this specific area has UV canopy by checking uv_control_data
-        has_uv_canopy = display_name in project_data['uv_control_data']
-        
-        if has_uv_canopy:
-            uv_data = project_data['uv_control_data'].get(display_name, {})
-            uv_price = uv_data.get('n9_price', 0)
-            uv_cost = uv_data.get('k9_price', 0)
-            total_price = uv_data.get('total_price', 0)  # Get total price from UV control data
-            st.write(f"Debug: Found UV price for {display_name}: {project_data['uv_control_data']}")
-            st.write(f"Debug: Found UV price: {uv_price}")
-        
-        # Add area data to context
-        area_data = {
-            'name': display_name,
-            'has_uv_canopy': has_uv_canopy,  # This now correctly reflects if this specific area has UV
-            'uv_price': uv_price,
-            'uv_cost': uv_cost,
-            'total_price': total_price,  # Add total price to area data
-            'canopies': []
-        }
-        
-        canopies = []
-        has_fire_suppression = False
-        fire_suppression_canopies = []
-        fs_canopy_count = 0
-        
-        # Get MUA calculations for this area
-        mua_calcs = sheet.get('mua_calculations', {})
-        total_extract = mua_calcs.get('total_extract_volume', 0)
-        required_mua = mua_calcs.get('required_mua', 0)
-        total_mua = mua_calcs.get('total_mua_volume', 0)
-        mua_shortfall = mua_calcs.get('mua_shortfall', 0)
-        
-        # Format the important note for this area
-        important_note = (
-            f"Important Note: - The make-up air flows shown above are the maximum that we can introduce through the "
-            f"canopy. This should be equal to approximately 85% of the extract i.e. {required_mua}m³/s\n"
-            f"In this instance it only totals {total_mua}m³/s therefore the shortfall of "
-            f"{mua_shortfall}m³/s must be introduced through ceiling grilles or diffusers, by others.\n"
-            f"If you require further guidance on this, please do not hesitate to contact us."
-        ) if total_extract > 0 else ""
-        
-        # Process canopies and check for UV
-        for canopy in sheet['canopies']:
-            if (canopy.get('reference_number') and 
-                canopy['reference_number'] != 'ITEM' and 
-                canopy.get('model') and 
-                canopy['model'] != 'CANOPY TYPE' and
-                canopy['reference_number'] != 'DELIVERY & INSTALLATION'):
-                
-                # Convert model and configuration to strings
-                model = str(canopy.get('model', '')) if canopy.get('model') is not None else ''
-                config = str(canopy.get('configuration', '')) if canopy.get('configuration') is not None else ''
-                
-                # Check for UV canopies
-                if ('UV' in model.upper() or 'UV' in config.upper()):
-                    has_any_uv_canopy = True
-                
-                # Check for fire suppression
-                if canopy.get('has_fire_suppression'):
-                    has_fire_suppression = True
-                    fire_suppression_canopies.append(canopy)
-                    fs_canopy_count += 1
-                
-                canopies.append({
-                    'item_no': canopy['reference_number'],  # Ensure item_no is included
-                    'reference_number': canopy['reference_number'],
-                    'model': model,
-                    'configuration': config,
-                    'length': canopy.get('length', '-'),
-                    'width': canopy.get('width', '-'),
-                    'height': canopy.get('height', '-'),
-                    'sections': canopy.get('sections', '-'),
-                    'ext_vol': canopy.get('ext_vol', '-'),
-                    'ext_static': canopy.get('ext_static', '-'),
-                    'mua_vol': canopy.get('mua_vol', '-'),
-                    'supply_static': canopy.get('supply_static', '-'),
-                    'lighting': canopy.get('lighting', '-'),
-                    'base_price': canopy.get('base_price', 0),
-                    'has_fire_suppression': canopy.get('has_fire_suppression', False),
-                    'fire_suppression_data': canopy.get('fire_suppression_data', None)
-                })
-        
-        # Calculate fire suppression totals
-        fs_total = 0
-        fs_canopies_total = 0
-        if has_fire_suppression:
-            fs_base_total = sum(math.ceil(float(str(fs_canopy.get('fire_suppression_data', {}).get('base_price', 0)).replace(',', ''))) 
-                              for fs_canopy in fire_suppression_canopies)
-            fs_install_price = math.ceil(float(str(sheet.get('fire_suppression_install', 0)).replace(',', '')))
-            fs_total = fs_base_total + fs_install_price
-            fs_canopies_total = sum(math.ceil(float(str(fs_canopy.get('fire_suppression_data', {}).get('total_price', 0)).replace(',', ''))) 
+            # Get RECOAIR price if available
+            recoair_price = 0
+            recoair_cost = 0
+            recoair_total_price = 0
+            
+            if has_recoair:
+                recoair_data = project_data['recoair_control_data'].get(display_name, {})
+                recoair_price = recoair_data.get('n9_price', 0)
+                recoair_cost = recoair_data.get('k9_price', 0)
+                recoair_total_price = recoair_data.get('total_price', 0)
+               # st.write(f"Debug: Found RECOAIR price for {display_name}: {project_data['recoair_control_data']}")
+               # st.write(f"Debug: Found RECOAIR price: {recoair_price}")
+            
+            # Add area data to context
+            area_data = {
+                'name': display_name,
+                'has_uv_canopy': has_uv_canopy,  # This now correctly reflects if this specific area has UV
+                'uv_price': uv_price,
+                'uv_cost': uv_cost,
+                'total_price': total_price,  # Add total price to area data
+                'has_recoair': has_recoair,  # Add flag for RECOAIR
+                'recoair_price': recoair_price,
+                'recoair_cost': recoair_cost,
+                'recoair_total_price': recoair_total_price,
+                'canopies': []
+            }
+            
+            canopies = []
+            has_fire_suppression = False
+            fire_suppression_canopies = []
+            fs_canopy_count = 0
+            per_canopy_delivery = 0  # Initialize the per-canopy delivery share
+            
+            # Get MUA calculations for this area
+            mua_calcs = sheet.get('mua_calculations', {})
+            total_extract = mua_calcs.get('total_extract_volume', 0)
+            required_mua = mua_calcs.get('required_mua', 0)
+            total_mua = mua_calcs.get('total_mua_volume', 0)
+            mua_shortfall = mua_calcs.get('mua_shortfall', 0)
+            
+            # Format the important note for this area
+            important_note = (
+                f"Important Note: - The make-up air flows shown above are the maximum that we can introduce through the "
+                f"canopy. This should be equal to approximately 85% of the extract i.e. {required_mua}m³/s\n"
+                f"In this instance it only totals {total_mua}m³/s therefore the shortfall of "
+                f"{mua_shortfall}m³/s must be introduced through ceiling grilles or diffusers, by others.\n"
+                f"If you require further guidance on this, please do not hesitate to contact us."
+            ) if total_extract > 0 else ""
+            
+            # Process canopies and check for UV
+            for canopy in sheet['canopies']:
+                if (canopy.get('reference_number') and 
+                    canopy['reference_number'] != 'ITEM' and 
+                    canopy.get('model') and 
+                    canopy['model'] != 'CANOPY TYPE' and
+                    canopy['reference_number'] != 'DELIVERY & INSTALLATION'):
+                    
+                    # Convert model and configuration to strings
+                    model = str(canopy.get('model', '')) if canopy.get('model') is not None else ''
+                    config = str(canopy.get('configuration', '')) if canopy.get('configuration') is not None else ''
+                    
+                    # Check for UV canopies
+                    if ('UV' in model.upper() or 'UV' in config.upper()):
+                        has_any_uv_canopy = True
+                    
+                    # Check for fire suppression
+                    if canopy.get('has_fire_suppression') or canopy.get('fire_suppression_data') is not None:
+                        has_fire_suppression = True
+                        fire_suppression_canopies.append(canopy)
+                        fs_canopy_count += 1
+                        print(f"DEBUG: Found fire suppression canopy: {canopy.get('reference_number')}")
+                    
+                    canopies.append({
+                        'item_no': canopy['reference_number'],  # Ensure item_no is included
+                        'reference_number': canopy['reference_number'],
+                        'model': model,
+                        'configuration': config,
+                        'length': canopy.get('length', '-'),
+                        'width': canopy.get('width', '-'),
+                        'height': canopy.get('height', '-'),
+                        'sections': canopy.get('sections', '-'),
+                        'ext_vol': canopy.get('ext_vol', '-'),
+                        'ext_static': canopy.get('ext_static', '-'),
+                        'mua_vol': canopy.get('mua_vol', '-'),
+                        'supply_static': 45 if 'F' in str(canopy.get('model', '')).upper() else '-',
+                        'lighting': canopy.get('lighting', '-'),
+                        'base_price': format_price(canopy.get('base_price', 0)),
+                        'has_fire_suppression': canopy.get('has_fire_suppression', False),
+                        'fire_suppression_data': canopy.get('fire_suppression_data', None)
+                    })
+            
+            # Calculate fire suppression totals
+            fs_total = 0
+            fs_canopies_total = 0
+            if has_fire_suppression:
+                fs_base_total = sum(safe_convert_to_float(fs_canopy.get('fire_suppression_data', {}).get('base_price', 0))
                                   for fs_canopy in fire_suppression_canopies)
-        
-        # Get UV price from project_data if area has UV canopy
-        uv_price = 0
-        if has_any_uv_canopy:
-            #st.write(f"Debug: Looking for UV price for area {display_name}")
-            uv_price = project_data.get('uv_control_data', {}).get(display_name, {}).get('price', 0)
-            #st.write(f"Debug: Found UV price: {uv_price}")
-        
-        # Calculate area totals with rounding at each step
-        canopy_total = sum(math.ceil(float(str(canopy.get('base_price', 0)).replace(',', ''))) for canopy in canopies)
-        delivery_total = math.ceil(float(str(sheet.get('delivery_install', 0)).replace(',', '')))
-        commissioning_total = math.ceil(float(str(sheet.get('commissioning_price', 0)).replace(',', '')))
-        
-        # Calculate total for this area including all components
-        area_total = canopy_total + delivery_total + commissioning_total
-       # if has_fire_suppression:
-           # area_total += fs_total
-       # if has_any_uv_canopy:
-           # area_total += uv_price
-        
-        # Get cladding items for this area
-        area_cladding_items = []
-        for canopy in canopies:
-            if canopy.get('wall_cladding', {}).get('type') and canopy['wall_cladding']['type'] != "Select...":
-                area_cladding_items.append({
-                    'item_no': canopy['reference_number'],
-                    'description': f"Cladding below Item {canopy['reference_number']}, supplied and installed",
-                    'width': canopy['wall_cladding']['width'],
-                    'height': canopy['wall_cladding']['height'],
-                    'price': math.ceil(canopy['wall_cladding'].get('price', 0))
-                })
-        
-        # Calculate sheet total including cladding
-        sheet_total = area_total  # Start with area_total which already includes canopies, delivery, commissioning
-        if area_cladding_items:
-            cladding_total = sum(math.ceil(float(str(item['price']).replace(',', ''))) for item in area_cladding_items)
-            sheet_total += cladding_total
-        
-        # Add fire suppression total from canopies
-        if has_fire_suppression:
-            fs_canopies_total = sum(
-                safe_convert_to_float(fs_canopy.get('fire_suppression_data', {}).get('base_price', 0)) +
-                safe_convert_to_float(fs_canopy.get('fire_suppression_data', {}).get('install_price', 0))
-                for fs_canopy in fire_suppression_canopies
-            )
-            sheet_total += fs_canopies_total
-        
-        # Add UV-C price if not already included
-        if display_name in project_data['uv_control_data']:
-            sheet_total += project_data['uv_control_data'].get(display_name, {}).get('total_price', 0)
-        
-        areas.append({
-            'name': display_name,
-            'canopies': canopies,  # Now includes item_no
-            'has_uv': display_name in project_data['uv_control_data'],
-            'uv_price': format_price(uv_price) if has_any_uv_canopy else None,
-            'has_fire_suppression': has_fire_suppression,
-            'fire_suppression_canopies': [{
-                'item_no': fs_canopy['reference_number'],  # Include item_no
-                'reference_number': fs_canopy['reference_number'],  # Keep reference_number too
-                'base_price': format_price(fs_canopy.get('fire_suppression_data', {}).get('base_price', 0)),
-                'install_share': format_price(fs_canopy.get('fire_suppression_data', {}).get('install_price', 0)),
-                'total_price': format_price(
-                    safe_convert_to_float(fs_canopy.get('fire_suppression_data', {}).get('base_price', 0)) +
-                    safe_convert_to_float(fs_canopy.get('fire_suppression_data', {}).get('install_price', 0))
-                ),
-                'system_description': fs_canopy.get('fire_suppression_data', {}).get('system_description', ''),
-                'tank_quantity': fs_canopy.get('fire_suppression_data', {}).get('tank_quantity', ''),
-                'manual_release': fs_canopy.get('fire_suppression_data', {}).get('manual_release', '')
-            } for fs_canopy in fire_suppression_canopies],
-            'fire_suppression_total': format_price(fs_total),
-            'fire_suppression_data': {
-                'system_description': 'Ansul R 102 System',
-                'tank_quantity': '2',
-                'manual_release': '1no station',
-                'base_price': format_price(fs_base_total),
-                'install_price': format_price(fs_install_price),
-                'total_price': format_price(sum(
+                fs_install_price = safe_convert_to_float(sheet.get('fire_suppression_install', 0))
+                
+                # Calculate per-canopy installation share
+                fs_canopy_count = len(fire_suppression_canopies)
+                per_canopy_install_share = fs_install_price / fs_canopy_count if fs_canopy_count > 0 else 0
+                
+                # Add debug prints to diagnose the value of per_canopy_install_share
+                print(f"DEBUG: fs_install_price = {fs_install_price}")
+                print(f"DEBUG: fs_canopy_count = {fs_canopy_count}")
+                print(f"DEBUG: per_canopy_install_share = {per_canopy_install_share}")
+                
+                fs_total = fs_base_total + fs_install_price
+                fs_canopies_total = sum(safe_convert_to_float(fs_canopy.get('fire_suppression_data', {}).get('base_price', 0))
+                                      for fs_canopy in fire_suppression_canopies) + fs_install_price
+            
+            # Get UV price from project_data if area has UV canopy
+            uv_price = 0
+            if has_any_uv_canopy:
+                #st.write(f"Debug: Looking for UV price for area {display_name}")
+                uv_price = project_data.get('uv_control_data', {}).get(display_name, {}).get('price', 0)
+                #st.write(f"Debug: Found UV price: {uv_price}")
+            
+            # Calculate area totals with rounding at each step
+            canopy_total = sum(safe_convert_to_float(canopy.get('base_price', 0)) for canopy in canopies)
+            delivery_total = safe_convert_to_float(sheet.get('delivery_install', 0))
+            commissioning_total = safe_convert_to_float(sheet.get('commissioning_price', 0))
+            
+            # Calculate total for this area including all components
+            area_total = canopy_total + delivery_total + commissioning_total
+           # if has_fire_suppression:
+               # area_total += fs_total
+           # if has_any_uv_canopy:
+               # area_total += uv_price
+            
+            # Get cladding items for this area
+            area_cladding_items = []
+            
+            # Check if we have the new wall_cladding structure in project_data
+            if 'wall_cladding' in project_data and display_name in project_data['wall_cladding']:
+                # Use the pre-populated area cladding items
+                area_cladding_items = project_data['wall_cladding'][display_name]
+            else:
+                # Fallback to old method of collecting cladding from canopies
+                #NOT HERE
+                for canopy in canopies:
+                    if canopy.get('wall_cladding', {}).get('type') and canopy['wall_cladding']['type'] != "Select...":
+                        area_cladding_items.append({
+                            'item_no': canopy['reference_number'],
+                            'description': f"Cladding below Item {canopy['reference_number']}, supplied and installed",
+                            'width': canopy['wall_cladding']['width'],
+                            'height': canopy['wall_cladding']['height'],
+                            'positions': canopy['wall_cladding']['positions'],
+                            'price': safe_convert_to_float(canopy['wall_cladding'].get('price', 0))  # Store as numeric value, not formatted string
+                        })
+            
+            # Calculate sheet total including cladding
+            sheet_total = area_total  # Start with area_total which already includes canopies, delivery, commissioning
+            if area_cladding_items:
+                cladding_total = sum(safe_convert_to_float(item['price']) for item in area_cladding_items)
+                sheet_total += cladding_total
+            
+            # Add fire suppression total from canopies
+            if has_fire_suppression:
+                fs_canopies_total = sum(
                     safe_convert_to_float(fs_canopy.get('fire_suppression_data', {}).get('base_price', 0)) +
                     safe_convert_to_float(fs_canopy.get('fire_suppression_data', {}).get('install_price', 0))
                     for fs_canopy in fire_suppression_canopies
-                )),
-                'n9_total': format_price(fs_total)  # Use fs_total instead of n9_total
-            } if has_fire_suppression else None,
-            'fire_suppression_base_total': format_price(fs_base_total) if has_fire_suppression else format_price(0),
-            'fire_suppression_install': format_price(fs_install_price) if has_fire_suppression else format_price(0),
-            'has_cladding': bool(area_cladding_items),
-            'cladding_items': area_cladding_items,
-            'canopy_total': format_price(canopy_total),
-            'delivery_total': format_price(delivery_total),
-            'commissioning_total': format_price(commissioning_total),
-            'cladding_total': format_price(sum(math.ceil(float(str(item['price']).replace(',', ''))) for item in area_cladding_items)),
-            'uv_total': format_price(project_data['uv_control_data'].get(display_name, {}).get('total_price', 0)) if has_any_uv_canopy else format_price(0),
-            'area_total': format_price(area_total),
-            'total_price': format_price(sheet_total),
-            'mua_calculations': {
-                'total_extract_volume': round(total_extract, 3),
-                'required_mua': round(required_mua, 3),
-                'total_mua_volume': round(total_mua, 3),
-                'mua_shortfall': round(mua_shortfall, 3)
-            },
-            'important_note': important_note
-        })
-    
-    st.write(areas)
-    # Calculate totals from all areas
-    job_total = sum(safe_convert_to_float(area['total_price']) for area in areas)
-    st.write(job_total)
-    k9_total = 0.0
-    commissioning_total = 0.0  # Add commissioning total tracking
-    
-    for sheet in project_data['sheets']:
-        # Only add to total if sheet has canopies (is used)
-        if any(canopy['reference_number'] != 'ITEM' and 
-               canopy['model'] != 'CANOPY TYPE' and
-               canopy['reference_number'] != 'DELIVERY & INSTALLATION'
-               for canopy in sheet['canopies']):
-            try:
-                # Get K9 and commissioning totals from sheets
-                sheet_k9 = float(str(sheet['k9_total']).replace(',', ''))
-                sheet_commissioning = float(str(sheet['commissioning_price']).replace(',', ''))
-                
-                k9_total += sheet_k9
-                commissioning_total += sheet_commissioning
-            except (ValueError, TypeError):
-                st.write(f"Warning: Could not convert total price for sheet {sheet.get('sheet_name', 'Unknown')}")
-                continue
-    
-    # Add fire suppression totals to job total
-    try:
-        fs_n9_total = float(str(project_data['global_fs_n9_total'] or 0).replace(',', ''))
+                )
+                sheet_total += fs_canopies_total
+            
+            # Add UV-C price if not already included
+            if display_name in project_data['uv_control_data']:
+                sheet_total += project_data['uv_control_data'].get(display_name, {}).get('total_price', 0)
+            
+            # Add RECOAIR price if not already included
+            if display_name in project_data['recoair_control_data']:
+                sheet_total += project_data['recoair_control_data'].get(display_name, {}).get('total_price', 0)
+            
+            areas.append({
+                'name': display_name,
+                'canopies': canopies,  # Now includes item_no
+                'has_uv': display_name in project_data['uv_control_data'],
+                'uv_price': format_price(project_data['uv_control_data'].get(display_name, {}).get('n9_price', 0)) if display_name in project_data['uv_control_data'] else None,
+                'has_recoair': display_name in project_data['recoair_control_data'],
+                'recoair_price': format_price(project_data['recoair_control_data'].get(display_name, {}).get('n9_price', 0)) if display_name in project_data['recoair_control_data'] else None,
+                'has_fire_suppression': has_fire_suppression,
+                'fire_suppression_canopies': [{
+                    'item_no': fs_canopy['reference_number'],  # Include item_no
+                    'reference_number': fs_canopy['reference_number'],  # Keep reference_number too
+                    'base_price': format_price(fs_canopy.get('fire_suppression_data', {}).get('base_price', 0)),
+                    'install_share': format_price(math.ceil(fs_canopy.get('fire_suppression_data', {}).get('install_price', 0))),
+                    'total_price': format_price(
+                        safe_convert_to_float(fs_canopy.get('fire_suppression_data', {}).get('base_price', 0)) +
+                        safe_convert_to_float(fs_canopy.get('fire_suppression_data', {}).get('install_price', 0))
+                    ),
+                    'system_description': 'Ansul R 102 System' or fs_canopy.get('fire_suppression_data', {}).get('system_description', ''),
+                    'tank_quantity': fs_canopy.get('fire_suppression_data', {}).get('tank_quantity', ''),
+                    'manual_release': fs_canopy.get('fire_suppression_data', {}).get('manual_release', '')
+                } for fs_canopy in fire_suppression_canopies],
+                'fire_suppression_total': format_price(fs_total),
+                'fire_suppression_data': {
+                    'system_description': 'Ansul R 102 System',
+                    'tank_quantity': '2',
+                    'manual_release': '1no station',
+                    'base_price': format_price(fs_base_total),
+                    'install_price': format_price(fs_install_price),
+                    'total_price': format_price(sum(
+                        safe_convert_to_float(fs_canopy.get('fire_suppression_data', {}).get('base_price', 0)) +
+                        safe_convert_to_float(fs_canopy.get('fire_suppression_data', {}).get('install_price', 0))
+                        for fs_canopy in fire_suppression_canopies
+                    )),
+                    'n9_total': format_price(fs_total)  # Use fs_total instead of n9_total
+                } if has_fire_suppression else None,
+                'fire_suppression_base_total': format_price(fs_base_total) if has_fire_suppression else format_price(0),
+                'fire_suppression_install': format_price(fs_install_price) if has_fire_suppression else format_price(0),
+                'has_cladding': bool(area_cladding_items),
+                'cladding_items': area_cladding_items,
+                'canopy_total': format_price(canopy_total),
+                'delivery_total': format_price(delivery_total),
+                'commissioning_total': format_price(commissioning_total),
+                'cladding_total': format_price(sum(safe_convert_to_float(item['price']) for item in area_cladding_items)),
+                'uv_total': format_price(project_data['uv_control_data'].get(display_name, {}).get('total_price', 0)) if display_name in project_data['uv_control_data'] else format_price(0),
+                'recoair_total': format_price(project_data['recoair_control_data'].get(display_name, {}).get('total_price', 0)) if display_name in project_data['recoair_control_data'] else format_price(0),
+                'area_total': format_price(area_total),
+                'total_price': format_price(sheet_total),
+                'mua_calculations': {
+                    'total_extract_volume': round(total_extract, 3),
+                    'required_mua': round(required_mua, 3),
+                    'total_mua_volume': round(total_mua, 3),
+                    'mua_shortfall': round(mua_shortfall, 3)
+                },
+                'important_note': important_note
+            })
         
-    except (ValueError, TypeError):
-        st.write("Warning: Could not convert fire suppression N9 total")
-    
-    # Format totals with commas and 2 decimal places
-    job_total_formatted = f"{math.ceil(job_total):,.2f}"
-    k9_total_formatted = f"{math.ceil(k9_total):,.2f}"
-    commissioning_total_formatted = f"{math.ceil(commissioning_total):,.2f}"
-    
-    # Add to context
-    context = {
-        'date': data['Date'],
-        'project_number': halton_ref,  # Updated reference format
-        'quote_title': quote_title,    # New quote title
-        'sales_contact_name': sales_contact_name,
-        'contact_number': contact_number,
-        'customer': data['Customer'],
-        'customer_first_name': customer_first_name,
-        'company': data.get('Company', ''),
-        'estimator_name': estimator_name,  # Use extracted name
-        'estimator_role': estimator_role,  # Use extracted role
-        'scope_items': [],  # Add scope items to context
-        'project_data': project_data,  # Add project_data to context first
-        'project_name': project_data['sheets'][0]['project_info']['project_name'],
-        'location': project_data['sheets'][0]['project_info']['location'],
-        'areas': areas,
-        'has_water_wash': has_water_wash_canopies,
-        'has_cladding': bool(cladding_items),
-        'cladding_items': cladding_items,
-        'cladding_total': sum(math.ceil(item['price']) for item in cladding_items),
-        'f_canopy_mua_vols': f_canopy_mua_vols,
-        'ww_canopies': ww_canopies,
-        'job_total': job_total_formatted,
-        'k9_total': k9_total_formatted,
-        'commissioning_total': commissioning_total_formatted,  # Add to context with proper formatting
-    }
-    print(context.get('estimator_name'))
-    # Collect and organize canopy data for scope of works
-    canopy_counts = {}
-    for sheet in project_data['sheets']:
-        for canopy in sheet['canopies']:
-            # Skip invalid or placeholder canopies
-            if (canopy['reference_number'] == 'ITEM' or 
-                canopy['model'] == 'CANOPY TYPE' or 
-                not canopy['model'] or 
-                not canopy['configuration'] or 
-                canopy['model'] == "Select..." or 
-                canopy['configuration'] == "Select..."):
-                continue
-                
-            key = f"{canopy['model']} {canopy['configuration']}"
-            canopy_counts[key] = canopy_counts.get(key, 0) + 1
-    
-    # Format scope of works
-    scope_items = []
-    for canopy_type, count in canopy_counts.items():
-        scope_items.append(get_canopy_description(canopy_type, count))
-    
-    # Add any wall cladding from valid canopies only
-    wall_cladding_count = sum(1 for sheet in project_data['sheets'] 
-                             for canopy in sheet['canopies'] 
-                             if (canopy['wall_cladding']['type'] and 
-                                 canopy['wall_cladding']['type'] != "Select..." and 
-                                 canopy['wall_cladding']['type'] == "2M² (HFL)" and
-                                 canopy['reference_number'] != 'ITEM' and
-                                 canopy['model'] != 'CANOPY TYPE'))
-    if wall_cladding_count > 0:
-        scope_items.append(f"{wall_cladding_count}no Areas with Stainless Steel Cladding")
-    
-    # Add scope items to context
-    context['scope_items'] = scope_items
-    
-    # Inside write_to_word_doc function, before processing areas
-    # Create a map of fire suppression data by item number
-    fs_data = []
-    for sheet in project_data['sheets']:
-        for canopy in sheet['canopies']:
-            if canopy.get('has_fire_suppression') and canopy.get('fire_suppression_data'):
-                fs_data.append({
-                    'item_number': canopy['reference_number'],
-                    'model': canopy['model'],
-                    'system_description': canopy['fire_suppression_data']['system_description'],
-                    'tank_quantity': canopy['fire_suppression_data']['tank_quantity'],
-                    'manual_release': canopy['fire_suppression_data']['manual_release']
-                })
+        # 
+        # 
+        # st.write(areas)
+        # Calculate totals from all areas
+        # Calculate job total excluding RECOAIR prices
+        job_total = sum(safe_convert_to_float(area['total_price']) 
+                        - (safe_convert_to_float(area.get('recoair_total', 0)) if area.get('has_recoair') else 0) 
+                        for area in areas)
+       # st.write(job_total)
+        k9_total = 0.0
+        commissioning_total = 0.0  # Add commissioning total tracking
+        
+        for sheet in project_data['sheets']:
+            # Only add to total if sheet has canopies (is used)
+            if any(canopy['reference_number'] != 'ITEM' and 
+                   canopy['model'] != 'CANOPY TYPE' and
+                   canopy['reference_number'] != 'DELIVERY & INSTALLATION'
+                   for canopy in sheet['canopies']):
+                try:
+                    # Get K9 and commissioning totals from sheets
+                    sheet_k9 = float(str(sheet['k9_total']).replace(',', ''))
+                    sheet_commissioning = float(str(sheet['commissioning_price']).replace(',', ''))
+                    
+                    k9_total += sheet_k9
+                    commissioning_total += sheet_commissioning
+                except (ValueError, TypeError):
+                    st.write(f"Warning: Could not convert total price for sheet {sheet.get('sheet_name', 'Unknown')}")
+                    continue
+        
+        # Add fire suppression totals to job total
+        try:
+            fs_n9_total = float(str(project_data['global_fs_n9_total'] or 0).replace(',', ''))
+            
+        except (ValueError, TypeError):
+            st.write("Warning: Could not convert fire suppression N9 total")
+        
+        # Format totals with commas and 2 decimal places
+        job_total_formatted = f"{math.ceil(job_total):,.2f}"
+        k9_total_formatted = f"{math.ceil(k9_total):,.2f}"
+        commissioning_total_formatted = f"{math.ceil(commissioning_total):,.2f}"
+        
+        # Add to context
+        context = {
+            'date': data['Date'],
+            'project_number': halton_ref,  # Updated reference format
+            'quote_title': quote_title,    # New quote title
+            'sales_contact_name': sales_contact_name,
+            'contact_number': contact_number,
+            'customer': data['Customer'],
+            'customer_first_name': customer_first_name,
+            'company': data.get('Company', ''),
+            'address': address,  # Use the address variable we populated earlier
+            'Address': address,  # Also add with uppercase A for template compatibility
+            'estimator_name': estimator_name,  # Use extracted name
+            'estimator_role': estimator_role,  # Use extracted role
+            'scope_items': [],  # Add scope items to context
+            'project_data': project_data,  # Add project_data to context first
+            'project_name': project_data['sheets'][0]['project_info']['project_name'],
+            'location': project_data['sheets'][0]['project_info']['location'],
+            'areas': areas,
+            'has_water_wash': bool(project_data.get('has_water_wash', False)),
+            'has_uv': project_data.get('has_uv_canopy', False) or has_any_uv_canopy,  # Use both global flags for compatibility
+            'has_recoair': project_data.get('has_recoair', False),  # Add global flag for RECOAIR
+            'has_cladding': bool(cladding_items),
+            'cladding_items': cladding_items,
+            'cladding_total': sum(safe_convert_to_float(item['price']) for item in cladding_items),
+            'f_canopy_mua_vols': f_canopy_mua_vols,
+            'ww_canopies': ww_canopies,
+            'job_total': job_total_formatted,
+            'k9_total': k9_total_formatted,
+            'commissioning_total': commissioning_total_formatted,  # Add to context with proper formatting
+        }
+        
+        # Debug output to verify water wash canopies in context
+        # st.write(f"DEBUG: Water wash canopies in context: {len(ww_canopies)}")
+        
+        
+        # Debug output to verify has_water_wash status
+        
+        # st.write(context)
+       # st.write(context)
+        print(context.get('estimator_name'))
+        # Collect and organize canopy data for scope of works
+        canopy_counts = {}
+        for sheet in project_data['sheets']:
+            for canopy in sheet['canopies']:
+                # Skip invalid or placeholder canopies
+                if (canopy['reference_number'] == 'ITEM' or 
+                    canopy['model'] == 'CANOPY TYPE' or 
+                    not canopy['model'] or 
+                    not canopy['configuration'] or 
+                    canopy['model'] == "Select..." or 
+                    canopy['configuration'] == "Select..."):
+                    continue
+                    
+                key = f"{canopy['model']} {canopy['configuration']}"
+                canopy_counts[key] = canopy_counts.get(key, 0) + 1
+        
+        # Format scope of works
+        scope_items = []
+        for canopy_type, count in canopy_counts.items():
+            scope_items.append(get_canopy_description(canopy_type, count))
+        
+        # Add any wall cladding from valid canopies only
+        wall_cladding_count = sum(1 for sheet in project_data['sheets'] 
+                                 for canopy in sheet['canopies'] 
+                                 if (canopy['wall_cladding']['type'] and 
+                                     canopy['wall_cladding']['type'] != "Select..." and 
+                                     canopy['wall_cladding']['type'] == "2M² (HFL)" and
+                                     canopy['reference_number'] != 'ITEM' and
+                                     canopy['model'] != 'CANOPY TYPE'))
+        if wall_cladding_count > 0:
+            scope_items.append(f"{wall_cladding_count}no Areas with Stainless Steel Cladding")
+        
+        # Add scope items to context
+        context['scope_items'] = scope_items
+        
+        # Inside write_to_word_doc function, before processing areas
+        # Create a map of fire suppression data by item number
+        fs_data = []
+        for sheet in project_data['sheets']:
+            for canopy in sheet['canopies']:
+                if canopy.get('has_fire_suppression') and canopy.get('fire_suppression_data'):
+                    fs_data.append({
+                        'item_number': canopy['reference_number'],
+                        'model': canopy['model'],
+                        'system_description': canopy['fire_suppression_data']['system_description'],
+                        'tank_quantity': canopy['fire_suppression_data']['tank_quantity'],
+                        'manual_release': canopy['fire_suppression_data']['manual_release']
+                    })
 
-    # Add fire suppression data to context
-    context.update({
-        'has_fire_suppression': bool(fs_data),
-        'fire_suppression_data': fs_data,
-        'fire_suppression_description': """The restaurant fire suppression system is a pre-engineered, wet chemical, cartridge-operated, regulated pressure type with a fixed nozzle agent distribution network. The system is capable of automatic detection and actuation and / or remote manual actuation to provide fire protection to the cooking appliances, canopy exhaust duct and canopy filter plenum. Fire alarm / BMS connections to the release module to be carried out by others."""
-    })
-    
-    # Render the template with the context
-    doc.render(context)
-    
-    # Save the document
-    doc.save(output_path)
-    return output_path
+        # Add fire suppression data to context
+        context.update({
+            'has_fire_suppression': bool(fs_data),
+            'fire_suppression_data': fs_data,
+            'fire_suppression_description': """The restaurant fire suppression system is a pre-engineered, wet chemical, cartridge-operated, regulated pressure type with a fixed nozzle agent distribution network. The system is capable of automatic detection and actuation and / or remote manual actuation to provide fire protection to the cooking appliances, canopy exhaust duct and canopy filter plenum. Fire alarm / BMS connections to the release module to be carried out by others."""
+        })
+        
+        # Render the template with the context
+        doc.render(context)
+        
+        # Save the document
+        doc.save(output_path)
+        return output_path
+    except Exception as e:
+        st.error(f"Error generating Word document: {str(e)}")
+        return None
+
+def generate_word_document(project_data):
+    """Generate Word document from project data"""
+    try:
+        # Check if we have sheets
+        if not project_data or 'sheets' not in project_data or not project_data['sheets']:
+            st.error("No sheet data found to generate Word document.")
+            return None
+        
+        # Get data from first sheet with safe access
+        first_sheet = project_data['sheets'][0]
+        project_info = first_sheet.get('project_info', {})
+        
+        word_data = {
+            'Date': project_info.get('date', ''),
+            'Project Number': project_info.get('project_number', ''),
+            'Sales Contact': project_info.get('sales_estimator', '').split('/')[0] if project_info.get('sales_estimator') else '',
+            'Estimator': project_info.get('sales_estimator', ''),
+            'Estimator_Name': project_info.get('estimator_name', ''),
+            'Estimator_Role': project_info.get('estimator_role', ''),
+            'Customer': project_info.get('customer', ''),
+            'Company': project_info.get('company', ''),
+            'Address': project_info.get('address', '')  # Get address from project info
+        }
+        #st.write(word_data)
+        
+        # Generate Word document
+        return write_to_word_doc(word_data, project_data)
+    except Exception as e:
+        st.error(f"Error generating Word document: {str(e)}")
+        return None
 
 # Modify save_to_excel function to remove Word document generation
 def save_to_excel(data):
@@ -1367,17 +1908,22 @@ def save_to_excel(data):
         # Load workbook
         workbook = openpyxl.load_workbook(template_path, read_only=False, data_only=False)
         
+        # Write address to LISTS sheet
+        write_address_to_lists(workbook, data.get('Address', ''))
+        
         # Get all sheets once
         all_sheets = workbook.sheetnames
         canopy_sheets = [sheet for sheet in all_sheets if 'CANOPY' in sheet]
         fire_supp_sheets = [sheet for sheet in all_sheets if 'FIRE SUPP' in sheet]
-        edge_box_sheets = [sheet for sheet in all_sheets if 'EDGE BOX' in sheet]
+        edge_box_sheets = [sheet for sheet in all_sheets if 'EBOX' in sheet or 'EDGE BOX' in sheet]
+        recoair_sheets = [sheet for sheet in all_sheets if 'RECOAIR' in sheet]  # Add dedicated RECOAIR sheets
         
         #st.write(f"📑 Found template sheets: {len(canopy_sheets)} CANOPY, {len(fire_supp_sheets)} FIRE SUPP, {len(edge_box_sheets)} EBOX")
         
         sheet_count = 0
         fs_sheet_count = 0
         ebox_sheet_count = 0
+        recoair_sheet_count = 0  # Add counter for RECOAIR sheets
         
         # Create a template cache for fire suppression sheets
         fs_template = None
@@ -1417,8 +1963,15 @@ def save_to_excel(data):
                 # Check if this area needs an EDGE BOX sheet
                 needs_edge_box = area.get('include_uvc', False)
                 
+                # Check if this area needs a RECOAIR sheet
+                needs_recoair = area.get('include_recoair', False)
+                
                 if needs_edge_box:
                     #st.write(f"  ✨ Area has UV-C Control Schedule - will create EDGE BOX sheet")
+                    pass
+                    
+                if needs_recoair:
+                    #st.write(f"  🌬️ Area has RECOAIR System - will create RECOAIR sheet")
                     pass
                 
                 # Handle CANOPY sheet
@@ -1467,6 +2020,26 @@ def save_to_excel(data):
                     #st.warning(f"  ⚠️ No more EDGE BOX sheets available for UV-C Control Schedule in {area['area_name']}")
                     pass
                 
+                # Handle RECOAIR sheet if needed
+                if needs_recoair and recoair_sheets:
+                    # Use dedicated RECOAIR sheet template
+                    recoair_sheet_name = recoair_sheets.pop(0)
+                    recoair_sheet = workbook[recoair_sheet_name]
+                    new_recoair_name = f"RECOAIR - {level['level_name']} ({recoair_sheet_count + 1})"
+                    recoair_sheet.title = new_recoair_name
+                    recoair_sheet.sheet_state = 'visible'
+                    
+                    # Update the sheet title to indicate it's for RECOAIR
+                    recoair_sheet['B1'] = "RECOAIR CONTROL SYSTEM"
+                    
+                    # Write general info to RECOAIR sheet
+                    write_to_sheet(recoair_sheet, data, level['level_name'], area['area_name'], area['canopies'], None, True)
+                    recoair_sheet_count += 1  # Increment RECOAIR counter
+                    #st.write(f"  🌬️ Created RECOAIR sheet: {new_recoair_name}")
+                elif needs_recoair:
+                    #st.warning(f"  ⚠️ No more RECOAIR sheets available for RECOAIR System in {area['area_name']}")
+                    pass
+                
                 # Write data to the CANOPY sheet
                 write_to_sheet(current_sheet, data, level['level_name'], area['area_name'], area['canopies'], fs_sheet)
                 
@@ -1479,7 +2052,7 @@ def save_to_excel(data):
         
         # Save the workbook
         workbook.save(output_path)
-        st.success(f"✅ Successfully created:\n- {sheet_count} CANOPY sheets\n- {fs_sheet_count} FIRE SUPPRESSION sheets\n- {ebox_sheet_count} EDGE BOX sheets")
+        st.success(f"✅ Successfully created:\n- {sheet_count} CANOPY sheets\n- {fs_sheet_count} FIRE SUPPRESSION sheets\n- {ebox_sheet_count} EDGE BOX sheets\n- {recoair_sheet_count} RECOAIR sheets")
         
         # Provide download button
         with open(output_path, "rb") as file:
@@ -1511,6 +2084,9 @@ def extract_sheet_data(sheet):
     list_sheet = sheet.parent['Lists']
     estimator_name = list_sheet['Z1'].value
     estimator_role = list_sheet['Z2'].value
+    
+    # Get address from LISTS sheet
+    address = read_address_from_lists(sheet.parent)
     
     # Get sheet name from B1 (Floor Name - Area)
     display_name = sheet['B1'].value or sheet.title
@@ -1550,7 +2126,8 @@ def extract_sheet_data(sheet):
             'location': sheet['G5'].value,
             'date': sheet['G7'].value,
             'estimator_name': estimator_name,
-            'estimator_role': estimator_role
+            'estimator_role': estimator_role,
+            'address': address  # Add the address from Lists sheet to project_info
         },
         'canopies': [],
         'fire_suppression_items': []  # Add new list for fire suppression items
@@ -1590,6 +2167,10 @@ def extract_sheet_data(sheet):
             fire_suppression_base_price = 0
             fire_suppression_install = 0
             fire_suppression_n9 = 0
+            tank_quantity = "1"  # Default value
+            fs_canopy_count = 0  # Initialize fire suppression canopy counter
+            per_canopy_delivery = 0  # Initialize per-canopy delivery share
+            canopy_total_price = 0  # Initialize total price for canopy
             
             # Look for matching fire suppression sheet
             for fs_sheet_name in sheet.parent.sheetnames:
@@ -1624,10 +2205,41 @@ def extract_sheet_data(sheet):
                                 # Get N182 value from the fire suppression sheet
                                 fire_suppression_install = safe_convert_to_float(fs_sheet['N182'].value)
                                 
+                                # Count the total number of valid fire suppression canopies (for delivery cost sharing)
+                                fs_canopy_count = 0
+                                for check_row in range(12, 182, 17):
+                                    ref_value = fs_sheet[f'B{check_row}'].value
+                                    # Only count rows with valid reference numbers (not empty, not just whitespace, and not "ITEM" or "DELIVERY")
+                                    if (ref_value and str(ref_value).strip() and 
+                                        "ITEM" not in str(ref_value).upper() and 
+                                        "DELIVERY" not in str(ref_value).upper()):
+                                        fs_canopy_count += 1
+                                
+                                # Calculate per-canopy share of delivery
+                                per_canopy_delivery = 0
+                                if fs_canopy_count > 0:
+                                    per_canopy_delivery = math.ceil(fire_suppression_install / fs_canopy_count)
+                                
+                                # Calculate total price for this canopy (base + per-canopy delivery)
+                                canopy_total_price = fire_suppression_base_price + per_canopy_delivery
+                                
                                 # Get N9 value from the fire suppression sheet
                                 fire_suppression_n9 = safe_convert_to_float(fs_sheet['N9'].value)
 
-                                st.write(fire_suppression_n9)
+                                # Debug information
+                                print(f"--- Fire Suppression Pricing for {sheet[f'B{row}'].value} ---")
+                                print(f"Fire Suppression Sheet: {fs_sheet_name}")
+                                print(f"Fire Suppression Row: {fs_row}")
+                                print(f"Reference number: {fs_sheet[f'B{fs_row}'].value}")
+                                print(f"Base price from N{fs_row}: £{fire_suppression_base_price}")
+                                print(f"Delivery cost from N182: £{fire_suppression_install}")
+                                print(f"Total FS canopies: {fs_canopy_count}")
+                                print(f"Per-canopy delivery share: £{per_canopy_delivery}")
+                                print(f"Total price for canopy: £{canopy_total_price}")
+                                print(f"Total for sheet (N9): £{fire_suppression_n9}")
+                                print(f"Setting has_fire_suppression = True for canopy {sheet[f'B{row}'].value}")
+                                
+                               #st.write(fire_suppression_n9)
                                 break
                             fs_row += 17
                         if has_fire_suppression:
@@ -1635,11 +2247,11 @@ def extract_sheet_data(sheet):
 
             fire_suppression_data = {
                 'system_description': fs_system or f"Ansul R102 System to cover item {sheet[f'B{row}'].value}",
-                'tank_quantity': tank_quantity,  # Use the extracted tank quantity
+                'tank_quantity': tank_quantity,
                 'manual_release': '1no station',
                 'base_price': math.ceil(fire_suppression_base_price),
-                'install_price': math.ceil(fire_suppression_install),
-                'total_price': math.ceil(fire_suppression_n9)
+                'install_price': math.ceil(per_canopy_delivery),  # Store per-canopy delivery share
+                'total_price': math.ceil(fire_suppression_base_price + per_canopy_delivery)  # Base + per-canopy delivery
             } if has_fire_suppression else None
             
             canopy_price = safe_convert_to_float(sheet[f'P{row}'].value)  # Base canopy price
@@ -1652,7 +2264,7 @@ def extract_sheet_data(sheet):
             cws_2bar = sheet[f'F{row + 13}'].value  # F25 - Cold water supply at 2 bar
             hws_2bar = sheet[f'F{row + 14}'].value  # F26 - Hot water supply at 2 bar
             hws_storage = sheet[f'F{row + 15}'].value  # F27 - Hot water storage
-            
+            # st.write(f"Water Wash Values: {cws_2bar}, {hws_2bar}, {hws_storage}")
             # Get water wash prices
             ww_price = safe_convert_to_float(sheet[f'P{row + 13}'].value)  # P25 - Water wash price
             ww_control_price = safe_convert_to_float(sheet[f'P{row + 14}'].value)  # P26 - Control panel price
@@ -1663,7 +2275,7 @@ def extract_sheet_data(sheet):
                 'width': sheet[f'Q{cladding_row}'].value or 0,
                 'height': sheet[f'R{cladding_row}'].value or 0,
                 'positions': (sheet[f'S{cladding_row}'].value or '').split(',') if sheet[f'S{cladding_row}'].value else [],
-                'price': cladding_price
+                'price': math.ceil(safe_convert_to_float(cladding_price))
             }
             
             # Get MUA VOL from Q22 for F-type canopies
@@ -1676,7 +2288,7 @@ def extract_sheet_data(sheet):
                     ext_vol = sheet[f'I{dim_row}'].value or 0
                     # Get MAX SUPPLY value from H22 + offset
                     max_supply_cell = sheet[f'H{22 + ((row - 12) // 17) * 17}'].value or ''
-                    st.write(max_supply_cell)
+                   # st.write(max_supply_cell)
                     # Calculate 85% of extract volume and round to 2 decimal places
                     calculated_mua = round(float(ext_vol) * 0.85, 2) if ext_vol != '-' else 0
                     
@@ -1689,8 +2301,8 @@ def extract_sheet_data(sheet):
                         max_supply_str = max_supply_str.replace('(MAX)', '').strip()
                         try:
                             max_supply = float(max_supply_str)
-                            st.write(f"MAX: {max_supply}")
-                            st.write(f"85%: {calculated_mua}")
+                           # st.write(f"MAX: {max_supply}")
+                            #st.write(f"85%: {calculated_mua}")
                             # IMPORTANT: If MAX is less than calculated MUA (85% of extract), we MUST use the MAX value
                             # The MAX value represents the system limit that cannot be exceeded
                             if max_supply < calculated_mua:
@@ -1703,7 +2315,8 @@ def extract_sheet_data(sheet):
                     else:
                         # If no MAX value, use calculated MUA
                         mua_vol = str(calculated_mua)
-                    st.write(mua_vol)
+                    #st.write(mua_vol)
+            
             # Inside the canopy processing loop, update the ext_static and lighting handling:
             model = sheet[f'D{row + 2}'].value or '-'
             lighting_value = sheet[f'C{row + 3}'].value or '-'
@@ -1737,16 +2350,18 @@ def extract_sheet_data(sheet):
             # Handle supply_static based on model
             supply_static_value = sheet[f'L{dim_row}'].value
             if 'F' in str(model).upper():
-                # Only process supply static for F-type canopies
+                # Default value for F-type canopies is 45
+                supply_static = 45
+                # Use value from sheet if available
                 if supply_static_value and supply_static_value != '-':
                     try:
                         supply_static = round(float(str(supply_static_value).replace('Pa', '').strip()))
                     except (ValueError, TypeError):
-                        supply_static = '-'
-                else:
-                    supply_static = '-'
+                        # Keep default of 45 if conversion fails
+                        supply_static = 45
             else:
-                supply_static = '-'  # All non-F canopies get '-'
+                # Non-F canopies get '-' for supply_static
+                supply_static = '-'
             
             # Create canopy data dictionary and append to list
             canopy_data = {
@@ -1760,7 +2375,7 @@ def extract_sheet_data(sheet):
                 'ext_vol': sheet[f'I{dim_row}'].value or '-',
                 'ext_static': ext_static if ext_static != 0 else '-',
                 'supply_static': supply_static if supply_static != 0 else '-',
-                'base_price': canopy_price,
+                'base_price': format_price(canopy_price),
                 'k9_price': canopy_k9,
                 'wall_cladding': wall_cladding,
                 'has_fire_suppression': has_fire_suppression,
@@ -1779,20 +2394,59 @@ def extract_sheet_data(sheet):
                 'ww_install_price': ww_install_price,
                 'control_panel': sheet[f'C{row + 13}'].value or '-',  # C25
                 'ww_pods': sheet[f'C{row + 14}'].value or '-',        # C26
-                'ww_control': sheet[f'C{row + 15}'].value or '-'      # C27
+                'ww_control': sheet[f'C{row + 15}'].value or '-',      # C27
+                'is_water_wash': 'CMWF' in str(model).upper() or 'CMWI' in str(model).upper()  # Add flag for water wash canopies
             }
             
             data['canopies'].append(canopy_data)
             
             # If this canopy has fire suppression, add it to fire_suppression_items
             if has_fire_suppression:
+                data['has_fire_suppression'] = True  # Set the flag at the data level
+                # Store the fire suppression delivery cost at sheet level for later calculation
+                data['fire_suppression_install'] = fire_suppression_install
+                
                 data['fire_suppression_items'].append({
                     'reference_number': reference_number,
                     'model': model,
+                    'has_fire_suppression': True,  # Explicitly set this flag
                     'fire_suppression_data': fire_suppression_data
                 })
+                
+                # Add a debug print to troubleshoot fire suppression detection
+                print(f"DEBUG: Added canopy {reference_number} to fire_suppression_items")
+                print(f"DEBUG: fire_suppression_data = {fire_suppression_data}")
+                print(f"DEBUG: fire_suppression_install = {fire_suppression_install}")
             
-            row += 17  # Move to next canopy section
+            # Check if this is a water wash canopy and set data flag immediately
+            if 'CMWF' in str(model).upper() or 'CMWI' in str(model).upper():
+                data['has_water_wash'] = True
+                # Add to water wash items list if not already present
+                if 'water_wash_items' not in data:
+                    data['water_wash_items'] = []
+                
+                # Store detailed water wash information
+                data['water_wash_items'].append({
+                    'reference_number': reference_number,
+                    'model': model,
+                    'cws_2bar': cws_2bar or '-',
+                    'hws_2bar': hws_2bar or '-',
+                    'hws_storage': hws_storage or '-',
+                    'ww_price': ww_price,
+                    'ww_control_price': ww_control_price,
+                    'ww_install_price': ww_install_price,
+                    'control_panel': sheet[f'C{row + 13}'].value or '-',
+                    'ww_pods': sheet[f'C{row + 14}'].value or '-',
+                    'ww_control': sheet[f'C{row + 15}'].value or '-'
+                })
+                
+                # Debug output for water wash canopies
+                # st.write(f"DEBUG: Added water wash canopy: {reference_number} ({model})")
+            
+        row += 17  # Move to next canopy section
+    
+    # After processing all canopies, output water wash summary
+    
     
     # Calculate sheet K9 total from individual canopy K9 values
     calculated_k9_total = sum(math.ceil(canopy['k9_price']) for canopy in data['canopies'])
@@ -1860,14 +2514,10 @@ def extract_sheet_data(sheet):
     # Extract fire suppression data if this is a FIRE SUPP sheet
     if 'FIRE SUPP' in sheet.title:
         # Process FIRE SUPP sheet
-        # st.write(f"\n🔍 Processing FIRE SUPP sheet: {sheet.title}")
         
         # Get K9 and N9 cell values
         k9_cell_value = safe_convert_to_float(sheet['K9'].value)
         n9_cell_value = safe_convert_to_float(sheet['N9'].value)
-        
-        # st.write(f"📊 K9 cell value: {k9_cell_value}")
-        # st.write(f"📊 N9 cell value: {n9_cell_value}")
         
         # Process fire suppression items
         fire_suppression_items = []
@@ -1877,10 +2527,6 @@ def extract_sheet_data(sheet):
                 k9_value = safe_convert_to_float(sheet[f'K{row}'].value)
                 n9_value = safe_convert_to_float(sheet[f'N{row}'].value)
                 fs_install = n9_cell_value
-                
-                # st.write(f"💰 K9 value for {item_number}: {k9_value}")
-                # st.write(f"💰 N9 value for {item_number}: {n9_value}")
-                # st.write(f"💰 Fire suppression install price: {fs_install}")
                 
                 system_desc = sheet[f'C{row}'].value
                 manual_release = sheet[f'D{row}'].value
@@ -1896,18 +2542,12 @@ def extract_sheet_data(sheet):
                         'k9_value': k9_value,
                         'n9_value': n9_value
                     }
-                    # st.write(f"✅ Adding fire suppression item: {fs_item}")
                     fire_suppression_items.append(fs_item)
         
         # Store fire suppression totals in data
         data['fs_k9_total'] = k9_cell_value
         data['fs_n9_total'] = n9_cell_value
         data['fire_suppression_items'] = fire_suppression_items
-        
-        # st.write(f"\n📊 Final totals for sheet {sheet.title}:")
-        # st.write(f"💰 K9 total: {data['fs_k9_total']}")
-        # st.write(f"💰 N9 total: {data['fs_n9_total']}")
-        # st.write(f"📝 Number of fire suppression items: {len(data['fire_suppression_items'])}")
     
     return data
 
@@ -1932,21 +2572,32 @@ def read_excel_file(uploaded_file):
     """Read and process uploaded Excel file"""
     workbook = openpyxl.load_workbook(uploaded_file, data_only=True)
     
-    # Get all CANOPY, FIRE SUPP, and EBOX sheets, excluding F24 sheets
+    # Get all CANOPY, FIRE SUPP, EBOX, and RECOAIR sheets, excluding F24 sheets
     canopy_sheets = [sheet for sheet in workbook.sheetnames if 'CANOPY' in sheet and 'F24' not in sheet]
     fire_supp_sheets = [sheet for sheet in workbook.sheetnames if 'FIRE SUPP' in sheet and 'F24' not in sheet]
     edge_box_sheets = [sheet for sheet in workbook.sheetnames if 'EBOX' in sheet and 'F24' not in sheet]
+    recoair_sheets = [sheet for sheet in workbook.sheetnames if 'RECOAIR' in sheet and 'F24' not in sheet]
     
     # Initialize project data structure
     project_data = {
         'sheets': [],
-        'has_water_wash': False,
-        'fire_suppression_data': {},
         'uv_control_data': {},
+        'recoair_control_data': {},
+        'has_uv_canopy': False,
+        'has_recoair': False,
+        'has_water_wash': False,
+        'water_wash_canopies': [],  # Initialize water wash canopies list
+        'has_fire_suppression': False,
+        'wall_cladding': {},
+        'global_k9_total': 0,
+        'global_commissioning_total': 0,
+        'global_n9_total': 0,
         'global_fs_k9_total': 0,
         'global_fs_n9_total': 0,
         'global_uv_k9_total': 0,
-        'global_uv_n9_total': 0
+        'global_uv_n9_total': 0,
+        'global_recoair_k9_total': 0,
+        'global_recoair_n9_total': 0
     }
     
     # Process each sheet
@@ -1957,6 +2608,61 @@ def read_excel_file(uploaded_file):
         # Skip if sheet_data is None (F24 sheet)
         if sheet_data is None:
             continue
+            
+        # Check if this sheet has water wash canopies
+        if sheet_data.get('has_water_wash', False):
+            project_data['has_water_wash'] = True
+            
+            # Find and collect water wash canopies
+            for canopy in sheet_data['canopies']:
+                if canopy.get('is_water_wash', False) or 'CMWF' in str(canopy.get('model', '')).upper() or 'CMWI' in str(canopy.get('model', '')).upper():
+                    project_data['water_wash_canopies'].append(canopy)
+                    # st.write(f"DEBUG: Added water wash canopy to project_data: {canopy.get('reference_number')} ({canopy.get('model')})")
+                    # st.write(f"DEBUG: Water wash data: CWS={canopy.get('cws_2bar')}, HWS={canopy.get('hws_2bar')}, Storage={canopy.get('hws_storage')}")
+            
+            # Debug output for water wash detection
+            # st.write(f"DEBUG: Found water wash canopies in sheet {sheet_data['sheet_name']}: {len([c for c in sheet_data['canopies'] if c.get('is_water_wash', False) or 'CMWF' in str(c.get('model', '')).upper() or 'CMWI' in str(c.get('model', '')).upper()])}")
+            
+        # If this is a canopy sheet, extract cladding data by area and check for UV canopies
+        if 'CANOPY' in sheet_name:
+            display_name = sheet_data['sheet_name']
+            
+            # Check for UV canopies in this sheet
+            for canopy in sheet_data['canopies']:
+                # Skip invalid canopies
+                if (canopy.get('reference_number') == 'ITEM' or 
+                    canopy.get('model') == 'CANOPY TYPE' or
+                    not canopy.get('model') or
+                    canopy.get('model') == "Select..." or
+                    canopy.get('reference_number') == 'DELIVERY & INSTALLATION'):
+                    continue
+                
+                # Check if any canopy has UV in model or configuration
+                model = str(canopy.get('model', '')).upper() if canopy.get('model') is not None else ''
+                config = str(canopy.get('configuration', '')).upper() if canopy.get('configuration') is not None else ''
+                
+                if 'UV' in model or 'UV' in config:
+                    project_data['has_uv_canopy'] = True
+            
+            # Collect cladding items for this area
+            area_cladding_items = []
+            for canopy in sheet_data['canopies']:
+                if (canopy.get('wall_cladding', {}).get('type') and 
+                    canopy['wall_cladding']['type'] != "Select..." and
+                    canopy['wall_cladding'].get('positions')):
+                    # Add cladding item
+                    area_cladding_items.append({
+                        'item_no': canopy['reference_number'],
+                        'description': f"Cladding below Item {canopy['reference_number']}, supplied and installed",
+                        'width': canopy['wall_cladding']['width'],
+                        'height': canopy['wall_cladding']['height'],
+                        'positions': canopy['wall_cladding']['positions'],
+                        'price': safe_convert_to_float(canopy['wall_cladding'].get('price', 0))  # Store as numeric value, not formatted string
+                    })
+            
+            # Store cladding items for this area if any exist
+            if area_cladding_items:
+                project_data['wall_cladding'][display_name] = area_cladding_items
         
         # If this is a fire suppression sheet, check if it has valid items before adding to totals
         if 'FIRE SUPP' in sheet_name:
@@ -1989,7 +2695,7 @@ def read_excel_file(uploaded_file):
             project_data['sheets'].append(sheet_data)
     
     # Process EBOX sheets to get UV-C Control Schedule prices
-    st.write(edge_box_sheets)
+    #st.write(edge_box_sheets)
     for sheet_name in edge_box_sheets:
         sheet = workbook[sheet_name]
         
@@ -2003,7 +2709,7 @@ def read_excel_file(uploaded_file):
             continue
             
         area_name = sheet['C1'].value or sheet.title  # Get area name from C1 for EBOX sheets
-        st.write(area_name)
+        # st.write(area_name)
         if area_name:
             # Get N9 and K9 prices from EBOX sheet
             n9_price = safe_convert_to_float(sheet['N9'].value)
@@ -2014,15 +2720,70 @@ def read_excel_file(uploaded_file):
             project_data['global_uv_k9_total'] += k9_price
             project_data['global_uv_n9_total'] += n9_price
             
-            st.write(k9_price) #K9 price not extracted correctly
-            st.write(n9_price)
+           # st.write(k9_price) #K9 price not extracted correctly
+           # st.write(n9_price)
             if n9_price > 0:
                 project_data['uv_control_data'][area_name] = {
                     'k9_price': k9_price,
                     'n9_price': n9_price,
                     'total_price': total_price  # Add total price to UV control data
                 }
-                st.write( project_data['global_uv_n9_total'])
+               # st.write(project_data['global_uv_n9_total'])
+    
+    # Process RECOAIR sheets to get RECOAIR system prices
+    #st.write(recoair_sheets)
+    
+    # Reset global RECOAIR totals to avoid accumulation
+    project_data['global_recoair_k9_total'] = 0
+    project_data['global_recoair_n9_total'] = 0
+    
+    # Track processed areas to avoid duplicates
+    processed_recoair_areas = set()
+    
+    for sheet_name in recoair_sheets:
+        sheet = workbook[sheet_name]
+        
+        # Skip if this is an F24 sheet
+        if 'F24' in sheet_name:
+            continue
+            
+        # Also check B1 value for F24 or if it's not a RECOAIR sheet
+        b1_value = sheet['B1'].value
+        if b1_value and ('F24' in str(b1_value) or 'RECOAIR' not in str(b1_value).upper()):
+            continue
+            
+        area_name = sheet['C1'].value or sheet.title  # Get area name from C1 for RECOAIR sheets
+       # st.write(area_name)
+        if area_name:
+            # Skip if area name contains F24
+            if 'F24' in str(area_name):
+                # st.write(f"Skipping {sheet_name} (Area name contains F24: {area_name})")
+                continue
+                
+            # Skip if we've already processed this area
+            if area_name in processed_recoair_areas:
+                # st.write(f"Skipping duplicate RECOAIR area: {area_name} in sheet {sheet_name}")
+                continue
+            
+            # Get N9 and K9 prices from RECOAIR sheet
+            n9_price = safe_convert_to_float(sheet['N9'].value)
+            k9_price = safe_convert_to_float(sheet['K9'].value)
+            total_price = safe_convert_to_float(sheet['N9'].value)  # Total price is same as N9 for RECOAIR sheets
+            
+            # Add to global totals
+            project_data['global_recoair_k9_total'] += k9_price
+            project_data['global_recoair_n9_total'] += n9_price
+            
+           # st.write(k9_price)
+           # st.write(n9_price)
+            if n9_price > 0:
+                project_data['recoair_control_data'][area_name] = {
+                    'k9_price': k9_price,
+                    'n9_price': n9_price,
+                    'total_price': total_price  # Add total price to RECOAIR control data
+                }
+                project_data['has_recoair'] = True
+               # st.write(project_data['global_recoair_n9_total'])
     
     return project_data
 
@@ -2052,7 +2813,8 @@ def create_upload_section(col2, key_suffix=""):
                         'Estimator_Name': first_sheet['project_info']['estimator_name'],
                         'Estimator_Role': first_sheet['project_info']['estimator_role'],
                         'Customer': first_sheet['project_info']['customer'],
-                        'Company': first_sheet['project_info']['company']
+                        'Company': first_sheet['project_info']['company'],
+                        'Address': first_sheet['project_info'].get('address', '')  # Add address from project_info
                     }
                     
                     # Generate Word document
@@ -2069,7 +2831,7 @@ def create_upload_section(col2, key_suffix=""):
                     wb.save(temp_excel_path)
                     
                     # Create zip with Word doc and modified Excel
-                    zip_path = create_download_zip(temp_excel_path, word_doc_path)
+                    zip_path = create_download_zip(temp_excel_path, word_doc_path, project_data)
                     
                     # Show success message with balloons
                     st.balloons()
@@ -2094,8 +2856,8 @@ def create_upload_section(col2, key_suffix=""):
         except Exception as e:
             st.error(f"Error processing file: {str(e)}")
 
-def create_download_zip(excel_file, word_file):
-    """Create a zip file containing both Excel and Word documents"""
+def create_download_zip(excel_file, word_file, project_data=None):
+    """Create a zip file containing both Excel and Word documents, and RECOAIR quotation if needed"""
     # Get project number and date from the Excel file
     wb = openpyxl.load_workbook(excel_file)
     project_number = None
@@ -2131,6 +2893,127 @@ def create_download_zip(excel_file, word_file):
         zipf.write(excel_file, f"{base_filename}.xlsx")
         # Add Word file with consistent naming
         zipf.write(word_file, f"{base_filename}.docx")
+        
+        # Check if RECOAIR data exists and add RECOAIR quotation if needed
+        has_recoair = False
+        
+        # First check if RECOAIR sheets exist in the Excel file
+        for sheet_name in wb.sheetnames:
+            if 'RECOAIR' in sheet_name:
+                has_recoair = True
+                break
+        
+        # Also check if project_data contains RECOAIR data
+        if not has_recoair and project_data and 'has_recoair' in project_data and project_data['has_recoair']:
+            has_recoair = True
+        
+        # Or if there's a recoair_control_data with entries
+        if not has_recoair and project_data and 'recoair_control_data' in project_data and project_data['recoair_control_data']:
+            has_recoair = True
+        
+        # If RECOAIR is used, include the RECOAIR quotation
+        if has_recoair:
+            recoair_doc_path = "resources/Halton RECO Quotation Jan 2025 (2).docx"
+            
+            # Check if the RECOAIR document exists
+            if os.path.exists(recoair_doc_path):
+                # Create a copy of the RECOAIR document to customize
+                custom_recoair_doc = f"temp_recoair_{project_number}.docx"
+                shutil.copy(recoair_doc_path, custom_recoair_doc)
+                
+                # If project_data is available, we can customize the RECOAIR document
+                if project_data:
+                    try:
+                        # Load the template
+                        doc = DocxTemplate(custom_recoair_doc)
+                        
+                        # Get first sheet data for project info
+                        first_sheet = project_data['sheets'][0]
+                        project_info = first_sheet['project_info']
+                        
+                        # Prepare context data for the RECOAIR document (same as for main document)
+                        # Get address safely from project_data
+                        address = ''
+                        if 'sheets' in project_data and project_data['sheets']:
+                            first_sheet = project_data['sheets'][0]
+                            if 'project_info' in first_sheet:
+                                address = first_sheet['project_info'].get('address', '')
+                        
+                        # Get sales contact name and number
+                        sales_initials = project_info.get('sales_estimator', '').split('/')[0]
+                        sales_contact_name = next((name for name in contacts.keys() if name.startswith(sales_initials)), sales_initials)
+                        contact_number = contacts.get(sales_contact_name, "")
+                        
+                        # Extract customer's first name
+                        customer_full = project_info.get('customer', '')
+                        customer_first_name = customer_full.split()[0] if customer_full else ""
+                        
+                        # Get estimator information
+                        estimator_initials = project_info.get('sales_estimator', '').split('/')[-1] if '/' in project_info.get('sales_estimator', '') else ''
+                        estimator_name = project_info.get('estimator_name', '')
+                        estimator_role = project_info.get('estimator_role', '')
+                        
+                        # Get current revision
+                        current_revision = first_sheet.get('revision', 'A')
+                        
+                        # Create Halton reference
+                        halton_ref = f"{project_info.get('project_number', '')}/{get_initials(sales_contact_name)}/{estimator_initials}/{current_revision}" if current_revision != 'A' else f"{project_info.get('project_number', '')}/{get_initials(sales_contact_name)}/{estimator_initials}"
+                        
+                        # Create context data
+                        context = {
+                            # Customer and company information
+                            'customer': project_info.get('customer', ''),
+                            'customer_first_name': customer_first_name,
+                            'company': project_info.get('company', ''),
+                            'address': address,  # Lowercase for backward compatibility 
+                            'Address': address,  # Uppercase A for template compatibility
+                            
+                            # Project information
+                            'date': project_info.get('date', ''),
+                            'project_number': halton_ref,
+                            'project_name': project_info.get('project_name', ''),
+                            'location': project_info.get('location', ''),
+                            'quote_title': "QUOTATION" if current_revision == 'A' else f"QUOTATION - Revision {current_revision}",
+                            
+                            # Contact information
+                            'sales_contact_name': sales_contact_name,
+                            'contact_number': contact_number,
+                            'estimator_name': estimator_name,
+                            'estimator_role': estimator_role,
+                            
+                            # Additional data
+                            'areas': [],
+                            'has_recoair': True
+                        }
+                        
+                        # Add areas with RECOAIR data
+                        if 'recoair_control_data' in project_data:
+                            for area_name, recoair_data in project_data['recoair_control_data'].items():
+                                context['areas'].append({
+                                    'name': area_name,
+                                    'has_recoair': True,
+                                    'recoair_price': format_price(recoair_data.get('n9_price', 0)),
+                                    'recoair_total': format_price(recoair_data.get('total_price', 0))
+                                })
+                        
+                        # Render the document
+                        doc.render(context)
+                        doc.save(custom_recoair_doc)
+                        
+                        # Add the customized RECOAIR document to the zip
+                        zipf.write(custom_recoair_doc, f"{base_filename} - RECOAIR.docx")
+                        
+                        # Clean up temporary file
+                        os.remove(custom_recoair_doc)
+                    except Exception as e:
+                        # If customization fails, use the original template
+                        st.warning(f"Could not customize RECOAIR document: {str(e)}")
+                        zipf.write(recoair_doc_path, f"{base_filename} - RECOAIR.docx")
+                else:
+                    # If no project_data, just include the original template
+                    zipf.write(recoair_doc_path, f"{base_filename} - RECOAIR.docx")
+            else:
+                st.warning(f"RECOAIR document template not found at: {recoair_doc_path}")
     
     return zip_filename
 
@@ -2191,23 +3074,30 @@ def write_job_total(workbook, project_data):
         try:
             fs_k9_total = float(str(project_data['global_fs_k9_total']).replace(',', ''))
             fs_n9_total = float(str(project_data['global_fs_n9_total']).replace(',', ''))
-            st.write(fs_k9_total)
+            #st.write(fs_k9_total)
             uv_k9_total = float(str(project_data['global_uv_k9_total']).replace(',', ''))
             uv_n9_total = float(str(project_data['global_uv_n9_total']).replace(',', ''))
+            recoair_k9_total = float(str(project_data.get('global_recoair_k9_total', 0)).replace(',', ''))
+            recoair_n9_total = float(str(project_data.get('global_recoair_n9_total', 0)).replace(',', ''))
             # st.write(project_data)
         except (ValueError, TypeError):
             fs_k9_total = 0.0
             fs_n9_total = 0.0
             uv_k9_total = 0.0
             uv_n9_total = 0.0
+            recoair_k9_total = 0.0
+            recoair_n9_total = 0.0
         
-        # st.write("\n📊 Final totals:")
-        # st.write(f"💰 Job total: {job_total}")
-        # st.write(f"💰 K9 total: {k9_total}")
-        # st.write(f"🔥 Fire suppression K9 total: {fs_k9_total}")
-        # st.write(f"🔥 Fire suppression N9 total: {fs_n9_total}")
-        # st.write(f"💡 UV-C K9 total: {uv_k9_total}")
-        # st.write(f"💡 UV-C N9 total: {uv_n9_total}")
+        # Debug totals for JOB TOTAL sheet
+        # st.write("### Values Being Written to JOB TOTAL Sheet")
+        # st.write(f"Job Total (T16): £{job_total}")
+        # st.write(f"K9 Total (S16): £{k9_total}")
+        # st.write(f"Fire Suppression - Cost (S17): £{fs_k9_total}")
+        # st.write(f"Fire Suppression - Selling Price (T17): £{fs_n9_total}")
+        # st.write(f"UV-C - Cost (S21): £{uv_k9_total}")
+        # st.write(f"UV-C - Selling Price (T21): £{uv_n9_total}")
+        # st.write(f"RECOAIR - Cost (S24): £{recoair_k9_total}")
+        # st.write(f"RECOAIR - Selling Price (T24): £{recoair_n9_total}")
         
         # Write the totals as numbers
         total_sheet['T16'] = job_total  # Main job total
@@ -2216,24 +3106,150 @@ def write_job_total(workbook, project_data):
         total_sheet['T17'] = fs_n9_total  # Fire suppression N9 total
         total_sheet['S21'] = uv_k9_total  # UV-C K9 total
         total_sheet['T21'] = uv_n9_total  # UV-C N9 total
+        total_sheet['S24'] = recoair_k9_total  # RECOAIR K9 total (cost)
+        total_sheet['T24'] = recoair_n9_total  # RECOAIR N9 total (selling price)
+    
+    # No return value needed
+
+def write_to_recoair_doc(data, project_data, output_path="recoair_output.docx"):
+    """Generate a RECOAIR quotation document using the provided data"""
+    try:
+        # Check if RECOAIR data exists
+        has_recoair = False
+        
+        # Check if project_data has RECOAIR flag
+        if project_data and 'has_recoair' in project_data and project_data['has_recoair']:
+            has_recoair = True
+        
+        # Or if there's recoair_control_data with entries
+        if not has_recoair and project_data and 'recoair_control_data' in project_data and project_data['recoair_control_data']:
+            has_recoair = True
+            
+        # If no RECOAIR data, don't generate document
+        if not has_recoair:
+            return None
+            
+        # Load the RECOAIR template
+        recoair_doc_path = "resources/Halton RECO Quotation Jan 2025 (2).docx"
+        if not os.path.exists(recoair_doc_path):
+            st.warning(f"RECOAIR document template not found at: {recoair_doc_path}")
+            return None
+            
+        # Load the template
+        doc = DocxTemplate(recoair_doc_path)
+        
+        # Get first sheet data for project info
+        first_sheet = project_data['sheets'][0]
+        project_info = first_sheet['project_info']
+        
+        # Get address from project_data
+        address = ''
+        if 'sheets' in project_data and project_data['sheets']:
+            first_sheet = project_data['sheets'][0]
+            if 'project_info' in first_sheet:
+                address = first_sheet['project_info'].get('address', '')
+        
+        # Get sales contact name and number
+        sales_initials = data.get('Sales Contact', '')
+        sales_contact_name = next((name for name in contacts.keys() if name.startswith(sales_initials)), None)
+        
+        # If no match found, try to find by initials
+        if not sales_contact_name:
+            for full_name in contacts.keys():
+                if get_initials(full_name) == sales_initials:
+                    sales_contact_name = full_name
+                    break
+        
+        # If still not found, use the initials
+        if not sales_contact_name:
+            st.error(f"Could not find contact information for {sales_initials}")
+            sales_contact_name = sales_initials
+            contact_number = ""
+        else:
+            contact_number = contacts[sales_contact_name]
+        
+        # Extract customer's first name
+        customer_full = data['Customer']
+        customer_first_name = customer_full.split()[0] if customer_full else ""
+        
+        # Get estimator initials from the sales_estimator field
+        estimator_initials = data.get('Estimator', '').split('/')[-1] if '/' in data.get('Estimator', '') else ''
+        
+        # Find estimator name and role from initials
+        estimator_name = ''
+        estimator_role = ''
+        for full_name, role in estimators.items():
+            if get_initials(full_name) == estimator_initials:
+                estimator_name = full_name
+                estimator_role = role
+                break
+        
+        # Get current revision
+        current_revision = project_data['sheets'][0].get('revision', 'A')
+        
+        # Create Halton reference
+        halton_ref = f"{data['Project Number']}/{get_initials(sales_contact_name)}/{estimator_initials}/{current_revision}" if current_revision != 'A' else f"{data['Project Number']}/{get_initials(sales_contact_name)}/{estimator_initials}"
+        
+        # Create quote title based on revision
+        quote_title = "QUOTATION" if current_revision == 'A' else f"QUOTATION - Revision {current_revision}"
+        
+        # Create context data
+        context = {
+            # Customer and company information
+            'customer': data['Customer'],
+            'customer_first_name': customer_first_name,
+            'company': data.get('Company', ''),
+            'address': address,  # Lowercase for backward compatibility 
+            'Address': address,  # Uppercase A for template compatibility
+            
+            # Project information
+            'date': data.get('Date', ''),
+            'project_number': halton_ref,
+            'project_name': project_info.get('project_name', ''),
+            'location': project_info.get('location', ''),
+            'quote_title': quote_title,
+            
+            # Contact information
+            'sales_contact_name': sales_contact_name,
+            'contact_number': contact_number,
+            'estimator_name': estimator_name,
+            'estimator_role': estimator_role,
+            
+            # Additional data
+            'areas': [],
+            'has_recoair': True
+        }
+        
+        # Add areas with RECOAIR data
+        if 'recoair_control_data' in project_data:
+            for area_name, recoair_data in project_data['recoair_control_data'].items():
+                context['areas'].append({
+                    'name': area_name,
+                    'has_recoair': True,
+                    'recoair_price': format_price(recoair_data.get('n9_price', 0)),
+                    'recoair_total': format_price(recoair_data.get('total_price', 0))
+                })
+        
+        # Render the document
+        doc.render(context)
+        
+        # Save the document
+        doc.save(output_path)
+        return output_path
+    except Exception as e:
+        st.error(f"Error generating RECOAIR document: {str(e)}")
+        return None
 
 def create_revision_tab():
     st.title("📝 Revise Cost Sheet")
     
-    # Create two columns
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        st.subheader("Upload Original File")
-        uploaded_file = st.file_uploader(
-            "Upload Excel file to revise", 
-            type=['xlsx'],
-            key="revision_tab_uploader"
-        )
-    
-    with col2:
-        st.subheader("Generate Documents")
-        create_upload_section(col2, "revision_tab")
+    # Only show the Upload Original File section - the upload project section is now in its own tab
+    st.subheader("Upload Original File")
+    uploaded_file = st.file_uploader(
+        "Upload Excel file to revise", 
+        type=['xlsx'],
+        key="revision_tab_uploader"
+    )
     
     if uploaded_file is not None:
         try:
@@ -2581,24 +3597,6 @@ def copy_area_to_new_floor(uploaded_file, source_sheet, new_floor, new_area, cur
         os.remove(temp_excel_path)
         raise Exception("No empty CANOPY sheets available")
 
-def generate_word_document(project_data):
-    """Generate Word document from project data"""
-    # Get data from first sheet
-    first_sheet = project_data['sheets'][0]
-    word_data = {
-        'Date': first_sheet['project_info']['date'],
-        'Project Number': first_sheet['project_info']['project_number'],
-        'Sales Contact': first_sheet['project_info']['sales_estimator'].split('/')[0],
-        'Estimator': first_sheet['project_info']['sales_estimator'],
-        'Estimator_Name': first_sheet['project_info']['estimator_name'],
-        'Estimator_Role': first_sheet['project_info']['estimator_role'],
-        'Customer': first_sheet['project_info']['customer'],
-        'Company': first_sheet['project_info']['company']
-    }
-    
-    # Generate Word document
-    return write_to_word_doc(word_data, project_data)
-
 def add_fire_suppression_dropdown(sheet):
     """Add dropdown validation for fire suppression options"""
     if 'Lists' not in sheet.parent.sheetnames:
@@ -2684,17 +3682,28 @@ def add_fire_suppression_dropdown(sheet):
         dv_tank.add(f"C{row}")
         row += 17
 
+def create_upload_project_tab():
+    """Create the Upload Project tab with functionality to upload and process existing projects"""
+    st.title("📤 Upload Existing Project")
+    
+    # Use the create_upload_section function directly in this tab
+    # We don't need columns since this tab is dedicated to just the upload functionality
+    create_upload_section(st, "upload_tab")
+
 def main():
     st.set_page_config(page_title="Project Information Form", layout="wide")
     
-    # Create tabs
-    tab1, tab2 = st.tabs(["Create New Project", "Revise Project"])
+    # Create tabs - add the new Upload Project tab
+    tab1, tab2, tab3 = st.tabs(["Create New Project", "Revise Project", "Upload Project"])
     
     with tab1:
         create_general_info_form()
     
     with tab2:
         create_revision_tab()
+        
+    with tab3:
+        create_upload_project_tab()
 
 if __name__ == "__main__":
     main() 
