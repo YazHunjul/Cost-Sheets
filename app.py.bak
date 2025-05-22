@@ -353,8 +353,8 @@ def create_general_info_form():
                             
                                 num_canopies = st.number_input(
                                     f"Enter Number of Canopies in {area_name}",
-                                    min_value=0, # Changed from 1 to 0
-                                    value=0,     # Changed from 1 to 0
+                                    min_value=1,
+                                    value=1,
                                     step=1,
                                     key=f"num_canopies_{level_idx}_{area_idx}"
                                 )
@@ -445,15 +445,14 @@ def create_general_info_form():
                                     #         canopy_data['mua_vol'] = mua_vol
                                 
                                 # Move this outside the canopy loop so we only add the area once with all its canopies
-                                # The canopies_data list will be empty if no canopies were added.
-                                # An area is added as long as area_name was provided (checked by outer condition).
-                                areas_data.append({
-                                    'area_name': area_name,
-                                    'canopies': canopies_data, 
-                                    'include_uvc': include_uvc == "Yes",
-                                    'include_recoair': include_recoair == "Yes",
-                                    'include_sdu': include_sdu == "Yes"
-                                })
+                                if canopies_data:
+                                    areas_data.append({
+                                        'area_name': area_name,
+                                        'canopies': canopies_data,
+                                        'include_uvc': include_uvc == "Yes",  # Store UV-C Control Schedule preference
+                                        'include_recoair': include_recoair == "Yes",  # Store RECOAIR preference
+                                        'include_sdu': include_sdu == "Yes"  # Store SDU preference
+                                    })
                     
                     if areas_data:
                         levels_data.append({
@@ -2056,9 +2055,8 @@ def save_to_excel(data):
                 # Get the color for this area
                 tab_color = area_color_map[area_key]
                 
-                # Check for canopies with fire suppression (ensure 'canopies' key exists and is not empty)
-                area_canopies = area.get('canopies', [])
-                has_fire_suppression = any(canopy.get('fire_suppression', False) for canopy in area_canopies)
+                # Check for canopies with fire suppression
+                has_fire_suppression = any(canopy.get('fire_suppression', False) for canopy in area['canopies'])
                 
                 # Check if area has UV-C Control Schedule
                 needs_edge_box = area.get('include_uvc', False)
@@ -2068,118 +2066,148 @@ def save_to_excel(data):
                 
                 # Check if area includes SDU
                 needs_sdu = area.get('include_sdu', False)
-
-                current_canopy_sheet = None # Initialize
-                fs_sheet = None # Initialize
-
-                if area_canopies: # Only process canopy sheet if canopies exist for this area
-                    if canopy_sheets:
-                        sheet_name = canopy_sheets.pop(0)
-                        current_canopy_sheet = workbook[sheet_name]
-                        sheet_title_display = f"{level_name} - {area_name}" # For B1 cell
-                        current_canopy_sheet['B1'] = sheet_title_display
-                        
-                        # Use sheet_count for CANOPY sheet numbering
-                        canopy_sheet_tab_name = f"CANOPY - {level_name} ({sheet_count + 1})"
-                        current_canopy_sheet.title = canopy_sheet_tab_name
-                        current_canopy_sheet.sheet_state = 'visible'
-                        current_canopy_sheet.sheet_properties.tabColor = tab_color
-                        
-                        # Create fire suppression sheet if needed (associated with these canopies)
-                        if has_fire_suppression:
-                            if fire_supp_sheets:
-                                fs_sheet_name_template = fire_supp_sheets.pop(0)
-                                fs_sheet = workbook[fs_sheet_name_template]
-                                # FS sheet naming and numbering tied to its corresponding CANOPY sheet
-                                new_fs_name = f"FIRE SUPP - {level_name} ({sheet_count + 1})" 
-                                fs_sheet.title = new_fs_name
-                                fs_sheet.sheet_state = 'visible'
-                                fs_sheet.sheet_properties.tabColor = tab_color
-                                # fs_sheet_count incremented when an fs_sheet is actually used.
-                                # However, fs_sheet_count is not used for naming here to keep it linked with canopy sheet.
-                                # If independent numbering for FS sheets is ever needed, fs_sheet_count would be used in title.
-                            else:
-                                st.warning(f"Not enough FIRE SUPP sheets in template for area {area_name} with canopies needing fire suppression. Skipping FIRE SUPP sheet for this area.")
-                        
-                        write_to_sheet(current_canopy_sheet, data, level_name, area_name, area_canopies, fs_sheet)
-                        add_dropdowns_to_sheet(workbook, current_canopy_sheet, 12)
-                        if fs_sheet:
-                            add_fire_suppression_dropdown(fs_sheet)
-                            fs_sheet_count += 1 # Increment global FS sheet counter if one was actually used.
-                        
-                        sheet_count += 1 # Increment global CANOPY sheet counter
-                    else:
-                        st.error(f"Not enough CANOPY sheets in template for area {area_name} which has canopies. Skipping CANOPY sheet for this area.")
-                        # Continue to next area to allow processing of other areas.
-                        # EBOX/RECOAIR/SDU for this area might still be processed below if needed.
                 
-                # Handle EBOX sheet if needed (can exist without canopies)
-                if needs_edge_box:
-                    if edge_box_sheets:
-                        ebox_sheet_name_template = edge_box_sheets.pop(0)
-                        ebox_sheet = workbook[ebox_sheet_name_template]
-                        # Use ebox_sheet_count for EBOX sheet numbering
-                        new_ebox_name = f"EBOX - {level_name} ({ebox_sheet_count + 1})"
-                        ebox_sheet.title = new_ebox_name
-                        ebox_sheet.sheet_state = 'visible'
-                        ebox_sheet.sheet_properties.tabColor = tab_color
-                        
-                        # write_to_sheet for EBOX handles its own title in C1
-                        write_to_sheet(ebox_sheet, data, level_name, area_name, [], None, True) # Pass empty canopy list
-                        ebox_sheet_count += 1
-                    else:
-                        st.warning(f"No more EDGE BOX (EBOX) sheets available for UV-C in {area_name}. Skipping EBOX sheet.")
+                # Get or create canopy sheet
+                if canopy_sheets:
+                    # Use next available CANOPY sheet
+                    sheet_name = canopy_sheets.pop(0)
+                    current_sheet = workbook[sheet_name]
+                else:
+                    st.error("Not enough CANOPY sheets in template!")
+                    break
                 
-                # Handle RECOAIR sheet if needed (can exist without canopies)
-                if needs_recoair:
-                    if recoair_sheets:
-                        recoair_sheet_name_template = recoair_sheets.pop(0)
-                        recoair_sheet = workbook[recoair_sheet_name_template]
-                        # Use recoair_sheet_count for RECOAIR sheet numbering
-                        new_recoair_name = f"RECOAIR - {level_name} ({recoair_sheet_count + 1})"
-                        recoair_sheet.title = new_recoair_name
-                        recoair_sheet.sheet_state = 'visible'
-                        recoair_sheet.sheet_properties.tabColor = tab_color
-                        
-                        try:
-                            recoair_sheet.cell(row=1, column=2, value="RECOAIR CONTROL SYSTEM") # B1
-                        except Exception as e:
-                            st.warning(f"Could not set title for RECOAIR sheet {new_recoair_name}: {str(e)}")
-                        
-                        # write_to_sheet for RECOAIR handles its own title in C1
-                        write_to_sheet(recoair_sheet, data, level_name, area_name, [], None, True) # Pass empty list
-                        
-                        item_number = f"1.{recoair_sheet_count + 1:02d}" 
-                        recoair_sheet.cell(row=12, column=3, value=item_number)
-                        recoair_sheet['D13'] = "Model" 
-                        add_recoair_internal_external_dropdowns(recoair_sheet)
-                        recoair_sheet_count += 1
-                    else:
-                        st.warning(f"No more RECOAIR sheets available for RECOAIR System in {area_name}. Skipping RECOAIR sheet.")
+                # Update sheet title and name
+                sheet_title = f"{level_name} - {area_name}"
+                current_sheet['B1'] = sheet_title
+                current_sheet.title = f"CANOPY - {level_name} ({sheet_count + 1})"
+                current_sheet.sheet_state = 'visible'
                 
-                # Handle SDU sheet if needed (can exist without canopies)
-                if needs_sdu:
-                    if sdu_sheets:
-                        sdu_sheet_name_template = sdu_sheets.pop(0)
-                        sdu_sheet = workbook[sdu_sheet_name_template]
-                        # Use sdu_sheet_count for SDU sheet numbering
-                        new_sdu_name = f"SDU - {level_name} ({sdu_sheet_count + 1})"
-                        sdu_sheet.title = new_sdu_name
-                        sdu_sheet.sheet_state = 'visible'
-                        sdu_sheet.sheet_properties.tabColor = tab_color
-                        
-                        try:
-                            # SDU sheet's B1 title should be the area name
-                            sdu_sheet.cell(row=1, column=2, value=f"{level_name} - {area_name}") # B1
-                        except Exception as e:
-                            st.warning(f"Could not set title for SDU sheet {new_sdu_name}: {str(e)}")
-
-                        # write_to_sheet for SDU handles its own title in C1
-                        write_to_sheet(sdu_sheet, data, level_name, area_name, [], None, True) # Pass empty list
-                        sdu_sheet_count += 1
-                    else:
-                        st.warning(f"No more SDU sheets available for SDU in {area_name}. Skipping SDU sheet.")
+                # Set tab color for this sheet
+                current_sheet.sheet_properties.tabColor = tab_color
                 
+                # Create fire suppression sheet if needed
+                fs_sheet = None
+                if has_fire_suppression:
+                    if fire_supp_sheets:
+                        # Use next available FIRE SUPP sheet
+                        fs_sheet_name = fire_supp_sheets.pop(0)
+                        fs_sheet = workbook[fs_sheet_name]
+                        new_fs_name = f"FIRE SUPP - {level_name} ({sheet_count + 1})"
+                        fs_sheet.title = new_fs_name
+                        fs_sheet.sheet_state = 'visible'
+                        
+                        # Set the same tab color as the canopy sheet
+                        fs_sheet.sheet_properties.tabColor = tab_color
+                        
+                        fs_sheet_count += 1
+                       # st.write(f"  🔥 Using FIRE SUPP sheet: {new_fs_name}")
+                    else:
+                       # st.error("Not enough FIRE SUPP sheets in template!")
+                        break
+                
+                # Handle EDGE BOX sheet if needed
+                if needs_edge_box and edge_box_sheets:
+                    # Get next available EDGE BOX sheet
+                    ebox_sheet_name = edge_box_sheets.pop(0)
+                    ebox_sheet = workbook[ebox_sheet_name]
+                    new_ebox_name = f"EBOX - {level_name} ({ebox_sheet_count + 1})"
+                    ebox_sheet.title = new_ebox_name
+                    ebox_sheet.sheet_state = 'visible'
+                    
+                    # Set the same tab color as the canopy sheet
+                    ebox_sheet.sheet_properties.tabColor = tab_color
+                    
+                    # Write general info to EDGE BOX sheet
+                    write_to_sheet(ebox_sheet, data, level_name, area_name, area['canopies'], None, True)
+                    ebox_sheet_count += 1
+                    #st.write(f"  📦 Created EDGE BOX sheet: {new_ebox_name}")
+                elif needs_edge_box:
+                    #st.warning(f"  ⚠️ No more EDGE BOX sheets available for UV-C Control Schedule in {area_name}")
+                    pass
+                
+                # Handle RECOAIR sheet if needed
+                if needs_recoair and recoair_sheets:
+                    # Use dedicated RECOAIR sheet template
+                    recoair_sheet_name = recoair_sheets.pop(0)
+                    recoair_sheet = workbook[recoair_sheet_name]
+                    new_recoair_name = f"RECOAIR - {level_name} ({recoair_sheet_count + 1})"
+                    recoair_sheet.title = new_recoair_name
+                    recoair_sheet.sheet_state = 'visible'
+                    
+                    # Set the same tab color as the canopy sheet
+                    recoair_sheet.sheet_properties.tabColor = tab_color
+                    
+                    # Update the sheet title to indicate it's for RECOAIR
+                    # Check for merged cells before writing to B1
+                    try:
+                        # Use the cell method instead of directly accessing the value
+                        # This handles merged cells gracefully
+                        recoair_sheet.cell(row=1, column=2, value="RECOAIR CONTROL SYSTEM")
+                    except Exception as e:
+                        # If there's still an error, let's try a different approach
+                        st.warning(f"Could not set title for RECOAIR sheet: {str(e)}")
+                    
+                    # Write general info to RECOAIR sheet
+                    write_to_sheet(recoair_sheet, data, level_name, area_name, area['canopies'], None, True)
+                    
+                    # Update the item number in C12 based on the recoair_sheet_count
+                    # Format: 1.01, 1.02, etc.
+                    item_number = f"1.{recoair_sheet_count + 1:02d}"
+                    recoair_sheet.cell(row=12, column=3, value=item_number)  # Update C12 with correct item number
+                    
+                    # Add column header for Models in D13
+                    recoair_sheet['D13'] = "Model"
+                    
+                    # Add internal/external dropdowns to RECOAIR sheet
+                    add_recoair_internal_external_dropdowns(recoair_sheet)
+                    
+                    recoair_sheet_count += 1  # Increment RECOAIR counter
+                    #st.write(f"🌬️ Created RECOAIR sheet: {new_recoair_name}")
+                elif needs_recoair:
+                    #st.warning(f"  ⚠️ No more RECOAIR sheets available for RECOAIR System in {area_name}")
+                    pass
+                
+                # Handle SDU sheet if needed
+                if needs_sdu and sdu_sheets:
+                    # Use dedicated SDU sheet template
+                    sdu_sheet_name = sdu_sheets.pop(0)
+                    sdu_sheet = workbook[sdu_sheet_name]
+                    new_sdu_name = f"SDU - {level_name} ({sdu_sheet_count + 1})"
+                    sdu_sheet.title = new_sdu_name
+                    sdu_sheet.sheet_state = 'visible'
+                    
+                    # Set the same tab color as the canopy sheet
+                    sdu_sheet.sheet_properties.tabColor = tab_color
+                    
+                    # Update the sheet title to indicate it's for SDU
+                    # Check for merged cells before writing to B1
+                    try:
+                        # Use the cell_address method instead of directly accessing the value
+                        # This handles merged cells gracefully
+                        sdu_sheet.cell(row=1, column=2, value=f"{level_name} - {area_name}")
+                    except Exception as e:
+                        # If there's still an error, let's try a different approach
+                        st.warning(f"Could not set title for SDU sheet: {str(e)}")
+                    
+                    # Write general info to SDU sheet
+                    write_to_sheet(sdu_sheet, data, level_name, area_name, area['canopies'], None, True)
+                    
+                    sdu_sheet_count += 1  # Increment SDU counter
+                    #st.write(f"🔄 Created SDU sheet: {new_sdu_name}")
+                elif needs_sdu:
+                    #st.warning(f"  ⚠️ No more SDU sheets available for Supply and Distribution Unit in {area_name}")
+                    pass
+                
+                # Write data to the CANOPY sheet
+                write_to_sheet(current_sheet, data, level_name, area_name, area['canopies'], fs_sheet)
+                
+                # Add dropdowns to sheets
+                add_dropdowns_to_sheet(workbook, current_sheet, 12)
+                if fs_sheet:
+                    add_fire_suppression_dropdown(fs_sheet)
+                
+                sheet_count += 1
+        
         # Make sure the JOB TOTAL sheet has no tab color to differentiate it
         if 'JOB TOTAL' in workbook.sheetnames:
             # We're not setting a tab color, which will keep it as default
@@ -2875,26 +2903,24 @@ def read_excel_file(uploaded_file):
         area_name = sheet['C1'].value or sheet.title  # Get area name from C1 for EBOX sheets
         # st.write(area_name)
         if area_name:
-            # Skip if area name contains F24
-            if 'F24' in str(area_name):
-                continue
-                
             # Get N9 and K9 prices from EBOX sheet
             n9_price = safe_convert_to_float(sheet['N9'].value)
             k9_price = safe_convert_to_float(sheet['K9'].value)
             total_price = safe_convert_to_float(sheet['N9'].value)  # Total price is same as N9 for EBOX sheets
             
-            # Add to global totals only if n9_price > 0 (valid data exists)
+            # Add to global totals
+            project_data['global_uv_k9_total'] += k9_price
+            project_data['global_uv_n9_total'] += n9_price
+            
+           # st.write(k9_price) #K9 price not extracted correctly
+           # st.write(n9_price)
             if n9_price > 0:
-                project_data['global_uv_k9_total'] += k9_price
-                project_data['global_uv_n9_total'] += n9_price
-                
                 project_data['uv_control_data'][area_name] = {
                     'k9_price': k9_price,
                     'n9_price': n9_price,
                     'total_price': total_price  # Add total price to UV control data
                 }
-                project_data['has_uv_canopy'] = True
+               # st.write(project_data['global_uv_n9_total'])
     
     # Process RECOAIR sheets to get RECOAIR system prices
     #st.write(recoair_sheets)
@@ -2972,8 +2998,8 @@ def read_excel_file(uploaded_file):
             project_data['global_recoair_n9_total'] += n9_price
             
             # Add to global totals
-            # project_data['global_recoair_k9_total'] += k9_price
-            # project_data['global_recoair_n9_total'] += n9_price
+            project_data['global_recoair_k9_total'] += k9_price
+            project_data['global_recoair_n9_total'] += n9_price
             
             # Get the item number from C12 for the entire RECOAIR unit
             sheet_item_number = sheet['C12'].value
@@ -3261,19 +3287,16 @@ def create_download_zip(excel_file, word_file, project_data=None):
     except:
         formatted_date = project_date.replace('/', '.')
     
-    # Create base filenames: one for Excel, one for Word documents
-    base_filename_excel = f"{project_number} Cost Sheet {formatted_date}"
-    base_filename_word = f"{project_number} Quotation {formatted_date}"
+    # Create base filename
+    base_filename = f"{project_number} Cost Sheet {formatted_date}"
     
     # Create zip file
-    zip_filename = f"{base_filename_excel}.zip" # Zip file can be named based on the Excel content
+    zip_filename = f"{base_filename}.zip"
     with zipfile.ZipFile(zip_filename, 'w') as zipf:
         # Add Excel file with consistent naming
-        zipf.write(excel_file, f"{base_filename_excel}.xlsx")
-        
-        # Add Word file with "Quotation" in the name
-        if word_file: # word_file will be None if it wasn't generated (though current user code generates it always)
-            zipf.write(word_file, f"{base_filename_word}.docx")
+        zipf.write(excel_file, f"{base_filename}.xlsx")
+        # Add Word file with consistent naming
+        zipf.write(word_file, f"{base_filename}.docx")
         
         # Check if RECOAIR data exists and add RECOAIR quotation if needed
         has_recoair = False
@@ -3458,18 +3481,18 @@ def create_download_zip(excel_file, word_file, project_data=None):
                         doc.render(context)
                         doc.save(custom_recoair_doc)
                         
-                        # Add the customized RECOAIR document to the zip with "Quotation" in the name
-                        zipf.write(custom_recoair_doc, f"{base_filename_word} - RECOAIR.docx")
+                        # Add the customized RECOAIR document to the zip
+                        zipf.write(custom_recoair_doc, f"{base_filename} - RECOAIR.docx")
                         
                         # Clean up temporary file
                         os.remove(custom_recoair_doc)
                     except Exception as e:
                         # If customization fails, use the original template
                         st.warning(f"Could not customize RECOAIR document: {str(e)}")
-                        zipf.write(recoair_doc_path, f"{base_filename_word} - RECOAIR.docx")
+                        zipf.write(recoair_doc_path, f"{base_filename} - RECOAIR.docx")
                 else:
                     # If no project_data, just include the original template
-                    zipf.write(recoair_doc_path, f"{base_filename_word} - RECOAIR.docx")
+                    zipf.write(recoair_doc_path, f"{base_filename} - RECOAIR.docx")
             else:
                 st.warning(f"RECOAIR document template not found at: {recoair_doc_path}")
     
@@ -3562,35 +3585,13 @@ def write_job_total(workbook, project_data):
         total_sheet['S16'] = k9_total   # Main K9 total
         total_sheet['S17'] = fs_k9_total  # Fire suppression K9 total
         total_sheet['T17'] = fs_n9_total  # Fire suppression N9 total
-        
-        # Only write UV totals if there is UV data
-        has_uv_data = bool(project_data.get('uv_control_data', {}))
-        if has_uv_data:
-            total_sheet['S21'] = uv_k9_total  # UV-C K9 total
-            total_sheet['T21'] = uv_n9_total  # UV-C N9 total
-        else:
-            # Zero out the cells if no UV data
-            total_sheet['S21'] = 0  # UV-C K9 total
-            total_sheet['T21'] = 0  # UV-C N9 total
-            
+        total_sheet['S21'] = uv_k9_total  # UV-C K9 total
+        total_sheet['T21'] = uv_n9_total  # UV-C N9 total
         total_sheet['S24'] = recoair_k9_total  # RECOAIR K9 total (cost)
         total_sheet['T24'] = recoair_n9_total  # RECOAIR N9 total (selling price)
         
-        # Check if RECOAIR sheets are included in the job_total calculation
-        recoair_already_included = False
-        for sheet_data in project_data['sheets']:
-            if 'sheet_name' in sheet_data and 'RECOAIR' in str(sheet_data['sheet_name']):
-                recoair_already_included = True
-                break
-        
-        # Calculate the correct grand total, avoiding double-counting
-        # Only add UV totals if there is actual UV data
-        if recoair_already_included:
-            # If RECOAIR sheets are already processed in job_total, don't add recoair_n9_total again
-            grand_total = job_total + fs_n9_total + (uv_n9_total if has_uv_data else 0)
-        else:
-            # If RECOAIR is not part of job_total, include it
-            grand_total = job_total + fs_n9_total + (uv_n9_total if has_uv_data else 0) + recoair_n9_total
+        # Calculate the correct grand total, including all components
+        grand_total = job_total + fs_n9_total + uv_n9_total + recoair_n9_total
         
         # Override the formula cells for subtotal and grand total in the template
         # Based on your image, row 27 contains subtotal and row 28 contains the grand total
@@ -3716,7 +3717,7 @@ def write_to_recoair_doc(data, project_data, output_path="recoair_output.docx"):
             'Location': project_info.get('location', ''),
             'Date': data.get('Date', ''),
             'Sales Contact': data.get('Sales Contact', ''),
-            'Cu∫stomer': data.get('Customer', ''),
+            'Customer': data.get('Customer', ''),
             'Company': data.get('Company', ''),
             
             # Additional data
