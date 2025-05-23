@@ -295,7 +295,7 @@ def create_general_info_form():
         estimator = st.selectbox("Estimator", ["Select..."] + list(estimators.keys()))
         st.session_state.project_data['Estimator'] = estimator
     
-    cost_sheet = st.selectbox("Select Cost Sheet to Report", ["Select...", "Canopy", "Other Options"])
+    cost_sheet = st.selectbox("Select Cost Sheet to Report", ["Select...", "Canopy", "Reco Air"])
     st.session_state.project_data['Cost Sheet'] = cost_sheet
     
     # Levels Configuration
@@ -330,119 +330,119 @@ def create_general_info_form():
                             )
                             
                             if area_name:
-                            # Add UV-C Control Schedule radio button for the area
-                                include_uvc = st.radio(
-                                    "Include UV-C Control Schedule",
-                                    options=["No", "Yes"],
-                                    key=f"uvc_{level_idx}_{area_idx}"
-                                )
-                                
-                                # Add RECOAIR system radio button for the area
-                                include_recoair = st.radio(
-                                    "Include RECOAIR System",
-                                    options=["No", "Yes"],
-                                    key=f"recoair_{level_idx}_{area_idx}"
-                                )
-                                
-                                # Add SDU option radio button for the area
-                                include_sdu = st.radio(
-                                    "Include SDU",
-                                    options=["No", "Yes"],
-                                    key=f"sdu_{level_idx}_{area_idx}"
-                                )
-                            
-                                num_canopies = st.number_input(
-                                    f"Enter Number of Canopies in {area_name}",
-                                    min_value=0, # Changed from 1 to 0
-                                    value=0,     # Changed from 1 to 0
-                                    step=1,
-                                    key=f"num_canopies_{level_idx}_{area_idx}"
-                                )
-                                
-                                canopies_data = []  # Initialize canopies list outside the loop
-                                for canopy_idx in range(num_canopies):
-                                    st.write(f"Processing canopy {canopy_idx + 1} for {area_name}")
-                                    col1, col2 = st.columns(2)
-                                    with col1:
-                                        reference_number = st.text_input(
-                                            "Reference Number",
-                                            key=f"ref_{level_idx}_{area_idx}_{canopy_idx}"
-                                        )
-                                        configuration = st.selectbox(
-                                            "Configuration",
-                                            options=["WALL", "ISLAND", "OTHER"],
-                                            key=f"config_{level_idx}_{area_idx}_{canopy_idx}"
-                                        )
-                                    # Add fire suppression radio button right after configuration
-                                    fire_suppression = st.radio(
-                                        "Include Fire Suppression",
+                                # Show different options based on cost sheet type
+                                if cost_sheet == "Canopy":
+                                    # Add UV-C Control Schedule radio button for the area
+                                    include_uvc = st.radio(
+                                        "Include UV-C Control Schedule",
                                         options=["No", "Yes"],
-                                        key=f"fire_suppression_{level_idx}_{area_idx}_{canopy_idx}"
+                                        key=f"uvc_{level_idx}_{area_idx}"
                                     )
-                                
-                                    with col2:
-                                        model = st.selectbox(
-                                            "Model",
-                                            options=["Select..."] + VALID_CANOPY_MODELS,
-                                            key=f"model_{level_idx}_{area_idx}_{canopy_idx}"
-                                        )
-                                        
-                                        wall_cladding = st.selectbox(
-                                            "Wall Cladding",
-                                            options=["Select...", "2M² (HFL)"],
-                                            key=f"cladding_{level_idx}_{area_idx}_{canopy_idx}"
-                                        )
-                                        
-                                        if wall_cladding != "Select...":
-                                            col1, col2 = st.columns(2)
-                                            with col1:
-                                                cladding_width = st.number_input(
-                                                    "Cladding Width (mm)",
-                                                    min_value=0,
-                                                    value=0,
-                                                    step=100,
-                                                    key=f"cladding_width_{level_idx}_{area_idx}_{canopy_idx}"
-                                                )
-                                            with col2:
-                                                cladding_height = st.number_input(
-                                                    "Cladding Height (mm)",
-                                                    min_value=0,
-                                                    value=0,
-                                                    step=100,
-                                                    key=f"cladding_height_{level_idx}_{area_idx}_{canopy_idx}"
-                                                )
-                                            
-                                            wall_positions = st.multiselect(
-                                                "Wall Positions",
-                                                options=["Rear", "Left", "Right"],
-                                                key=f"wall_positions_{level_idx}_{area_idx}_{canopy_idx}"
-                                            )
                                     
-                                    if reference_number:
-                                        canopy_data = {
-                                            'reference_number': reference_number,
-                                            'configuration': configuration,
-                                            'model': model,
-                                            'fire_suppression': fire_suppression == 'Yes',  # Store as boolean
-                                            'level_name': level_name,  # Store level name
-                                            'area_name': area_name,    # Store area name
-                                            'wall_cladding': {
-                                                'type': wall_cladding,
-                                                'width': cladding_width if wall_cladding != "Select..." else 0,
-                                                'height': cladding_height if wall_cladding != "Select..." else 0,
-                                                'positions': wall_positions if wall_cladding != "Select..." else []
-                                            }
-                                        }
-                                        canopies_data.append(canopy_data)
+                                    # Add RECOAIR system radio button for the area
+                                    include_recoair = st.radio(
+                                        "Include RECOAIR System",
+                                        options=["No", "Yes"],
+                                        key=f"recoair_{level_idx}_{area_idx}"
+                                    )
+                                    
+                                    # Add SDU option radio button for the area
+                                    include_sdu = st.radio(
+                                        "Include SDU",
+                                        options=["No", "Yes"],
+                                        key=f"sdu_{level_idx}_{area_idx}"
+                                    )
+                                    
+                                    num_canopies = st.number_input(
+                                        f"Enter Number of Canopies in {area_name}",
+                                        min_value=0,
+                                        value=0,
+                                        step=1,
+                                        key=f"num_canopies_{level_idx}_{area_idx}"
+                                    )
+                                    
+                                    canopies_data = []  # Initialize canopies list outside the loop
+                                    for canopy_idx in range(num_canopies):
+                                        st.write(f"Processing canopy {canopy_idx + 1} for {area_name}")
+                                        col1, col2 = st.columns(2)
+                                        with col1:
+                                            reference_number = st.text_input(
+                                                "Reference Number",
+                                                key=f"ref_{level_idx}_{area_idx}_{canopy_idx}"
+                                            )
+                                            configuration = st.selectbox(
+                                                "Configuration",
+                                                options=["WALL", "ISLAND", "OTHER"],
+                                                key=f"config_{level_idx}_{area_idx}_{canopy_idx}"
+                                            )
+                                        # Add fire suppression radio button right after configuration
+                                        fire_suppression = st.radio(
+                                            "Include Fire Suppression",
+                                            options=["No", "Yes"],
+                                            key=f"fire_suppression_{level_idx}_{area_idx}_{canopy_idx}"
+                                        )
+                                    
+                                        with col2:
+                                            model = st.selectbox(
+                                                "Model",
+                                                options=["Select..."] + VALID_CANOPY_MODELS,
+                                                key=f"model_{level_idx}_{area_idx}_{canopy_idx}"
+                                            )
+                                            
+                                            wall_cladding = st.selectbox(
+                                                "Wall Cladding",
+                                                options=["Select...", "2M² (HFL)"],
+                                                key=f"cladding_{level_idx}_{area_idx}_{canopy_idx}"
+                                            )
+                                            
+                                            if wall_cladding != "Select...":
+                                                col1, col2 = st.columns(2)
+                                                with col1:
+                                                    cladding_width = st.number_input(
+                                                        "Cladding Width (mm)",
+                                                        min_value=0,
+                                                        value=0,
+                                                        step=100,
+                                                        key=f"cladding_width_{level_idx}_{area_idx}_{canopy_idx}"
+                                                    )
+                                                with col2:
+                                                    cladding_height = st.number_input(
+                                                        "Cladding Height (mm)",
+                                                        min_value=0,
+                                                        value=0,
+                                                        step=100,
+                                                        key=f"cladding_height_{level_idx}_{area_idx}_{canopy_idx}"
+                                                    )
+                                                
+                                                wall_positions = st.multiselect(
+                                                    "Wall Positions",
+                                                    options=["Rear", "Left", "Right"],
+                                                    key=f"wall_positions_{level_idx}_{area_idx}_{canopy_idx}"
+                                                )
                                         
-                                    # Add MUA VOL input for F-type canopies
-                                    # if 'F' in str(model).upper():
-                                    #     mua_vol = st.text_input(
-                                    #         "MUA Volume (m³/h)",
-                                    #         key=f"mua_vol_{level_idx}_{area_idx}_{canopy_idx}"
-                                    #     )
-                                    #     if canopy_data:
-                                    #         canopy_data['mua_vol'] = mua_vol
+                                        if reference_number:
+                                            canopy_data = {
+                                                'reference_number': reference_number,
+                                                'configuration': configuration,
+                                                'model': model,
+                                                'fire_suppression': fire_suppression == 'Yes',  # Store as boolean
+                                                'level_name': level_name,  # Store level name
+                                                'area_name': area_name,    # Store area name
+                                                'wall_cladding': {
+                                                    'type': wall_cladding,
+                                                    'width': cladding_width if wall_cladding != "Select..." else 0,
+                                                    'height': cladding_height if wall_cladding != "Select..." else 0,
+                                                    'positions': wall_positions if wall_cladding != "Select..." else []
+                                                }
+                                            }
+                                            canopies_data.append(canopy_data)
+                                
+                                elif cost_sheet == "Reco Air":
+                                    # For Reco Air, we only need the RECOAIR system option
+                                    include_recoair = "Yes"  # Always include RECOAIR for Reco Air cost sheet
+                                    include_uvc = "No"  # No UV-C for Reco Air
+                                    include_sdu = "No"  # No SDU for Reco Air
+                                    canopies_data = []  # No canopies for Reco Air
                                 
                                 # Move this outside the canopy loop so we only add the area once with all its canopies
                                 # The canopies_data list will be empty if no canopies were added.
